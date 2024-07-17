@@ -1,5 +1,9 @@
 .streamTD {
-    display: "none";
-    text-align: "center";
-    border: 1px solid red;
+    display: inline-block;
+    border: black 1px solid;
+    background-color: #E0E0D1;
+    width: 25%;
+    height: 100%;
+    float:left;
+    box-sizing:border-box;
 }
