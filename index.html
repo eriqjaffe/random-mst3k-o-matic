@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  <title>Random MST3K-O-Matic</title>
+  <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
+  <script type="text/javascript" src="./scripts/jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="./scripts/skeletabs.js"></script>
+  <link href='./scripts/skeletabs.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+  <h1>Hello World!</h1>
+  <div id="tabContainer" class="skltbs-theme-light" data-skeletabs>
+    <ul class="skltbs-tab-group">
+      <li class="skltbs-tab-item">
+        <button class="skltbs-tab">The Hosts</button>
+      </li>
+      <li class="skltbs-tab-item">
+        <button class="skltbs-tab">The Mads</button>
+      </li>
+      <li class="skltbs-tab-item">
+        <button class="skltbs-tab">The Options</button>
+      </li>
+    </ul>
+    <div class="skltbs-panel-group">
+      <div class="skltbs-panel">
+        <table>
+          <tr><td>Choose A Host:</td></tr>
+          <tr><td>
+            <select id="theHost">
+              <option value="any">I don't care!</option>
+              <option value="Joel">Joel Hodgson</option>
+              <option value="Mike">Mike Nelson</option>
+              <option value="Jonah">Jonah Ray</option>
+              <option value="Emily">Emily Marsh</option>
+            </select>
+          </td></tr>
+          <tr><td>Choose A Crow:</td></tr>
+          <tr><td>
+            <select id="theCrow">
+              <option value="any">I don't care!</option>
+              <option value="Josh">Josh Weinstein</option>
+              <option value="Trace">Trace Beaulieu</option>
+              <option value="Bill">Bill Corbett</option>
+              <option value="Hampton">Hampton Yount</option>
+              <option value="Kelsey">Kelsey Ann Brady</option>
+            </select>
+          </td></tr>
+          <tr><td>Choose A Crpw:</td></tr>
+          <tr><td>
+            <select id="theTom">
+              <option value="any">I don't care!</option>
+              <option value="Josh">Josh Weinstein</option>
+              <option value="Kevin">Kevin Murphy</option>
+              <option value="Baron">Baron Vaughn</option>
+              <option value="Conor">Conor McGiffin</option>
+            </select>
+          </td></tr>
+          </table>
+      </div>
+      <div class="skltbs-panel">
+          <input type="checkbox" id="drf">&nbsp;Dr. Clayton Forrester<br/>
+          <input type="checkbox" id="larry">&nbsp;Dr. Larry Erhardt<br/>
+          <input type="checkbox" id="frank">&nbsp;TV's Frank<br/>
+          <input type="checkbox" id="pearl">&nbsp;Pearl Forrester<br/>
+          <input type="checkbox" id="bobo">&nbsp;Professor Bobo<br/>
+          <input type="checkbox" id="observer">&nbsp;Brain Guy<br/>
+          <input type="checkbox" id="kinga">&nbsp;Kinga Forrester<br/>
+          <input type="checkbox" id="max">&nbsp;TV's Son of TV's Frank<br/>
+          <input type="checkbox" id="synthia">&nbsp;Synthia<br/>
+          <input type="checkbox" id="megasynthia">&nbsp;Mega Synthia<br/>
+      </div>
+      <div class="skltbs-panel">
+        <input type="checkbox" id="short">&nbsp;Only show episodes with shorts<br/>
+        <input type="checkbox" id="streaming">&nbsp;Only show episodes available for streaming<br/>
+      </div>
+    </div>
+  </div>
+  <input type="button" id="movieSign" value="MOVIE SIGN!">
+</body>
+<script>
+
+</script>
+
+</html>
