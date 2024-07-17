@@ -1,42 +1,62 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 const fs = require("fs");
 const initSqlJs = require("sql.js/dist/sql-wasm.js");
 const dbBuffer = fs.readFileSync(
-    path.join(app.getAppPath(), "db", "episodes.sqlite")
+  path.join(app.getAppPath(), "db", "episodes.sqlite")
 );
-
-console.log(dbBuffer)
 
 let db;
 
-initSqlJs().then(function (SQL) {
-  db = new SQL.Database(dbBuffer);
-  console.log(db)
-  db.each(
-    'SELECT * from episodes',
-    function (row) {
-      console.log(row);
+ipcMain.on('movie-request', (event, arg) => {
+  let sql = "select * from episodes where "
+  sql += "host " + arg.host + " "
+  sql += "and crow " + arg.crow + " "
+  sql += "and tom " + arg.tom + " "
+
+  arg.mads.forEach(function (mad) {
+    for (const [key, value] of Object.entries(mad)) {
+      sql += `and ${key} = ${value} `;
     }
-  );
-});
+  })
 
-
-
-/* db.each(
-    'SELECT * from episodes',
-    function (row) {
-      console.log(row);
+  arg.options.forEach(function (option) {
+    for (const [key, value] of Object.entries(option)) {
+      sql += `and ${key} = ${value} `;
     }
-  ); */
+  })
+
+  initSqlJs().then(function (SQL) {
+
+    db = new SQL.Database(dbBuffer);
+    const result = db.exec(sql + " ORDER BY RANDOM() LIMIT 1");
+
+    if (result.length === 0 || result[0].values.length === 0) {
+      db.close()
+      event.sender.send('movie-sign', { rows: 0, message: "No rows found" })
+      return false;
+    } else {
+      // Get the first (and only) row
+      const row = result[0].values[0];
+      const rowObject = result[0].columns.reduce((obj, col, index) => {
+        obj[col] = row[index];
+        return obj;
+      }, {});
+      db.close()
+      event.sender.send('movie-sign', { rows: 1, movie: rowObject })
+
+    }
+  });
+})
 
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1024,
-    height: 768,
+    width: 1152,
+    height: 864,
     webPreferences: {
-      //preload: path.join(__dirname, 'preload.js')
+      nodeIntegration: true,
+      contextIsolation: false
     }
   })
 

@@ -8,11 +8,17 @@
   <script>if (typeof module === 'object') { window.module = module; module = undefined; }</script>
   <script type="text/javascript" src="./scripts/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="./scripts/skeletabs.js"></script>
+  <script type="text/javascript" src="./scripts/jquery.magnific-popup.js"></script>
+  <link href="./scripts/matic.css" rel="stylesheet" type="text/css">
   <link href='./scripts/skeletabs.css' rel='stylesheet' type='text/css'>
+  <link href='./scripts/magnific-popup.css' rel='stylesheet' type='text/css'>
+  <script>
+    const { ipcRenderer } = require('electron');
+  </script>
 </head>
 
 <body>
-  <h1>Hello World!</h1>
+  <h3 style="text-align:center;">Hello World!</h3>
   <div id="tabContainer" class="skltbs-theme-light" data-skeletabs>
     <ul class="skltbs-tab-group">
       <li class="skltbs-tab-item">
@@ -31,58 +37,189 @@
           <tr><td>Choose A Host:</td></tr>
           <tr><td>
             <select id="theHost">
-              <option value="any">I don't care!</option>
-              <option value="Joel">Joel Hodgson</option>
-              <option value="Mike">Mike Nelson</option>
-              <option value="Jonah">Jonah Ray</option>
-              <option value="Emily">Emily Marsh</option>
+              <option value="IS NOT NULL">I don't care!</option>
+              <option value="= 'jh'">Joel Hodgson</option>
+              <option value="= 'mn'">Mike Nelson</option>
+              <option value="= 'jr'">Jonah Ray</option>
+              <option value="= 'em'">Emily Marsh</option>
             </select>
           </td></tr>
           <tr><td>Choose A Crow:</td></tr>
           <tr><td>
             <select id="theCrow">
-              <option value="any">I don't care!</option>
-              <option value="Josh">Josh Weinstein</option>
-              <option value="Trace">Trace Beaulieu</option>
-              <option value="Bill">Bill Corbett</option>
-              <option value="Hampton">Hampton Yount</option>
-              <option value="Kelsey">Kelsey Ann Brady</option>
+              <option value="IS NOT NULL">I don't care!</option>
+              <option value="= 'jw'">Josh Weinstein</option>
+              <option value="= 'tb'">Trace Beaulieu</option>
+              <option value="= 'bc'">Bill Corbett</option>
+              <option value="= 'hyt'">Hampton Yount</option>
+              <option value="= 'kab'">Kelsey Ann Brady</option>
             </select>
           </td></tr>
-          <tr><td>Choose A Crpw:</td></tr>
+          <tr><td>Choose A Tom Servo:</td></tr>
           <tr><td>
             <select id="theTom">
-              <option value="any">I don't care!</option>
-              <option value="Josh">Josh Weinstein</option>
-              <option value="Kevin">Kevin Murphy</option>
-              <option value="Baron">Baron Vaughn</option>
-              <option value="Conor">Conor McGiffin</option>
+              <option value="IS NOT NULL">I don't care!</option>
+              <option value="= 'jw'">Josh Weinstein</option>
+              <option value="= 'km'">Kevin Murphy</option>
+              <option value="= 'bv'">Baron Vaughn</option>
+              <option value="= 'cm'">Conor McGiffin</option>
             </select>
           </td></tr>
           </table>
       </div>
       <div class="skltbs-panel">
-          <input type="checkbox" id="drf">&nbsp;Dr. Clayton Forrester<br/>
-          <input type="checkbox" id="larry">&nbsp;Dr. Larry Erhardt<br/>
-          <input type="checkbox" id="frank">&nbsp;TV's Frank<br/>
-          <input type="checkbox" id="pearl">&nbsp;Pearl Forrester<br/>
-          <input type="checkbox" id="bobo">&nbsp;Professor Bobo<br/>
-          <input type="checkbox" id="observer">&nbsp;Brain Guy<br/>
-          <input type="checkbox" id="kinga">&nbsp;Kinga Forrester<br/>
-          <input type="checkbox" id="max">&nbsp;TV's Son of TV's Frank<br/>
-          <input type="checkbox" id="synthia">&nbsp;Synthia<br/>
-          <input type="checkbox" id="megasynthia">&nbsp;Mega Synthia<br/>
+          <input type="checkbox" class="mads" id="drf" value="drf">&nbsp;Dr. Clayton Forrester<br/>
+          <input type="checkbox" class="mads" id="larry" value="larry">&nbsp;Dr. Larry Erhardt<br/>
+          <input type="checkbox" class="mads" id="frank" value="frank">&nbsp;TV's Frank<br/>
+          <input type="checkbox" class="mads" id="pearl" value="pearl">&nbsp;Pearl Forrester<br/>
+          <input type="checkbox" class="mads" id="bobo" value="bobo">&nbsp;Professor Bobo<br/>
+          <input type="checkbox" class="mads" id="observer" value="observer">&nbsp;Brain Guy<br/>
+          <input type="checkbox" class="mads" id="kinga" value="kinga">&nbsp;Kinga Forrester<br/>
+          <input type="checkbox" class="mads" id="max" value="max">&nbsp;TV's Son of TV's Frank<br/>
+          <input type="checkbox" class="mads" id="synthia" value="synthia">&nbsp;Synthia<br/>
+          <input type="checkbox" class="mads" id="megasynthia" value="megasynthia">&nbsp;Mega Synthia<br/>
       </div>
       <div class="skltbs-panel">
-        <input type="checkbox" id="short">&nbsp;Only show episodes with shorts<br/>
-        <input type="checkbox" id="streaming">&nbsp;Only show episodes available for streaming<br/>
+        <input type="checkbox" class="options" id="short" value="short">&nbsp;Only show episodes with shorts<br/>
+        <input type="checkbox" class="options" id="streaming" value="streaming">&nbsp;Only show episodes available for streaming<br/>
       </div>
     </div>
   </div>
   <input type="button" id="movieSign" value="MOVIE SIGN!">
+  <div id="small-dialog" class="white-popup mfp-hide">
+    <h2 style="width:100%; text-align:center;" id="experimentID"></h2>
+    <h1 style="width:100%; text-align:center;" id="result"></h1>
+    <div style="width: 100%; text-align:center;">
+      <img id="moviePoster" src="">
+    </div>
+    <table style="width:100%; border:1px solid blue;">
+      <tr>
+        <td class="streamTD" id="amazonTD">Amazon</td>
+        <td class="streamTD" id="huluTD">Hulu</td>
+        <td class="streamTD" id="itunesTD">iTunes</td>
+        <td class="streamTD" id="mst3kTD">MST3K</td>
+        <td class="streamTD" id="netflixTD">Netflix</td>
+        <td class="streamTD" id="rifftraxTD">Rifftrax</td>
+        <td class="streamTD" id="shoutTD">Shout</td>
+        <td class="streamTD" id="vhxTD">VHX</td>
+        <td class="streamTD" id="vimeoTD">Vimeo</td>
+        <td class="streamTD" id="youtubeTD">YouTube</td>
+      </tr>
+    </table>
+  </div>
+  
 </body>
 <script>
+$("#movieSign").on("click",function(e){
+  $("#result").html("")
+  let data = {}
+  let mads = []
+  let options = []
+  
+  $(".mads").each(function(){
+    if ($(this).is(":checked")) {
+      let obj = {}
+      obj[$(this).val()] = 1
+      mads.push(obj)
+    }
+  })
 
+  $(".options").each(function(){
+    if ($(this).is(":checked")) {
+      let obj = {}
+      obj[$(this).val()] = 1
+      options.push(obj)
+    }
+  })
+
+  data.host = $("#theHost").val()
+  data.crow = $("#theCrow").val()
+  data.tom = $("#theTom").val()
+  data.mads = mads
+  data.options = options
+  ipcRenderer.send('movie-request', data)
+})
+
+ipcRenderer.on('movie-sign', (event, data) => { 
+  console.log(data.movie)
+  if (data.rows == 0) { 
+    alert("No movies found!")
+  } else {
+    let streams = 0
+    if (data.movie.amazon != null) {
+      $("#amazonTD").css("display","inline-block")
+      streams++
+    } else {
+      $("#amazonTD").css("display","none")
+    }
+    if (data.movie.hulu != null) {
+      $("#huluTD").css("display","inline-block")
+      streams++
+    } else {
+      $("#huluTD").css("display","none")
+    }
+    if (data.movie.itunes != null) {
+      $("#itunesTD").css("display","inline-block")
+      streams++
+    } else {
+      $("#itunesTD").css("display","none")
+    }
+    if (data.movie.mst3k != null) {
+      $("#mst3kTD").css("display","inline-block")
+      streams++
+    } else {
+      $("#mst3kTD").css("display","none")
+    }
+    if (data.movie.netflix != null) {
+      $("#netflixTD").css("display","inline-block")
+      streams++
+    } else {
+      $("#netflixTD").css("display","none")
+    }
+    if (data.movie.rifftrax != null) {
+      $("#rifftraxTD").css("display","inline-block")
+      streams++
+    } else {
+      $("#rifftraxTD").css("display","none")
+    }
+    if (data.movie.shout != null) {
+      $("#shoutTD").css("display","inline-block")
+      streams++
+    } else {
+      $("#shoutTD").css("display","none")
+    }
+    if (data.movie.vhx != null) {
+      $("#vhxTD").css("display","inline-block")
+      streams++
+    } else {
+      $("#vhxTD").css("display","none")
+    }
+    if (data.movie.vimeo != null) {
+      $("#vimeoTD").css("display","inline-block")
+      streams++
+    } else {
+      $("#vimeoTD").css("display","none")
+    }
+    if (data.movie.youtube != null) {
+      $("#youtubeTD").css("display","inline-block")
+      streams++
+    } else {
+      $("#youtubeTD").css("display","none")
+    }
+    $(".streamTD").css("width",(100/streams)-(streams/10)+"%")
+    $("#experimentID").html("Experiment "+data.movie.experiment+":")
+    $("#result").html(data.movie.movie)
+    $("#moviePoster").attr("src","epthumbs/"+data.movie.experiment+".jpg")
+    $("#streamingServices").html(JSON.stringify(streams))
+    $.magnificPopup.open({
+      items: {
+        src: '#small-dialog'
+      },
+      type: 'inline'
+    });
+    
+  }
+})
 </script>
 
 </html>
