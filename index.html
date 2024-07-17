@@ -93,22 +93,28 @@
       <img id="moviePoster" src="">
     </div>
     <div style="text-align:center; width:100%;">
-        <div class="streamTD" id="amazonTD">Amazon</div>
-        <div class="streamTD" id="huluTD">Hulu</div>
-        <div class="streamTD" id="itunesTD">iTunes</div>
-        <div class="streamTD" id="mst3kTD">MST3K</div>
-        <div class="streamTD" id="netflixTD">Netflix</div>
-        <div class="streamTD" id="rifftraxTD">Rifftrax</div>
-        <div class="streamTD" id="shoutTD">Shout</div>
+        <div class="streamTD" id="amazonTD"><a id="amazonURL" href=""><img src="images/amazon.svg" style="height:50px;"></a></div>
+        <div class="streamTD" id="huluTD"><a id="huluURL" href=""><img src="images/hulu.svg" style="height:50px;"></a></div>
+        <div class="streamTD" id="itunesTD"><a id="itunesURL" href=""><img src="images/itunes.svg" style="height:50px;"></a></div>
+        <div class="streamTD" id="mst3kTD"><a id="mst3kURL" href=""><img src="images/mst3k.png" style="height:50px;"></a></div>
+        <div class="streamTD" id="netflixTD"><a id="netflixURL" href=""><img src="images/netflix.svg" style="height:50px;"></a></div>
+        <div class="streamTD" id="rifftraxTD"><a id="rifftraxURL" href=""><img src="images/rifftrax.png" style="height:50px;"></a></div>
+        <div class="streamTD" id="shoutTD"><a id="shoutURL" href=""><img src="images/shout.svg" style="height:50px;"></a></div>
         <div class="streamTD" id="vhxTD">VHX</div>
-        <div class="streamTD" id="vimeoTD">Vimeo</div>
-        <div class="streamTD" id="youtubeTD">YouTube</div>
-        <div class="streamTD">Refresh</div>
+        <div class="streamTD" id="vimeoTD"><a id="vimeoURL" href=""><img src="images/vimeo.svg" style="height:50px;"></a></div>
+        <div class="streamTD" id="youtubeTD"><a id="youtubeURL" href=""><img src="images/youtube.svg" style="height:50px;"></a></div>
+        <div class="streamTD"><a id="refresh" href=""><img src="images/reload.svg" style="height:50px;"></a></div>
     </div>
   </div>
   
 </body>
 <script>
+
+$("#refresh").on("click",function(e) {
+  e.preventDefault()
+  $("#movieSign").click()
+})
+
 $("#movieSign").on("click",function(e){
   $("#result").html("")
   let data = {}
