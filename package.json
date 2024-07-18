@@ -4,18 +4,18 @@
   "description": "The Random MST3K-O-Matic",
   "version": "0.1.0",
   "main": "main.js",
-  "author": "Eriq P Jaffe",
-  "license": "MIT",
-  "repository": "https://github.com/eriqjaffe/random-mst3k-o-matic",
   "author": {
     "name": "Eriq Jaffe",
     "email": "eriqjaffe@gmail.com",
     "url": "https://github.com/eriqjaffe/random-mst3k-o-matic"
   },
+  "license": "MIT",
+  "repository": "https://github.com/eriqjaffe/random-mst3k-o-matic",
   "devDependencies": {
     "electron": "^31.2.1"
   },
   "dependencies": {
+    "download": "^8.0.0",
     "sql.js": "^1.10.3"
   }
 }

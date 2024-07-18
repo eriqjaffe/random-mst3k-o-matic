@@ -9,6 +9,8 @@
   <script type="text/javascript" src="./scripts/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="./scripts/skeletabs.js"></script>
   <script type="text/javascript" src="./scripts/jquery.magnific-popup.js"></script>
+  <script type="text/javascript" src="./scripts/jquery.ddslick.min.js"></script>
+  <script type="text/javascript" src="./scripts/jquery.imgcheckbox.js"></script>
   <link href="./scripts/matic.css" rel="stylesheet" type="text/css">
   <link href='./scripts/skeletabs.css' rel='stylesheet' type='text/css'>
   <link href='./scripts/magnific-popup.css' rel='stylesheet' type='text/css'>
@@ -18,8 +20,8 @@
 </head>
 
 <body>
-  <h3 style="text-align:center;">Hello World!</h3>
-  <div id="tabContainer" class="skltbs-theme-light" data-skeletabs>
+  <h3 id="quote"style="text-align:center;">&nbsp;</h3>
+  <div id="tabContainer" class="skltbs-theme-light">
     <ul class="skltbs-tab-group">
       <li class="skltbs-tab-item">
         <button class="skltbs-tab">The Hosts</button>
@@ -33,82 +35,115 @@
     </ul>
     <div class="skltbs-panel-group">
       <div class="skltbs-panel">
-        <table>
-          <tr><td>Choose A Host:</td></tr>
-          <tr><td>
+        <table style="width:100%;">
+          <tr><td>Choose A Host:<br/>
             <select id="theHost">
-              <option value="IS NOT NULL">I don't care!</option>
-              <option value="= 'jh'">Joel Hodgson</option>
-              <option value="= 'mn'">Mike Nelson</option>
-              <option value="= 'jr'">Jonah Ray</option>
-              <option value="= 'em'">Emily Marsh</option>
+              <option value="IS NOT NULL" data-imagesrc="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+              <option value="= 'jh'" data-imagesrc="images/joel.jpg" data-description="&quot;Joel Robinson&quot;<br/>Seasons K-5">Joel Hodgson</option>
+              <option value="= 'mn'" data-imagesrc="images/mike.jpg" data-description="&quot;Mike Nelson&quot;<br/>Seasons 5-10">Mike Nelson</option>
+              <option value="= 'jr'" data-imagesrc="images/jonah.jpg" data-description="&quot;Jonah Heston&quot;<br/>Seasons 11-Present">Jonah Ray</option>
+              <option value="= 'em'" data-imagesrc="images/emily.jpg" data-description="&quot;Emily Connor&quot;<br/>Season 13-Present">Emily Marsh</option>
             </select>
-          </td></tr>
-          <tr><td>Choose A Crow:</td></tr>
-          <tr><td>
+          </td>
+          <td>Choose A Crow:<br/>
             <select id="theCrow">
-              <option value="IS NOT NULL">I don't care!</option>
-              <option value="= 'jw'">Josh Weinstein</option>
-              <option value="= 'tb'">Trace Beaulieu</option>
-              <option value="= 'bc'">Bill Corbett</option>
-              <option value="= 'hyt'">Hampton Yount</option>
-              <option value="= 'kab'">Kelsey Ann Brady</option>
+              <option value="IS NOT NULL" data-imagesrc="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+              <option value="= 'jw'" data-imagesrc="images/josh.jpg" data-description="Season K">Josh Weinstein</option>
+              <option value="= 'tb'" data-imagesrc="images/trace.jpg" data-description="Seasons K-7">Trace Beaulieu</option>
+              <option value="= 'bc'" data-imagesrc="images/bill.jpg" data-description="Seasons 8-10">Bill Corbett</option>
+              <option value="= 'hyt'" data-imagesrc="images/hampton.jpg" data-description="Seasons 11-Present">Hampton Yount</option>
+              <option value="= 'kab'" data-imagesrc="images/kelsey.jpg" data-description="Seasons 13-Present">Kelsey Ann Brady</option>
             </select>
-          </td></tr>
-          <tr><td>Choose A Tom Servo:</td></tr>
-          <tr><td>
+          </td><td>Choose A Tom Servo:<br/>
             <select id="theTom">
-              <option value="IS NOT NULL">I don't care!</option>
-              <option value="= 'jw'">Josh Weinstein</option>
-              <option value="= 'km'">Kevin Murphy</option>
-              <option value="= 'bv'">Baron Vaughn</option>
-              <option value="= 'cm'">Conor McGiffin</option>
+              <option value="IS NOT NULL" data-imagesrc="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+              <option value="= 'jw'" data-imagesrc="images/josh.jpg" data-description="Seasons K-1,13">Josh Weinstein</option>
+              <option value="= 'km'" data-imagesrc="images/kevin.jpg" data-description="Seasons 2-10">Kevin Murphy</option>
+              <option value="= 'bv'" data-imagesrc="images/baron.jpg" data-description="Seasons 11-Present">Baron Vaughn</option>
+              <option value="= 'cm'" data-imagesrc="images/conor.jpg" data-description="Seasons 13-Present">Conor McGiffin</option>
             </select>
           </td></tr>
           </table>
       </div>
       <div class="skltbs-panel">
-          <input type="checkbox" class="mads" id="drf" value="drf">&nbsp;Dr. Clayton Forrester<br/>
-          <input type="checkbox" class="mads" id="larry" value="larry">&nbsp;Dr. Larry Erhardt<br/>
-          <input type="checkbox" class="mads" id="frank" value="frank">&nbsp;TV's Frank<br/>
-          <input type="checkbox" class="mads" id="pearl" value="pearl">&nbsp;Pearl Forrester<br/>
-          <input type="checkbox" class="mads" id="bobo" value="bobo">&nbsp;Professor Bobo<br/>
-          <input type="checkbox" class="mads" id="observer" value="observer">&nbsp;Brain Guy<br/>
-          <input type="checkbox" class="mads" id="kinga" value="kinga">&nbsp;Kinga Forrester<br/>
-          <input type="checkbox" class="mads" id="max" value="max">&nbsp;TV's Son of TV's Frank<br/>
-          <input type="checkbox" class="mads" id="synthia" value="synthia">&nbsp;Synthia<br/>
-          <input type="checkbox" class="mads" id="megasynthia" value="megasynthia">&nbsp;Mega Synthia<br/>
+          <table style="width:100%">
+            <tr>
+              <td style="text-align:center;"><img class="madsImage" name="drf" src="images/drf.jpg"><br/>Dr. Clayton Forrester<br/><span style="font-size:.8em;">Trace Beaulieu<br/>Seasons K-7</span></td>
+              <td style="text-align:center;"><img class="madsImage" name="larry" src="images/larry.jpg"><br/>Dr. Larry Erhardt<br/><span style="font-size:.8em;">Josh Weinstein<br/>Seasons K-1</span></td>
+              <td style="text-align:center;"><img class="madsImage" name="frank" src="images/frank.jpg"><br/>TV's Frank<br/><span style="font-size:.8em;">Frank Conniff<br/>Seasons 2-6, 10</span></td>
+              <td style="text-align:center;"><img class="madsImage" name="pearl" src="images/pearl.jpg"><br/>Pearl Forrester<br/><span style="font-size:.8em;">Mary Jo Pehl<br/>Seasons 6-11, 13</span></td>
+              <td style="text-align:center;"><img class="madsImage" name="bobo" src="images/bobo.jpg"><br/>Professor Bobo<br/><span style="font-size:.8em;">Kevin Murphy<br/>Seasons 8-11</span></td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><img class="madsImage" name="observer" src="images/observer.jpg"><br/>Observer<br/><span style="font-size:.8em;">Bill Corbett<br/>Seasons 8-11</span></td>
+              <td style="text-align:center;"><img class="madsImage" name="kinga" src="images/kinga.jpg"><br/>Kinga Forrester<br/><span style="font-size:.8em;">Felicia Day<br/>Season 11-Present</span></td>
+              <td style="text-align:center;"><img class="madsImage" name="max" src="images/max.jpg"><br/>Max<br/><span style="font-size:.8em;">Patton Oswalt<br/>Seasons 11-Present</span></td>
+              <td style="text-align:center;"><img class="madsImage" name="synthia" src="images/synthia.jpg"><br/>Synthia<br/><span style="font-size:.8em;">Rebecca Hanson<br/>Seasons 11-Present</span></td>
+              <td style="text-align:center;"><img class="madsImage" name="megasynthia" src="images/megasynthia.jpg"><br/>Mega-Synthia<br/><span style="font-size:.8em;">Yvonne Freese<br/>Seasons 13-Present</span></td>
+            </tr>
+          </table>
       </div>
       <div class="skltbs-panel">
-        <input type="checkbox" class="options" id="short" value="short">&nbsp;Only show episodes with shorts<br/>
-        <input type="checkbox" class="options" id="streaming" value="streaming">&nbsp;Only show episodes available for streaming<br/>
+        <table style="width:100%">
+            <tr>
+              <td style="text-align:center;"><img class="optionsImage" src="images/short.jpg"><br/>Only show episodes with shorts</td>
+              <td style="text-align:center;"><img class="optionsImage" src="images/streaming.png"><br/>Only show episodes available for streaming</td>
+            </tr>
+            <tr>
+              <td style="text-align:center;"><img class="optionsImage" src="images/short.jpg"><br/>Only show black and white movies</td>
+              <td style="text-align:center;"><img class="optionsImage" src="images/streaming.png"><br/>Only show episodes available for streaming</td>
+            </tr>
+        </table>
       </div>
     </div>
   </div>
-  <input type="button" id="movieSign" value="MOVIE SIGN!">
-  <div id="small-dialog" class="white-popup mfp-hide">
-    <h2 style="width:100%; text-align:center;" id="experimentID"></h2>
-    <h1 style="width:100%; text-align:center;" id="result"></h1>
+  <div class="footer">
+    <input type="button" class="fakeSkeletab" id="movieSign" value="MOVIE SIGN!">
+  </div>
+  <div id="movieSignPopup" class="white-popup mfp-hide">
+    <h2 style="width:100%; text-align:center; color:black;" id="experimentID"></h2>
+    <h1 style="width:100%; text-align:center; color:black;" id="result"></h1>
     <div style="width: 100%; text-align:center;">
       <img id="moviePoster" src="">
     </div>
-    <div style="text-align:center; width:100%;">
-        <div class="streamTD" id="amazonTD"><a id="amazonURL" href=""><img src="images/amazon.svg" style="height:50px;"></a></div>
-        <div class="streamTD" id="huluTD"><a id="huluURL" href=""><img src="images/hulu.svg" style="height:50px;"></a></div>
-        <div class="streamTD" id="itunesTD"><a id="itunesURL" href=""><img src="images/itunes.svg" style="height:50px;"></a></div>
-        <div class="streamTD" id="mst3kTD"><a id="mst3kURL" href=""><img src="images/mst3k.png" style="height:50px;"></a></div>
-        <div class="streamTD" id="netflixTD"><a id="netflixURL" href=""><img src="images/netflix.svg" style="height:50px;"></a></div>
-        <div class="streamTD" id="rifftraxTD"><a id="rifftraxURL" href=""><img src="images/rifftrax.png" style="height:50px;"></a></div>
-        <div class="streamTD" id="shoutTD"><a id="shoutURL" href=""><img src="images/shout.svg" style="height:50px;"></a></div>
+    <div style="text-align:center; width:100%; padding-top:20px;">
+        <div class="streamTD" id="amazonTD"><a id="amazonURL" href="" target="_blank"><img src="images/amazon.svg" style="height:50px;"></a></div>
+        <div class="streamTD" id="huluTD"><a id="huluURL" href="" target="_blank"><img src="images/hulu.svg" style="height:50px;"></a></div>
+        <div class="streamTD" id="itunesTD"><a id="itunesURL" href="" target="_blank"><img src="images/itunes.svg" style="height:50px;"></a></div>
+        <div class="streamTD" id="mst3kTD"><a id="mst3kURL" href="" target="_blank"><img src="images/mst3k.png" style="height:50px;"></a></div>
+        <div class="streamTD" id="netflixTD"><a id="netflixURL" href="" target="_blank"><img src="images/netflix.svg" style="height:50px;"></a></div>
+        <div class="streamTD" id="rifftraxTD"><a id="rifftraxURL" href="" target="_blank"><img src="images/rifftrax.png" style="height:50px;"></a></div>
+        <div class="streamTD" id="shoutTD"><a id="shoutURL" href="" target="_blank"><img src="images/shout.svg" style="height:50px;"></a></div>
         <div class="streamTD" id="vhxTD">VHX</div>
-        <div class="streamTD" id="vimeoTD"><a id="vimeoURL" href=""><img src="images/vimeo.svg" style="height:50px;"></a></div>
-        <div class="streamTD" id="youtubeTD"><a id="youtubeURL" href=""><img src="images/youtube.svg" style="height:50px;"></a></div>
+        <div class="streamTD" id="vimeoTD"><a id="vimeoURL" href=" target="_blank"><img src="images/vimeo.svg" style="height:50px;"></a></div>
+        <div class="streamTD" id="youtubeTD"><a id="youtubeURL" href="" target="_blank"><img src="images/youtube.svg" style="height:50px;"></a></div>
         <div class="streamTD"><a id="refresh" href=""><img src="images/reload.svg" style="height:50px;"></a></div>
     </div>
   </div>
-  
+  <div id="noMovie" class="white-popup mfp-hide">
+    <div style="width: 100%; text-align:center;">
+      <img src="images/poopie.jpg">
+    </div>
+    <h2 style="width:100%; text-align:center; color:black;">Sorry, no movies were found that match your criteria.  Try again!</h2>
+  </div>
 </body>
 <script>
+
+getQuote()
+
+$(document).ready(function() {
+  $('#theHost').ddslick();
+  $("#theCrow").ddslick();
+  $("#theTom").ddslick();
+  $("img.madsImage").imgCheckbox();
+  $("img.optionsImage").imgCheckbox();
+})
+
+$('#tabContainer')
+  .on('skeletabs:move', function(event, info) {
+    getQuote()
+  })
+  .skeletabs();
 
 $("#refresh").on("click",function(e) {
   e.preventDefault()
@@ -121,25 +156,25 @@ $("#movieSign").on("click",function(e){
   let mads = []
   let options = []
   
-  $(".mads").each(function(){
-    if ($(this).is(":checked")) {
+  $(".madsImage").each(function(){
+    if ($(this).parent().hasClass("imgChked")) {
       let obj = {}
-      obj[$(this).val()] = 1
+      obj[$(this).attr("name")] = 1
       mads.push(obj)
     }
   })
 
   $(".options").each(function(){
-    if ($(this).is(":checked")) {
+    if ($(this).parent().hasClass("imgChked")) {
       let obj = {}
-      obj[$(this).val()] = 1
+      obj[$(this).attr("name")] = 1
       options.push(obj)
     }
   })
 
-  data.host = $("#theHost").val()
-  data.crow = $("#theCrow").val()
-  data.tom = $("#theTom").val()
+  data.host = $("#theHost").data('ddslick').selectedData.value
+  data.crow = $("#theCrow").data('ddslick').selectedData.value
+  data.tom = $("#theTom").data('ddslick').selectedData.value
   data.mads = mads
   data.options = options
   ipcRenderer.send('movie-request', data)
@@ -148,83 +183,116 @@ $("#movieSign").on("click",function(e){
 ipcRenderer.on('movie-sign', (event, data) => { 
   console.log(data.movie)
   if (data.rows == 0) { 
-    alert("No movies found!")
+    $.magnificPopup.open({
+      items: {
+        src: '#noMovie'
+      },
+      type: 'inline'
+    });
   } else {
     let streams = 1
     if (data.movie.amazon != null) {
       $("#amazonTD").css("display","inline-block")
+      $("#amazonURL").attr("href", data.movie.amazon)
       streams++
     } else {
       $("#amazonTD").css("display","none")
+      $("#amazonURL").attr("href", "")
     }
     if (data.movie.hulu != null) {
       $("#huluTD").css("display","inline-block")
+      $("#huluURL").attr("href","https://www.hulu.com/watch/"+data.movie.hulu)
       streams++
     } else {
       $("#huluTD").css("display","none")
+      $("#huluURL").attr("href","")
     }
     if (data.movie.itunes != null) {
       $("#itunesTD").css("display","inline-block")
+      $("#itunesURL").attr("href","https://itunes.apple.com/us/movie/mystery-science-theater-3000/"+data.movie.itunes)
       streams++
     } else {
       $("#itunesTD").css("display","none")
+      $("#itunesURL").attr("href","")
     }
     if (data.movie.mst3k != null) {
       $("#mst3kTD").css("display","inline-block")
+      $("#mst3kURL").attr("href","http://www.mst3k.com/"+data.movie.mst3k)
       streams++
     } else {
       $("#mst3kTD").css("display","none")
+      $("#mst3kURL").attr("href","")
     }
     if (data.movie.netflix != null) {
       $("#netflixTD").css("display","inline-block")
+      $("#netflixURL").attr("href","https://www.netflix.com/watch/"+data.movie.netflix)
       streams++
     } else {
       $("#netflixTD").css("display","none")
+      $("#netflixURL").attr("href","")
     }
     if (data.movie.rifftrax != null) {
       $("#rifftraxTD").css("display","inline-block")
+      $("#rifftraxURL").attr("href","http://www.rifftrax.com/mst3k-"+data.movie.rifftrax)
       streams++
     } else {
       $("#rifftraxTD").css("display","none")
+      $("#rifftraxURL").attr("href","")
     }
     if (data.movie.shout != null) {
       $("#shoutTD").css("display","inline-block")
+      $("#shoutURL").attr("href","watch.shout-tv.com/video/"+data.movie.shout)
       streams++
     } else {
       $("#shoutTD").css("display","none")
+      $("#shoutURL").attr("href","")
     }
     if (data.movie.vhx != null) {
       $("#vhxTD").css("display","inline-block")
+      $("#vxhURL").attr("href","https://mst3k.vhx.tv/products/"+data.movie.vhx)
       streams++
     } else {
       $("#vhxTD").css("display","none")
+      $("#vxhURL").attr("href","")
     }
     if (data.movie.vimeo != null) {
       $("#vimeoTD").css("display","inline-block")
+      $("#vimeoURL").attr("href","https://vimeo.com/ondemand/mst3k/"+data.movie.vimeo)
       streams++
     } else {
       $("#vimeoTD").css("display","none")
+      $("#vimeoURL").attr("href","")
     }
     if (data.movie.youtube != null) {
       $("#youtubeTD").css("display","inline-block")
+      $("#youtubeURL").attr("href","https://www.youtube.com/watch?v="+data.movie.youtube)
       streams++
     } else {
       $("#youtubeTD").css("display","none")
+      $("#youtubeURL").attr("href","")
     }
     $(".streamTD").css("width",100/streams+"%")
     $("#experimentID").html("Experiment "+data.movie.experiment+":")
-    $("#result").html(data.movie.movie)
+    $("#result").html("&quot;"+data.movie.movie+"&quot;")
     $("#moviePoster").attr("src","epthumbs/"+data.movie.experiment+".jpg")
     $("#streamingServices").html(JSON.stringify(streams))
     $.magnificPopup.open({
       items: {
-        src: '#small-dialog'
+        src: '#movieSignPopup'
       },
       type: 'inline'
     });
     
   }
 })
+
+ipcRenderer.on('quote-response', (event, data) => {
+  $("#quote").html(data.quote)
+})
+
+function getQuote() {
+  ipcRenderer.send('get-quote',$("#quote").html())
+}
 </script>
 
 </html>
