@@ -40,7 +40,7 @@
 }
 .skltbs-theme-light .skltbs-panel,.skltbs-theme-dark .skltbs-panel{
     padding:0px 0px;
-    border:2px solid
+    /*border:2px solid*/
 }
 .skltbs-theme-light .skltbs-panel-heading,.skltbs-theme-dark .skltbs-panel-heading{
     margin-top:3px
@@ -80,8 +80,8 @@
     border-color:#5ca9f7
 }
 .skltbs-theme-light .skltbs-panel{
-    background-color:#fff;
-    border:2px solid #f6f6f8
+    background-color:transparent;
+    /*border:2px solid #f6f6f8*/
 }
 .skltbs-theme-light .skltbs-panel:focus{
     outline:0;

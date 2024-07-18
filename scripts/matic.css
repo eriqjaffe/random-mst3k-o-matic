@@ -78,3 +78,7 @@ h1, h2, h3 {
       transform: rotate(359deg);
     }
   }
+
+  .dd-selected-text {
+    color: black!important;
+  }

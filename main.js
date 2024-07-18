@@ -82,7 +82,7 @@ const createWindow = () => {
   mainWindow.loadFile("index.html");
 
   mainWindow.once('ready-to-show', () => {
-    sleep(3000).then(() => {
+    //sleep(3000).then(() => {
       try {
         fs.unlinkSync(os.tmpdir()+"/episodes.sqlite");
       } catch (err) {}
@@ -97,7 +97,7 @@ const createWindow = () => {
         dbBuffer = fs.readFileSync(path.join(app.getAppPath(), "db", "episodes_bak.sqlite"));
         mainWindow.webContents.send("hide-spinner", "episodes_bak.sqlite");
       });
-    })
+    //})
   })
 
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
