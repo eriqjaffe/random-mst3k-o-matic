@@ -307,6 +307,7 @@ ipcRenderer.on('quote-response', (event, data) => {
 })
 
 ipcRenderer.on('hide-spinner', (event, data) => {
+  console.log(data)
   $.magnificPopup.close();
 })
 

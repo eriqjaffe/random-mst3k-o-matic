@@ -92,7 +92,10 @@ const createWindow = () => {
         path.join(os.tmpdir())
       ).then(() => {
         dbBuffer = fs.readFileSync(os.tmpdir()+"/episodes.sqlite");
-        mainWindow.webContents.send("hide-spinner", null)
+        mainWindow.webContents.send("hide-spinner", "episodes.sqlite")
+      }).catch((error) => {
+        dbBuffer = fs.readFileSync(path.join(app.getAppPath(), "db", "episodes_bak.sqlite"));
+        mainWindow.webContents.send("hide-spinner", "episodes_bak.sqlite");
       });
     })
   })
