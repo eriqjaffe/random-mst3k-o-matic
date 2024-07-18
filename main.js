@@ -4,19 +4,10 @@ const fs = require("fs");
 const os = require("os")
 const initSqlJs = require("sql.js/dist/sql-wasm.js");
 const download = require("download");
+const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
 let db;
 let dbBuffer;
-
-try {
-  fs.unlinkSync(os.tmpdir()+"/episodes.sqlite");
-} catch (err) {}
-
-download(
-  "https://eriqjaffe.github.io/db/episodes.sqlite",
-  path.join(os.tmpdir())
-).then(() => {
-  dbBuffer = fs.readFileSync(os.tmpdir()+"/episodes.sqlite");
-});
+let mainWindow
 
 ipcMain.on("get-quote", (event, arg) => {
   fs.readFile(
@@ -77,7 +68,7 @@ ipcMain.on("movie-request", (event, arg) => {
 
 const createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 1152,
     height: 864,
     icon: __dirname + "/icons/win/icon.ico",
@@ -89,6 +80,22 @@ const createWindow = () => {
 
   // and load the index.html of the app.
   mainWindow.loadFile("index.html");
+
+  mainWindow.once('ready-to-show', () => {
+    sleep(3000).then(() => {
+      try {
+        fs.unlinkSync(os.tmpdir()+"/episodes.sqlite");
+      } catch (err) {}
+      
+      download(
+        "https://eriqjaffe.github.io/db/episodes.sqlite",
+        path.join(os.tmpdir())
+      ).then(() => {
+        dbBuffer = fs.readFileSync(os.tmpdir()+"/episodes.sqlite");
+        mainWindow.webContents.send("hide-spinner", null)
+      });
+    })
+  })
 
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     shell.openExternal(url);
