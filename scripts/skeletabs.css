@@ -22,6 +22,7 @@
     border:0;
     font-family:inherit;
     font-size:1rem;
+    font-weight:bold;
     -webkit-appearance:none;
     -moz-appearance:none;
     appearance:none;
@@ -62,8 +63,8 @@
 }
 .skltbs-theme-light .skltbs-tab:focus{
     outline:0;
-    -webkit-box-shadow:inset 0 0 0 2px #3C6686;
-    box-shadow:inset 0 0 0 2px #3C6686
+    -webkit-box-shadow:inset 0 0 0 2px #46436D;
+    box-shadow:inset 0 0 0 2px #46436D
     -moz-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
@@ -74,7 +75,7 @@
 }
 .skltbs-theme-light .skltbs-tab.skltbs-active{
     color:#fff;
-    background:#103959
+    background:#2E2B56
 }
 .skltbs-theme-light .skltbs-tab.skltbs-active:focus,.skltbs-theme-light .skltbs-tab.skltbs-active:hover{
     border-color:#5ca9f7

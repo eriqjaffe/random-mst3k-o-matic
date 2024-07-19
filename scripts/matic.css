@@ -56,9 +56,15 @@ h1, h2, h3 {
 }
 
 .fakeSkeletab:hover {
-    background-color: #103959;
+    background-color: #2E2B56;
     color: white;
     cursor: pointer;
+    outline:0;
+    -webkit-box-shadow:inset 0 0 0 2px #46436D;
+    box-shadow:inset 0 0 0 2px #46436D
+    -moz-border-radius: 5px 5px 5px 5px;
+	  -webkit-border-radius: 5px 5px 5px 5px;
+	  border-radius: 5px 5px 5px 5px;
 }
 
 .fakeSkeletab:active {
