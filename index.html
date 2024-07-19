@@ -39,9 +39,9 @@
           <tr><td style="color:white;">Choose A Host:<br/>
             <select id="theHost">
               <option value="IS NOT NULL" data-imagesrc="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
-              <option value="= 'jh'" data-imagesrc="images/joel.jpg" data-description="&quot;Joel Robinson&quot;<br/>Seasons K-5">Joel Hodgson</option>
+              <option value="LIKE '%jh%'" data-imagesrc="images/joel.jpg" data-description="&quot;Joel Robinson&quot;<br/>Seasons K-5">Joel Hodgson</option>
               <option value="= 'mn'" data-imagesrc="images/mike.jpg" data-description="&quot;Mike Nelson&quot;<br/>Seasons 5-10">Mike Nelson</option>
-              <option value="= 'jr'" data-imagesrc="images/jonah.jpg" data-description="&quot;Jonah Heston&quot;<br/>Seasons 11-Present">Jonah Ray</option>
+              <option value="LIKE '%jr%'" data-imagesrc="images/jonah.jpg" data-description="&quot;Jonah Heston&quot;<br/>Seasons 11-Present">Jonah Ray</option>
               <option value="= 'em'" data-imagesrc="images/emily.jpg" data-description="&quot;Emily Connor&quot;<br/>Season 13-Present">Emily Marsh</option>
             </select>
           </td>
@@ -57,10 +57,10 @@
           </td><td style="color:white;">Choose A Tom Servo:<br/>
             <select id="theTom">
               <option value="IS NOT NULL" data-imagesrc="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
-              <option value="= 'jw'" data-imagesrc="images/josh.jpg" data-description="Seasons K-1,13">Josh Weinstein</option>
+              <option value="LIKE '%jw%'" data-imagesrc="images/josh.jpg" data-description="Seasons K-1,13">Josh Weinstein</option>
               <option value="= 'km'" data-imagesrc="images/kevin.jpg" data-description="Seasons 2-10">Kevin Murphy</option>
               <option value="= 'bv'" data-imagesrc="images/baron.jpg" data-description="Seasons 11-Present">Baron Vaughn</option>
-              <option value="= 'cm'" data-imagesrc="images/conor.jpg" data-description="Seasons 13-Present">Conor McGiffin</option>
+              <option value="LIKE '%cm%'" data-imagesrc="images/conor.jpg" data-description="Seasons 13-Present">Conor McGiffin</option>
             </select>
           </td></tr>
           </table>
@@ -107,16 +107,16 @@
       <img id="moviePoster" src="">
     </div>
     <div style="text-align:center; width:100%; padding-top:20px;">
+        <div class="streamTD" id="mst3kTD"><a id="mst3kURL" href="" target="_blank"><img src="images/mst3k.png" style="height:50px;"></a></div>
+        <div class="streamTD" id="rifftraxTD"><a id="rifftraxURL" href="" target="_blank"><img src="images/rifftrax.png" style="height:50px;"></a></div>
+        <div class="streamTD" id="netflixTD"><a id="netflixURL" href="" target="_blank"><img src="images/netflix.svg" style="height:50px;"></a></div>
+        <div class="streamTD" id="youtubeTD"><a id="youtubeURL" href="" target="_blank"><img src="images/youtube.svg" style="height:50px;"></a></div>
+        <div class="streamTD" id="shoutTD"><a id="shoutURL" href="" target="_blank"><img src="images/shout.svg" style="height:50px;"></a></div>
         <div class="streamTD" id="amazonTD"><a id="amazonURL" href="" target="_blank"><img src="images/amazon.svg" style="height:50px;"></a></div>
         <div class="streamTD" id="huluTD"><a id="huluURL" href="" target="_blank"><img src="images/hulu.svg" style="height:50px;"></a></div>
         <div class="streamTD" id="itunesTD"><a id="itunesURL" href="" target="_blank"><img src="images/itunes.svg" style="height:50px;"></a></div>
-        <div class="streamTD" id="mst3kTD"><a id="mst3kURL" href="" target="_blank"><img src="images/mst3k.png" style="height:50px;"></a></div>
-        <div class="streamTD" id="netflixTD"><a id="netflixURL" href="" target="_blank"><img src="images/netflix.svg" style="height:50px;"></a></div>
-        <div class="streamTD" id="rifftraxTD"><a id="rifftraxURL" href="" target="_blank"><img src="images/rifftrax.png" style="height:50px;"></a></div>
-        <div class="streamTD" id="shoutTD"><a id="shoutURL" href="" target="_blank"><img src="images/shout.svg" style="height:50px;"></a></div>
         <div class="streamTD" id="vhxTD">VHX</div>
         <div class="streamTD" id="vimeoTD"><a id="vimeoURL" href=" target="_blank"><img src="images/vimeo.svg" style="height:50px;"></a></div>
-        <div class="streamTD" id="youtubeTD"><a id="youtubeURL" href="" target="_blank"><img src="images/youtube.svg" style="height:50px;"></a></div>
         <div class="streamTD"><a id="refresh" href=""><img src="images/reload.svg" style="height:50px;"></a></div>
     </div>
   </div>
@@ -233,7 +233,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
     }
     if (data.movie.mst3k != null) {
       $("#mst3kTD").css("display","inline-block")
-      $("#mst3kURL").attr("href","http://www.mst3k.com/"+data.movie.mst3k)
+      $("#mst3kURL").attr("href",data.movie.mst3k)
       streams++
     } else {
       $("#mst3kTD").css("display","none")
