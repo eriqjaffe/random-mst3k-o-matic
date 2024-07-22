@@ -293,7 +293,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
     }
     if (data.movie.tubi != null) {
       $("#tubiTD").css("display","inline-block")
-      $("#tubiURL").attr("href","https://www.youtube.com/watch?v="+data.movie.youtube)
+      $("#tubiURL").attr("href",data.movie.tubi)
       streams++
     } else {
       $("#tubiTD").css("display","none")
