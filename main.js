@@ -46,6 +46,7 @@ ipcMain.on("movie-request", (event, arg) => {
   });
 
   initSqlJs().then(function (SQL) {
+    console.log(sql)
     db = new SQL.Database(dbBuffer);
     const result = db.exec(sql + " ORDER BY RANDOM() LIMIT 1");
 
@@ -91,9 +92,11 @@ const createWindow = () => {
         "https://eriqjaffe.github.io/db/episodes.sqlite",
         path.join(os.tmpdir())
       ).then(() => {
+        console.log('database downloaded')
         dbBuffer = fs.readFileSync(os.tmpdir()+"/episodes.sqlite");
         mainWindow.webContents.send("hide-spinner", "episodes.sqlite")
       }).catch((error) => {
+        console.error(error)
         dbBuffer = fs.readFileSync(path.join(app.getAppPath(), "db", "episodes_bak.sqlite"));
         mainWindow.webContents.send("hide-spinner", "episodes_bak.sqlite");
       });

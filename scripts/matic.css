@@ -16,9 +16,9 @@ h1, h2, h3 {
 
 .streamTD {
     display: inline-block;
-    border: black 1px solid;
-    background-color: #E0E0D1;
-    width: 25%;
+    /*border: black 1px solid;
+    background-color: #E0E0D1;*/
+    width: 50px;
     height: 100%;
     float:left;
     box-sizing:border-box;
@@ -87,4 +87,27 @@ h1, h2, h3 {
 
   .dd-selected-text {
     color: black!important;
+  }
+
+  .tippy-arrow {
+    border-color: inherit;
+  }
+  .tippy-box[data-placement^='top'] > .tippy-arrow::before {
+    border-top-color: inherit;
+  }
+  .tippy-box[data-placement^='bottom'] > .tippy-arrow::before {
+    border-bottom-color: inherit;
+  }
+  .tippy-box[data-placement^='left'] > .tippy-arrow::before {
+    border-left-color: inherit;
+  }
+  .tippy-box[data-placement^='right'] > .tippy-arrow::before {
+    border-right-color: inherit;
+  }
+  
+  /* // user css code */
+  .tippy-box[data-theme~='mst'] {
+    background-color: #2E2B56;
+    border: 1px solid #2E2B56;
+    color: white;
   }

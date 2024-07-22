@@ -11,6 +11,8 @@
   <script type="text/javascript" src="./scripts/jquery.magnific-popup.js"></script>
   <script type="text/javascript" src="./scripts/jquery.ddslick.min.js"></script>
   <script type="text/javascript" src="./scripts/jquery.imgcheckbox.js"></script>
+  <script src="./scripts/popper.min.js"></script>
+  <script src="./scripts/tippy-bundle.umd.js"></script>
   <link href="./scripts/matic.css" rel="stylesheet" type="text/css">
   <link href='./scripts/skeletabs.css' rel='stylesheet' type='text/css'>
   <link href='./scripts/magnific-popup.css' rel='stylesheet' type='text/css'>
@@ -86,12 +88,11 @@
       <div class="skltbs-panel">
         <table style="width:100%">
             <tr>
-              <td style="text-align:center;color:white;"><img class="optionsImage" src="images/short.jpg"><br/>Only show episodes with shorts</td>
-              <td style="text-align:center;color:white;"><img class="optionsImage" src="images/streaming.png"><br/>Only show episodes available for streaming</td>
+              <td style="text-align:center;color:white;"><img class="optionsImage" name="short" src="images/short.jpg"><br/>Only show episodes with shorts</td>
+              <td style="text-align:center;color:white;"><img class="optionsImage" name="streaming" src="images/streaming.png"><br/>Only show episodes available for streaming</td>
             </tr>
             <tr>
-              <td style="text-align:center;color:white;"><img class="optionsImage" src="images/short.jpg"><br/>Only show black and white movies</td>
-              <td style="text-align:center;color:white;"><img class="optionsImage" src="images/streaming.png"><br/>Only show episodes available for streaming</td>
+              <td style="padding-top:20px; text-align:center;color:white;" colspan="2"><img class="optionsImage" name="bw" src="images/bw.png"><br/>Only show black and white movies</td>
             </tr>
         </table>
       </div>
@@ -107,18 +108,18 @@
       <img id="moviePoster" src="">
     </div>
     <div style="text-align:center; width:100%; padding-top:20px;">
-        <div class="streamTD" id="mst3kTD"><a id="mst3kURL" href="" target="_blank"><img src="images/mst3k.png" style="height:50px;"></a></div>
-        <div class="streamTD" id="rifftraxTD"><a id="rifftraxURL" href="" target="_blank"><img src="images/rifftrax.png" style="height:50px;"></a></div>
-        <div class="streamTD" id="netflixTD"><a id="netflixURL" href="" target="_blank"><img src="images/netflix.svg" style="height:50px;"></a></div>
-        <div class="streamTD" id="youtubeTD"><a id="youtubeURL" href="" target="_blank"><img src="images/youtube.svg" style="height:50px;"></a></div>
-        <div class="streamTD" id="shoutTD"><a id="shoutURL" href="" target="_blank"><img src="images/shout.svg" style="height:50px;"></a></div>
-        <div class="streamTD" id="tubiTD"><a id="tubiURL" href="" target="_blank"><img src="images/tubi.svg" style="height:50px;"></a></div>
-        <div class="streamTD" id="amazonTD"><a id="amazonURL" href="" target="_blank"><img src="images/amazon.svg" style="height:50px;"></a></div>
-        <div class="streamTD" id="huluTD"><a id="huluURL" href="" target="_blank"><img src="images/hulu.svg" style="height:50px;"></a></div>
-        <div class="streamTD" id="itunesTD"><a id="itunesURL" href="" target="_blank"><img src="images/itunes.svg" style="height:50px;"></a></div>
-        <div class="streamTD" id="vhxTD">VHX</div>
-        <div class="streamTD" id="vimeoTD"><a id="vimeoURL" href=" target="_blank"><img src="images/vimeo.svg" style="height:50px;"></a></div>
-        <div class="streamTD"><a id="refresh" href=""><img src="images/reload.svg" style="height:50px;"></a></div>
+        <div class="streamTD" id="mst3kTD"><a id="mst3kURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Rent or Buy this episode at The Gizmoplex"><img src="images/mst3k.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="rifftraxTD"><a id="rifftraxURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy this episode from RiffTrax"><img src="images/rifftrax.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="netflixTD"><a id="netflixURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Netflix"><img src="images/netflix.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="youtubeTD"><a id="youtubeURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on YouTube"><img src="images/youtube.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="shoutTD"><a id="shoutURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode at Shout Factory"><img src="images/shout.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="tubiTD"><a id="tubiURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Tubi"><img src="images/tubi.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="amazonTD"><a id="amazonURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy or rent this episode from Amazon"><img src="images/amazon.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="huluTD"><a id="huluURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Hulu"><img src="images/hulu.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="itunesTD"><a id="itunesURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy or rent this epsiode on iTunes"><img src="images/itunes.png" style="width:50px;"></a></div>
+        <!--<div class="streamTD" id="vhxTD">VHX</div>-->
+        <div class="streamTD" id="vimeoTD"><a id="vimeoURL" href=" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Vimeo"><img src="images/vimeo.png" style="width:50px;"></a></div>
+        <div class="streamTD"><a id="refresh" href="" class="zebra_tips1" data-tippy-content="Search for a different episode with the same criteria"><img src="images/reload.png" style="width:50px;"></a></div>
     </div>
   </div>
   <div id="noMovie" class="white-popup mfp-hide">
@@ -139,6 +140,8 @@
 </body>
 <script>
 
+tippy.setDefaultProps({distance: 50, placement: "bottom", theme: 'mst'});
+
 getQuote()
 
 $(document).ready(function() {
@@ -147,6 +150,7 @@ $(document).ready(function() {
   $("#theTom").ddslick();
   $("img.madsImage").imgCheckbox();
   $("img.optionsImage").imgCheckbox();
+  tippy('[data-tippy-content]');
 /*   $.magnificPopup.open({
       items: {
         src: '#pleaseWait'
@@ -181,7 +185,7 @@ $("#movieSign").on("click",function(e){
     }
   })
 
-  $(".options").each(function(){
+  $(".optionsImage").each(function(){
     if ($(this).parent().hasClass("imgChked")) {
       let obj = {}
       obj[$(this).attr("name")] = 1
@@ -198,7 +202,6 @@ $("#movieSign").on("click",function(e){
 })
 
 ipcRenderer.on('movie-sign', (event, data) => { 
-  console.log(data.movie)
   if (data.rows == 0) { 
     $.magnificPopup.open({
       items: {
@@ -207,7 +210,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
       type: 'inline'
     });
   } else {
-    let streams = 1
+    let streams = 0
     if (data.movie.amazon != null) {
       $("#amazonTD").css("display","inline-block")
       $("#amazonURL").attr("href", data.movie.amazon)
@@ -264,14 +267,14 @@ ipcRenderer.on('movie-sign', (event, data) => {
       $("#shoutTD").css("display","none")
       $("#shoutURL").attr("href","")
     }
-    if (data.movie.vhx != null) {
+/*     if (data.movie.vhx != null) {
       $("#vhxTD").css("display","inline-block")
       $("#vxhURL").attr("href","https://mst3k.vhx.tv/products/"+data.movie.vhx)
       streams++
     } else {
       $("#vhxTD").css("display","none")
       $("#vxhURL").attr("href","")
-    }
+    } */
     if (data.movie.vimeo != null) {
       $("#vimeoTD").css("display","inline-block")
       $("#vimeoURL").attr("href","https://vimeo.com/ondemand/mst3k/"+data.movie.vimeo)
@@ -288,7 +291,15 @@ ipcRenderer.on('movie-sign', (event, data) => {
       $("#youtubeTD").css("display","none")
       $("#youtubeURL").attr("href","")
     }
-    $(".streamTD").css("width",100/streams+"%")
+    if (data.movie.tubi != null) {
+      $("#tubiTD").css("display","inline-block")
+      $("#tubiURL").attr("href","https://www.youtube.com/watch?v="+data.movie.youtube)
+      streams++
+    } else {
+      $("#tubiTD").css("display","none")
+      $("#tubiURL").attr("href","")
+    }
+    $(".streamTD").css("width",100/(streams+1)+"%")
     $("#experimentID").html("Experiment "+data.movie.experiment+":")
     $("#result").html("&quot;"+data.movie.movie+"&quot;")
     $("#moviePoster").attr("src","epthumbs/"+data.movie.experiment+".jpg")
