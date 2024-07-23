@@ -4,6 +4,7 @@ const fs = require("fs");
 const os = require("os")
 const initSqlJs = require("sql.js/dist/sql-wasm.js");
 const download = require("download");
+const wiki = require('wikipedia')
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
 let db;
 let dbBuffer;
@@ -55,14 +56,35 @@ ipcMain.on("movie-request", (event, arg) => {
       event.sender.send("movie-sign", { rows: 0, message: "No rows found" });
       return false;
     } else {
-      // Get the first (and only) row
       const row = result[0].values[0];
       const rowObject = result[0].columns.reduce((obj, col, index) => {
         obj[col] = row[index];
         return obj;
       }, {});
-      db.close();
-      event.sender.send("movie-sign", { rows: 1, movie: rowObject });
+      if (rowObject.wiki != null) {
+        (async () => {
+          try {
+            const page = await wiki.page(rowObject.wiki);
+            console.log(page);
+            //Response of type @Page object
+            const summary = await page.summary();
+            console.log(summary);
+            //Response of type @wikiSummary - contains the intro and the main image
+
+            db.close();
+            event.sender.send("movie-sign", { rows: 1, movie: rowObject, extract: summary.extract_html });
+          } catch (error) {
+            console.log(error);
+            event.sender.send("movie-sign", { rows: 1, movie: rowObject, extract: ""})
+            //=> Typeof wikiError
+          }
+        })();
+      } else {
+        event.sender.send("movie-sign", { rows: 1, movie: rowObject, extract: ""})
+      }
+      
+      // Get the first (and only) row
+      
     }
   });
 });

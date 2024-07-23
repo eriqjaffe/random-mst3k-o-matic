@@ -102,12 +102,17 @@
     <input type="button" class="fakeSkeletab" id="movieSign" value="Push the button, Frank.">
   </div>
   <div id="movieSignPopup" class="white-popup mfp-hide">
-    <h2 style="width:100%; text-align:center; color:black;" id="experimentID"></h2>
-    <h1 style="width:100%; text-align:center; color:black;" id="result"></h1>
+    <h2 style="width:100%; text-align:center;" id="experimentID"></h2>
+    <h1 style="width:100%; text-align:center;" id="result"></h1>
     <div style="width: 100%; text-align:center;">
-      <img id="moviePoster" src="">
+      <table style="width:100%;">
+        <tr style="height:500px;">
+          <td style="width: 65%; text-align:center; vertical-align:middle;"><img id="moviePoster" src="" width="100%"></td>
+          <td id="summary" style="width:35%; padding-left:10px; vertical-align:middle; text-align:right;"></td>
+        </tr>
+      </table>  
     </div>
-    <div style="text-align:center; width:100%; padding-top:20px;">
+    <div class="footer" style="bottom: 50px!important; text-align:center; width:100%; padding-top:20px;">
         <div class="streamTD" id="mst3kTD"><a id="mst3kURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Rent or Buy this episode at The Gizmoplex"><img src="images/mst3k.png" style="width:50px;"></a></div>
         <div class="streamTD" id="rifftraxTD"><a id="rifftraxURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy this episode from RiffTrax"><img src="images/rifftrax.png" style="width:50px;"></a></div>
         <div class="streamTD" id="netflixTD"><a id="netflixURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Netflix"><img src="images/netflix.png" style="width:50px;"></a></div>
@@ -202,6 +207,7 @@ $("#movieSign").on("click",function(e){
 })
 
 ipcRenderer.on('movie-sign', (event, data) => { 
+  console.log(data)
   if (data.rows == 0) { 
     $.magnificPopup.open({
       items: {
@@ -304,6 +310,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
     $("#result").html("&quot;"+data.movie.movie+"&quot;")
     $("#moviePoster").attr("src","epthumbs/"+data.movie.experiment+".jpg")
     $("#streamingServices").html(JSON.stringify(streams))
+    $("#summary").html(data.extract)
     $.magnificPopup.open({
       items: {
         src: '#movieSignPopup'
