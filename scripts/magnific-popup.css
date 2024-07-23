@@ -165,7 +165,7 @@ button::-moz-focus-inner {
 }
 
 .mfp-close-btn-in .mfp-close {
-  color: #333;
+  color: #fff;
 }
 
 .mfp-image-holder .mfp-close,
@@ -415,10 +415,10 @@ img.mfp-img {
 }
 
 .white-popup {
-  font-family: 'Archivo Narrow', sans-serif;
+  /*font-family: 'Archivo Narrow', sans-serif;*/
   position: relative;
-  background: rgb(255, 255, 255);
-  background: rgba(255, 255, 255, 0.9);
+  background: rgb(59, 51, 102);
+  background: rgba(59, 51, 102, 0.9);
   -moz-border-radius:20px;  
   border-radius: 20px;  
   -webkit-border-radius: 20px;
