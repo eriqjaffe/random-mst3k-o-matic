@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "download": "^8.0.0",
+    "jimp": "^0.22.12",
     "sql.js": "^1.10.3",
     "wikipedia": "^2.1.2"
   }

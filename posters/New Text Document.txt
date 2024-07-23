@@ -1,0 +1,1 @@
+magick mogrify -gaussian-blur 0x8 (image).jpg
