@@ -5,7 +5,6 @@ const os = require("os")
 const initSqlJs = require("sql.js/dist/sql-wasm.js");
 const download = require("download");
 const wiki = require('wikipedia')
-const Jimp = require('jimp')
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
 let db;
 let dbBuffer;
@@ -72,23 +71,23 @@ ipcMain.on("movie-request", (event, arg) => {
           try {
             const page = await wiki.page(rowObject.wiki);
             const summary = await page.summary();
-            console.log(summary.originalimage.source)
+            /* console.log(summary.originalimage.source)
             const image = await Jimp.read(summary.originalimage.source)
             image.brightness(-0.5)
             image.resize(Jimp.AUTO, 600)
             image.blur(5)
-            const b64 = await image.getBase64Async(Jimp.AUTO)
+            const b64 = await image.getBase64Async(Jimp.AUTO) */
             db.close();
-            event.sender.send("movie-sign", { rows: 1, movie: rowObject, extract: summary.extract_html, poster: b64 });
+            event.sender.send("movie-sign", { rows: 1, movie: rowObject, extract: summary.extract_html});
           } catch (error) {
             console.log(error);
             db.close();
-            event.sender.send("movie-sign", { rows: 1, movie: rowObject, extract: synopsis[rowObject.experiment], poster: null})
+            event.sender.send("movie-sign", { rows: 1, movie: rowObject, extract: synopsis[rowObject.experiment]})
             //=> Typeof wikiError
           }
         })();
       } else {
-        event.sender.send("movie-sign", { rows: 1, movie: rowObject, extract: "", poster: null})
+        event.sender.send("movie-sign", { rows: 1, movie: rowObject, extract: ""})
       }
       
       // Get the first (and only) row
