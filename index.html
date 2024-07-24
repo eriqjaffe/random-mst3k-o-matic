@@ -111,17 +111,17 @@
       <div id="summary" style="width:35%; padding:10px; vertical-align:middle; text-align:right; display: flex; align-items: center; justify-content: center;"></div>
     </div>
     <div class="footer" style="bottom: 50px!important; text-align:center; width:100%; padding-top:20px;">
-        <div class="streamTD" id="mst3kTD"><a id="mst3kURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Rent or Buy this episode at The Gizmoplex"><img src="images/mst3k.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="mst3kTD"><a id="mst3kURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream or Buy this episode at The Gizmoplex"><img src="images/mst3k.png" style="width:50px;"></a></div>
         <div class="streamTD" id="rifftraxTD"><a id="rifftraxURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy this episode from RiffTrax"><img src="images/rifftrax.png" style="width:50px;"></a></div>
         <div class="streamTD" id="netflixTD"><a id="netflixURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Netflix"><img src="images/netflix.png" style="width:50px;"></a></div>
         <div class="streamTD" id="youtubeTD"><a id="youtubeURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on YouTube"><img src="images/youtube.png" style="width:50px;"></a></div>
         <div class="streamTD" id="shoutTD"><a id="shoutURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode at Shout Factory"><img src="images/shout.png" style="width:50px;"></a></div>
         <div class="streamTD" id="tubiTD"><a id="tubiURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Tubi"><img src="images/tubi.png" style="width:50px;"></a></div>
         <div class="streamTD" id="amazonTD"><a id="amazonURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy or rent this episode from Amazon"><img src="images/amazon.png" style="width:50px;"></a></div>
-        <div class="streamTD" id="huluTD"><a id="huluURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Hulu"><img src="images/hulu.png" style="width:50px;"></a></div>
+        <!--<div class="streamTD" id="huluTD"><a id="huluURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Hulu"><img src="images/hulu.png" style="width:50px;"></a></div>-->
         <div class="streamTD" id="itunesTD"><a id="itunesURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy or rent this epsiode on iTunes"><img src="images/itunes.png" style="width:50px;"></a></div>
         <!--<div class="streamTD" id="vhxTD">VHX</div>-->
-        <div class="streamTD" id="vimeoTD"><a id="vimeoURL" href=" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Vimeo"><img src="images/vimeo.png" style="width:50px;"></a></div>
+        <!--<div class="streamTD" id="vimeoTD"><a id="vimeoURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Vimeo"><img src="images/vimeo.png" style="width:50px;"></a></div>-->
         <div class="streamTD"><a id="refresh" href="" class="zebra_tips1" data-tippy-content="Search for a different episode with the same criteria"><img src="images/reload.png" style="width:50px;"></a></div>
     </div>
   </div>
@@ -143,7 +143,7 @@
 </body>
 <script>
 
-tippy.setDefaultProps({distance: 50, placement: "bottom", theme: 'mst'});
+tippy.setDefaultProps({theme: 'mst', arrow: false});
 
 getQuote()
 
@@ -223,17 +223,17 @@ ipcRenderer.on('movie-sign', (event, data) => {
       $("#amazonTD").css("display","none")
       $("#amazonURL").attr("href", "")
     }
-    if (data.movie.hulu != null) {
+    /* if (data.movie.hulu != null) {
       $("#huluTD").css("display","inline-block")
       $("#huluURL").attr("href","https://www.hulu.com/watch/"+data.movie.hulu)
       streams++
     } else {
       $("#huluTD").css("display","none")
       $("#huluURL").attr("href","")
-    }
+    } */
     if (data.movie.itunes != null) {
       $("#itunesTD").css("display","inline-block")
-      $("#itunesURL").attr("href","https://itunes.apple.com/us/movie/mystery-science-theater-3000/"+data.movie.itunes)
+      $("#itunesURL").attr("href",data.movie.itunes)
       streams++
     } else {
       $("#itunesTD").css("display","none")
@@ -257,7 +257,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
     }
     if (data.movie.rifftrax != null) {
       $("#rifftraxTD").css("display","inline-block")
-      $("#rifftraxURL").attr("href","http://www.rifftrax.com/mst3k-"+data.movie.rifftrax)
+      $("#rifftraxURL").attr("href",data.movie.rifftrax)
       streams++
     } else {
       $("#rifftraxTD").css("display","none")
@@ -265,7 +265,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
     }
     if (data.movie.shout != null) {
       $("#shoutTD").css("display","inline-block")
-      $("#shoutURL").attr("href","watch.shout-tv.com/video/"+data.movie.shout)
+      $("#shoutURL").attr("href",data.movie.shout)
       streams++
     } else {
       $("#shoutTD").css("display","none")
@@ -278,7 +278,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
     } else {
       $("#vhxTD").css("display","none")
       $("#vxhURL").attr("href","")
-    } */
+    }
     if (data.movie.vimeo != null) {
       $("#vimeoTD").css("display","inline-block")
       $("#vimeoURL").attr("href","https://vimeo.com/ondemand/mst3k/"+data.movie.vimeo)
@@ -286,7 +286,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
     } else {
       $("#vimeoTD").css("display","none")
       $("#vimeoURL").attr("href","")
-    }
+    } */
     if (data.movie.youtube != null) {
       $("#youtubeTD").css("display","inline-block")
       $("#youtubeURL").attr("href","https://www.youtube.com/watch?v="+data.movie.youtube)
@@ -309,7 +309,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
     $("#moviePoster").attr("src","epthumbs/"+data.movie.experiment+".jpg")
     $("#streamingServices").html(JSON.stringify(streams))
     $("#summary").css({
-      'background-image': 'url(' + data.poster + ')',
+      'background-image': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./posters/" + data.movie.experiment + ".jpg')",
       'background-position': 'center',
       'background-repeat': 'no-repeat'
   });
