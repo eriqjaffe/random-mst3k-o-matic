@@ -108,6 +108,6 @@ h1, h2, h3 {
   /* // user css code */
   .tippy-box[data-theme~='mst'] {
     background-color: #2E2B56;
-    border: 1px solid #2E2B56;
+    border: 1px solid #625F89;
     color: white;
   }
