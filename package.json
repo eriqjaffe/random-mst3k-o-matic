@@ -12,11 +12,56 @@
   "license": "MIT",
   "repository": "https://github.com/eriqjaffe/random-mst3k-o-matic",
   "devDependencies": {
-    "electron": "^31.2.1"
+    "electron": "^31.2.1",
+    "electron-builder": "^24.13.3"
   },
   "dependencies": {
     "download": "^8.0.0",
     "sql.js": "^1.10.3",
     "wikipedia": "^2.1.2"
+  },
+  "build": {
+    "appId": "com.ootputilities.random-mst3k-o-matic",
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": [
+        "dmg"
+      ]
+    },
+    "dmg": {
+      "writeUpdateInfo": false,
+      "artifactName": "${productName}_${version}_macOS.${ext}"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "portable": {
+      "artifactName": "${productName}_${version}_Windows_portable.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "artifactName": "${productName}_${version}_Windows_setup.${ext}",
+      "menuCategory": "OOTP Utilities",
+      "shortcutName": "${productName}",
+      "include": "build/installer.nsh",
+      "uninstallDisplayName": "${productName} ${version}",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "differentialPackage": false
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm",
+        "tar.gz"
+      ]
+    },
+    "deb": {}
   }
 }
