@@ -17,8 +17,7 @@
   },
   "dependencies": {
     "download": "^8.0.0",
-    "sql.js": "^1.10.3",
-    "wikipedia": "^2.1.2"
+    "sql.js": "^1.10.3"
   },
   "build": {
     "appId": "com.ootputilities.random-mst3k-o-matic",

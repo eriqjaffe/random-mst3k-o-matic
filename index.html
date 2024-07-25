@@ -11,6 +11,8 @@
   <script type="text/javascript" src="./scripts/jquery.magnific-popup.js"></script>
   <script type="text/javascript" src="./scripts/jquery.ddslick.min.js"></script>
   <script type="text/javascript" src="./scripts/jquery.imgcheckbox.js"></script>
+  <script type="text/javascript" src="./quotes.js"></script>
+  <script type="text/javascript" src="./summaries.js"></script>
   <script src="./scripts/popper.min.js"></script>
   <script src="./scripts/tippy-bundle.umd.js"></script>
   <link href="./scripts/matic.css" rel="stylesheet" type="text/css">
@@ -18,6 +20,7 @@
   <link href='./scripts/magnific-popup.css' rel='stylesheet' type='text/css'>
   <script>
     const { ipcRenderer } = require('electron');
+    let lastQuote = 999
   </script>
 </head>
 
@@ -104,12 +107,19 @@
   <div id="movieSignPopup" class="white-popup mfp-hide">
     <h2 style="width:100%; text-align:center;" id="experimentID"></h2>
     <h1 style="width:100%; text-align:center;" id="result"></h1>
-    <div style="width: 100%; height:500px; text-align:center; display: flex;">
-      <div style="width: 65%; text-align:center; display: flex; align-items: center; justify-content: center;">
-        <img id="moviePoster" src="" style="max-height: 500px; max-width: 667px;">
-      </div>
-      <div id="summary" style="width:35%; padding:10px; vertical-align:middle; text-align:right; display: flex; align-items: center; justify-content: center;"></div>
+    <div style="width: 100%; height: 500px; text-align: center; display: flex;">
+  <div style="width: 65%; text-align: center; display: flex; align-items: center; justify-content: center;">
+    <img id="moviePoster" src="" style="max-height: 500px; max-width: 667px;">
     </div>
+    <div id="summaryContainer" style="width: 35%; height: 500px; display: table;">
+      <div id="summary" style="display: table-cell; vertical-align: middle; padding: 10px; text-align: right;">
+        <!-- Your content here -->
+        <p>First line with <i>italic text</i> continuing.</p>
+        <p>Another first line with <i>italic text</i> continuing.</p>
+      </div>
+    </div>
+  </div>
+
     <div class="footer" style="bottom: 50px!important; text-align:center; width:100%; padding-top:20px;">
         <div class="streamTD" id="mst3kTD"><a id="mst3kURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream or Buy this episode at The Gizmoplex"><img src="images/mst3k.png" style="width:50px;"></a></div>
         <div class="streamTD" id="rifftraxTD"><a id="rifftraxURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy this episode from RiffTrax"><img src="images/rifftrax.png" style="width:50px;"></a></div>
@@ -118,10 +128,7 @@
         <div class="streamTD" id="shoutTD"><a id="shoutURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode at Shout Factory"><img src="images/shout.png" style="width:50px;"></a></div>
         <div class="streamTD" id="tubiTD"><a id="tubiURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Tubi"><img src="images/tubi.png" style="width:50px;"></a></div>
         <div class="streamTD" id="amazonTD"><a id="amazonURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy or rent this episode from Amazon"><img src="images/amazon.png" style="width:50px;"></a></div>
-        <!--<div class="streamTD" id="huluTD"><a id="huluURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Hulu"><img src="images/hulu.png" style="width:50px;"></a></div>-->
         <div class="streamTD" id="itunesTD"><a id="itunesURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy or rent this epsiode on iTunes"><img src="images/itunes.png" style="width:50px;"></a></div>
-        <!--<div class="streamTD" id="vhxTD">VHX</div>-->
-        <!--<div class="streamTD" id="vimeoTD"><a id="vimeoURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Vimeo"><img src="images/vimeo.png" style="width:50px;"></a></div>-->
         <div class="streamTD"><a id="refresh" href="" class="zebra_tips1" data-tippy-content="Search for a different episode with the same criteria"><img src="images/reload.png" style="width:50px;"></a></div>
     </div>
   </div>
@@ -144,6 +151,8 @@
 <script>
 
 tippy.setDefaultProps({theme: 'mst', arrow: false});
+
+console.log(summaries["101"])
 
 getQuote()
 
@@ -223,14 +232,6 @@ ipcRenderer.on('movie-sign', (event, data) => {
       $("#amazonTD").css("display","none")
       $("#amazonURL").attr("href", "")
     }
-    /* if (data.movie.hulu != null) {
-      $("#huluTD").css("display","inline-block")
-      $("#huluURL").attr("href","https://www.hulu.com/watch/"+data.movie.hulu)
-      streams++
-    } else {
-      $("#huluTD").css("display","none")
-      $("#huluURL").attr("href","")
-    } */
     if (data.movie.itunes != null) {
       $("#itunesTD").css("display","inline-block")
       $("#itunesURL").attr("href",data.movie.itunes)
@@ -271,22 +272,6 @@ ipcRenderer.on('movie-sign', (event, data) => {
       $("#shoutTD").css("display","none")
       $("#shoutURL").attr("href","")
     }
-/*     if (data.movie.vhx != null) {
-      $("#vhxTD").css("display","inline-block")
-      $("#vxhURL").attr("href","https://mst3k.vhx.tv/products/"+data.movie.vhx)
-      streams++
-    } else {
-      $("#vhxTD").css("display","none")
-      $("#vxhURL").attr("href","")
-    }
-    if (data.movie.vimeo != null) {
-      $("#vimeoTD").css("display","inline-block")
-      $("#vimeoURL").attr("href","https://vimeo.com/ondemand/mst3k/"+data.movie.vimeo)
-      streams++
-    } else {
-      $("#vimeoTD").css("display","none")
-      $("#vimeoURL").attr("href","")
-    } */
     if (data.movie.youtube != null) {
       $("#youtubeTD").css("display","inline-block")
       $("#youtubeURL").attr("href","https://www.youtube.com/watch?v="+data.movie.youtube)
@@ -313,7 +298,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
       'background-position': 'center',
       'background-repeat': 'no-repeat'
   });
-    $("#summary").html(data.extract)
+    $("#summary").html(summaries[data.movie.experiment])
     $.magnificPopup.open({
       items: {
         src: '#movieSignPopup'
@@ -324,17 +309,12 @@ ipcRenderer.on('movie-sign', (event, data) => {
   }
 })
 
-ipcRenderer.on('quote-response', (event, data) => {
-  $("#quote").html(data.quote)
-})
-
 ipcRenderer.on('hide-spinner', (event, data) => {
-  console.log(data)
   $.magnificPopup.close();
 })
 
 function getQuote() {
-  ipcRenderer.send('get-quote',$("#quote").html())
+  $("#quote").html(quotes[(Math.floor(Math.random() * quotes.length))])
 }
 </script>
 
