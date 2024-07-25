@@ -9,8 +9,6 @@ let db;
 let dbBuffer;
 let mainWindow
 
-const synopsis = {"1308":"The superhero known as The Batwoman investigates the disappearance of several wrestlers and discovers a plot by a mad scientist to create a deadly amphibious creature."}
-
 ipcMain.on("movie-request", (event, arg) => {
   let sql = "select * from episodes where ";
   sql += "host " + arg.host + " ";
@@ -77,10 +75,10 @@ const createWindow = () => {
       
       download(
         "https://eriqjaffe.github.io/db/episodes.sqlite",
-        path.join(os.tmpdir())
+        app.getPath('userData')
       ).then(() => {
         console.log('database downloaded')
-        dbBuffer = fs.readFileSync(os.tmpdir()+"/episodes.sqlite");
+        dbBuffer = fs.readFileSync(app.getPath('userData')+"/episodes.sqlite");
         mainWindow.webContents.send("hide-spinner", "episodes.sqlite")
       }).catch((error) => {
         console.error(error)
