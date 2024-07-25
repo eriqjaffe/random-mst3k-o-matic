@@ -20,7 +20,7 @@
   <link href='./scripts/magnific-popup.css' rel='stylesheet' type='text/css'>
   <script>
     const { ipcRenderer } = require('electron');
-    let lastQuote = 999
+    require('./renderer.js')
   </script>
 </head>
 
@@ -136,7 +136,18 @@
     <div style="width: 100%; text-align:center;">
       <img src="images/poopie.jpg">
     </div>
-    <h2 style="width:100%; text-align:center; color:black;">Sorry, no movies were found that match your criteria.  Try again!</h2>
+    <h2 style="width:100%; text-align:center;">Sorry, no movies were found that match your criteria.  Try again!</h2>
+  </div>
+  <div id="aboutDiv" class="white-popup mfp-hide">
+    <div style="width:100%; text-align:center;">	
+			<span class="header" style="font-size:2em!important;">About The Random MST3K-O-Matic</span><div id="currentVersion"></div>
+		</div>
+    <div style="width: 100%; text-align:center; margin-top:50px;">
+      This app was created because my wife and I frequently sit down to watch an episode of Mystery Science Theater 3000, but can't decide which episode we want to watch.<br/><br/>
+      So I decided to let a random number generator determine our entertainment fate (not to be confused with the Hands of Fate).<br/><br/>
+      I am not affiliated with the creators and/or rights holders of Mystery Science Theater 3000, Netflix, Rifftrax, Shout Factory, Best Brains, Alternaversal, any of the movies or anybody or anything else who has any official capacity with the show that I may be forgetting or unaware of.<br/><br/>
+      Basically, this is really just a fancy dartboard.
+    </div>
   </div>
   <div id="pleaseWait" class="white-popup mfp-hide">
     <h1 style="text-align:center; color:black;">Communicating With Deep 13, Please Wait...</h1>
@@ -146,13 +157,12 @@
     <!--<div style="position:relative; width: 100%; height: 100%; text-align:center; border:1px solid blue;">
       HI THERE
     </div>-->
-    
+  </div>
+  <button id="about" style="display:none;">about</button>
 </body>
 <script>
 
 tippy.setDefaultProps({theme: 'mst', arrow: false});
-
-console.log(summaries["101"])
 
 getQuote()
 
@@ -170,6 +180,15 @@ $(document).ready(function() {
       type: 'inline',
       modal: true
     }); */
+})
+
+$("#about").on("click", function() {
+  $.magnificPopup.open({
+      items: {
+        src: '#aboutDiv'
+      },
+      type: 'inline'
+    });
 })
 
 $('#tabContainer')
@@ -305,7 +324,6 @@ ipcRenderer.on('movie-sign', (event, data) => {
       },
       type: 'inline'
     });
-    
   }
 })
 

@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain,shell } = require("electron");
+const { app, BrowserWindow, Menu, ipcMain, shell } = require("electron");
 const path = require("path");
 const fs = require("fs");
 const os = require("os")
@@ -63,6 +63,88 @@ const createWindow = () => {
       contextIsolation: false,
     },
   });
+
+  const template = [
+    ...(process.platform === 'darwin' ? [{
+        label: app.name,
+        submenu: [
+        { role: 'about' },
+        { type: 'separator' },
+        { role: 'services' },
+        { type: 'separator' },
+        { role: 'hide' },
+        { role: 'hideOthers' },
+        { role: 'unhide' },
+        { type: 'separator' },
+        { role: 'quit' }
+        ]
+    }] : []),
+    {
+        label: 'File',
+        submenu: [
+          process.platform === 'darwin' ? { role: 'close' } : { role: 'quit' }
+        ]
+    },
+    {
+        label: 'View',
+        submenu: [
+        { role: 'reload' },
+        { role: 'forceReload' },
+        { role: 'toggleDevTools' },
+        { type: 'separator' },
+        { role: 'resetZoom' },
+        { role: 'zoomIn' },
+        { role: 'zoomOut' },
+        { type: 'separator' },
+        { role: 'togglefullscreen' }
+        ]
+    },
+    {
+        label: 'Window',
+        submenu: [
+        { role: 'minimize' },
+        { role: 'zoom' },
+        ...(process.platform === 'darwin' ? [
+            { type: 'separator' },
+            { role: 'front' },
+            { type: 'separator' },
+            { role: 'window' }
+        ] : [
+            { role: 'close' }
+        ])
+        ]
+    },
+    {
+        role: 'help',
+        submenu: [
+        {
+            click: () => mainWindow.webContents.send('about','click'),
+                label: 'About the Random MST3K-O-Matic',
+        },
+        {
+            label: 'About Node.js',
+            click: async () => {    
+            await shell.openExternal('https://nodejs.org/en/about/')
+            }
+        },
+        {
+            label: 'About Electron',
+            click: async () => {
+            await shell.openExternal('https://electronjs.org')
+            }
+        },
+        {
+            label: 'View project on GitHub',
+            click: async () => {
+            await shell.openExternal('https://github.com/eriqjaffe/random-mst3k-o-matic')
+            }
+        }
+        ]
+    }
+    ]
+
+    const menu = Menu.buildFromTemplate(template)
+    Menu.setApplicationMenu(menu)
 
   // and load the index.html of the app.
   mainWindow.loadFile("index.html");
