@@ -158,7 +158,8 @@
       HI THERE
     </div>-->
   </div>
-  <button id="about" style="display:none;">about</button>
+  <input type="button" id="about" style="display:none;">
+  <input type="button" id="checkForUpdates" style="display:none;">
 </body>
 <script>
 
@@ -189,6 +190,10 @@ $("#about").on("click", function() {
       },
       type: 'inline'
     });
+})
+
+$("#checkForUpdates").on("click", function() {
+  ipcRenderer.send('check-for-update', {type:"manual"})
 })
 
 $('#tabContainer')

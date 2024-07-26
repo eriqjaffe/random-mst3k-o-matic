@@ -1,13 +1,50 @@
-const { app, BrowserWindow, Menu, ipcMain, shell } = require("electron");
+const { app, BrowserWindow, dialog, Menu, ipcMain, shell } = require("electron");
 const path = require("path");
 const fs = require("fs");
 const os = require("os")
 const initSqlJs = require("sql.js/dist/sql-wasm.js");
 const download = require("download");
+const versionCheck = require('github-version-checker');
+const pkg = require('./package.json');
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
 let db;
 let dbBuffer;
 let mainWindow
+
+const updateOptions = {
+	repo: 'random-mst3k-o-matic',
+	owner: 'eriqjaffe',
+	currentVersion: pkg.version
+};
+
+ipcMain.on('check-for-update', (event, arg) => {
+	versionCheck(updateOptions, function (error, update) { // callback function
+		if (error) {
+			dialog.showMessageBox(null, {
+				type: 'error',
+				message: 'An error occurred checking for updates:\r\n\r\n'+error.message
+			});	
+		}
+		if (update) { // print some update info if an update is available
+			dialog.showMessageBox(null, {
+				type: 'question',
+				message: "Current version: "+pkg.version+"\r\n\r\nVersion "+update.name+" is now availble.  Click 'OK' to go to the releases page.",
+				buttons: ['OK', 'Cancel'],
+			}).then(result => {
+				if (result.response === 0) {
+					shell.openExternal(update.url)
+				}
+			})	
+		} else {
+			if (arg.type == "manual") {
+				dialog.showMessageBox(null, {
+					type: 'info',
+					message: "Current version: "+pkg.version+"\r\n\r\nThere is no update available at this time."
+				});	
+			}
+		}
+	});
+})
 
 ipcMain.on("movie-request", (event, arg) => {
   let sql = "select * from episodes where ";
@@ -138,6 +175,10 @@ const createWindow = () => {
             click: async () => {
             await shell.openExternal('https://github.com/eriqjaffe/random-mst3k-o-matic')
             }
+        },
+        {
+          click: () => mainWindow.webContents.send('update','click'),
+          label: 'Check For Updates',
         }
         ]
     }
