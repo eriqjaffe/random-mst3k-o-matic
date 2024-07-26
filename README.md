@@ -6,7 +6,7 @@
 
 Can't decide which episode to watch? Let this determine your (hands of) fate!  Give the app as many (or as few) criteria as you wish and the random number generator will pick an episode for you, as well as provide links to (legal) sources for streaming, renting, or puchasing the episode, if any are available.
 
-The simplest thing to do is just grab a pre-compiled binary from the "[releases](https://github.com/eriqjaffe/random-mst3k-o-matic/releases)" section.  Binaries are available for Windows, macOS and Linux.
+The simplest thing to do is just grab a pre-compiled binary from the "[releases](https://github.com/eriqjaffe/random-mst3k-o-matic/releases)" section.  Binaries are available for Windows, macOS and (RedHat / Debian) Linux.
 
 Because I'm not a registered developer with Apple, macOS may block the app for security reasons (not a bad thing for it to do, ultimately).  If this happens, just CTRL-click on the app and choose "Open" from the menu - that will bring up a slightly different version of the security message with an option to open the app.  You *should* only have to do that once and macOS should store an exception for the app going forward.
 
