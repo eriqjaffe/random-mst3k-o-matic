@@ -129,7 +129,23 @@
                   <option value="like '%West Germany%'" data-image="images/wg.svg" data-description="&nbsp;">West Germany</option>
                 </select>
               </td>
-              <td></td>
+              <td style="color:white; text-align:center;">Recurring Characters:<br/>
+                <select id="theCharacters" is="ms-dropdown" data-visible-rows="6">
+                  <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                  <option value="like '%callipygeas%'" data-image="images/callipygeas.jpg" data-description="Played by Kevin Murphy">Callipygeas</option>
+                  <option value="like '%phibes%'" data-image="images/phibes.jpg" data-description="Played by Deanna Rooney">Dr. Donna St. Phibes</option>
+                  <option value="like '%flavia%'" data-image="images/flavia.jpg" data-description="Played by Bridget Jones">Flavia</option>
+                  <option value="like '%jackperkins%'" data-image="images/jackperkins.jpg" data-description="Played by Mike Nelson">Jack Perkins</option>
+                  <option value="like '%janinthepan%'" data-image="images/janinthepan.jpg" data-description="Played by Mary Jo Pehl">Jan in the Pan</option>
+                  <option value="like '%mrbnatural%'" data-image="images/mrbnatural.jpg" data-description="Played by Bridget Jones">Mr. B Natural</option>
+                  <option value="like '%ortega%'" data-image="images/ortega.jpg" data-description="Played by Paul Chaplin">Ortega</option>
+                  <option value="like '%krankor%'" data-image="images/krankor.jpg" data-description="Played by Bill Corbett">Phantom of Krankor</option>
+                  <option value="like '%pitch%'" data-image="images/pitch.jpg" data-description="Played by Paul Chaplin">Pitch</option>
+                  <option value="like '%santa%'" data-image="images/santa.jpg" data-description="Played by Kevin Murphy and Joel Hodgson">Santa Claus</option>
+                  <option value="like '%spacechildren%'" data-image="images/spacechildren.jpg" data-description="Played by Bridget Jones, Paul Chaplin and Mike Nelson">Space Children</option>
+                  <option value="like '%torgo%'" data-image="images/torgo.jpg" data-description="Played by Mike Nelson">Torgo</option>
+                </select>
+              </td>
             </tr>
             <tr>
               <td style="text-align:center;color:white;"><img class="optionsImage" name="short" src="images/short.jpg"><br/>Only show episodes with shorts</td>
@@ -267,10 +283,11 @@ $("#movieSign").on("click",function(e){
   data.tom = $("#theTom").val()
   data.decade = $("#theDecade").val()
   data.country = $("#theCountry").val()
+  data.characters = $("#theCharacters").val()
   data.mads = mads
   data.options = options
   console.log(data)
-  //ipcRenderer.send('movie-request', data)
+  ipcRenderer.send('movie-request', data)
 })
 
 ipcRenderer.on('movie-sign', (event, data) => { 
