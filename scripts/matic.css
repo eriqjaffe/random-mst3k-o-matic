@@ -128,3 +128,17 @@ h1, h2, h3 {
     border: 1px solid #625F89;
     color: white;
   }
+
+  .ms-dd-label {
+    font-family: 'Raleway', sans-serif;
+  }
+
+  .ms-dd-desc {
+    text-align: left;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.8em;
+  }
+
+  .ms-dd-option-content {
+    text-align: left!important;
+  }

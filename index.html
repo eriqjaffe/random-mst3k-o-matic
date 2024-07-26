@@ -9,8 +9,8 @@
   <script type="text/javascript" src="./scripts/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="./scripts/skeletabs.js"></script>
   <script type="text/javascript" src="./scripts/jquery.magnific-popup.js"></script>
-  <script type="text/javascript" src="./scripts/jquery.ddslick.min.js"></script>
   <script type="text/javascript" src="./scripts/jquery.imgcheckbox.js"></script>
+  <script type="text/javascript" src="./scripts/dd.min.js"></script>
   <script type="text/javascript" src="./quotes.js"></script>
   <script type="text/javascript" src="./summaries.js"></script>
   <script src="./scripts/popper.min.js"></script>
@@ -18,6 +18,7 @@
   <link href="./scripts/matic.css" rel="stylesheet" type="text/css">
   <link href='./scripts/skeletabs.css' rel='stylesheet' type='text/css'>
   <link href='./scripts/magnific-popup.css' rel='stylesheet' type='text/css'>
+  <link href='./scripts/dd.css' rel='stylesheet' type='text/css'>
   <script>
     const { ipcRenderer } = require('electron');
     require('./renderer.js')
@@ -29,7 +30,7 @@
   <div id="tabContainer" class="skltbs-theme-light">
     <ul class="skltbs-tab-group">
       <li class="skltbs-tab-item">
-        <button class="skltbs-tab">The Hosts</button>
+        <button class="skltbs-tab">The Satellite Crew</button>
       </li>
       <li class="skltbs-tab-item">
         <button class="skltbs-tab">The Mads</button>
@@ -41,31 +42,31 @@
     <div class="skltbs-panel-group">
       <div class="skltbs-panel">
         <table style="width:100%;">
-          <tr><td style="color:white;">Choose A Host:<br/>
-            <select id="theHost">
-              <option value="IS NOT NULL" data-imagesrc="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
-              <option value="LIKE '%jh%'" data-imagesrc="images/joel.jpg" data-description="&quot;Joel Robinson&quot;<br/>Seasons K-5">Joel Hodgson</option>
-              <option value="= 'mn'" data-imagesrc="images/mike.jpg" data-description="&quot;Mike Nelson&quot;<br/>Seasons 5-10">Mike Nelson</option>
-              <option value="LIKE '%jr%'" data-imagesrc="images/jonah.jpg" data-description="&quot;Jonah Heston&quot;<br/>Seasons 11-Present">Jonah Ray</option>
-              <option value="= 'em'" data-imagesrc="images/emily.jpg" data-description="&quot;Emily Connor&quot;<br/>Season 13-Present">Emily Marsh</option>
+          <tr><td style="color:white; text-align:center;">Choose A Host:<br/>
+            <select id="theHost" is="ms-dropdown">
+              <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+              <option value="LIKE '%jh%'" data-image="images/joel.jpg" data-description="&quot;Joel Robinson&quot;<br/>Seasons K-5">Joel Hodgson</option>
+              <option value="LIKE '%mn%'" data-image="images/mike.jpg" data-description="&quot;Mike Nelson&quot;<br/>Seasons 5-10">Mike Nelson</option>
+              <option value="LIKE '%jr%'" data-image="images/jonah.jpg" data-description="&quot;Jonah Heston&quot;<br/>Seasons 11-Present">Jonah Ray</option>
+              <option value="LIKE '%em%'" data-image="images/emily.jpg" data-description="&quot;Emily Connor&quot;<br/>Season 13-Present">Emily Marsh</option>
             </select>
           </td>
-          <td style="color:white;">Choose A Crow:<br/>
-            <select id="theCrow">
-              <option value="IS NOT NULL" data-imagesrc="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
-              <option value="= 'jw'" data-imagesrc="images/josh.jpg" data-description="Season K">Josh Weinstein</option>
-              <option value="= 'tb'" data-imagesrc="images/trace.jpg" data-description="Seasons K-7">Trace Beaulieu</option>
-              <option value="= 'bc'" data-imagesrc="images/bill.jpg" data-description="Seasons 8-10">Bill Corbett</option>
-              <option value="= 'hyt'" data-imagesrc="images/hampton.jpg" data-description="Seasons 11-Present">Hampton Yount</option>
-              <option value="= 'kab'" data-imagesrc="images/kelsey.jpg" data-description="Seasons 13-Present">Kelsey Ann Brady</option>
+          <td style="color:white; text-align:center;">Choose A Crow:<br/>
+            <select id="theCrow" is="ms-dropdown">
+              <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+              <option value="LIKE '%jw%'" data-image="images/josh.jpg" data-description="Season K">Josh Weinstein</option>
+              <option value="LIKE '%tb%'" data-image="images/trace.jpg" data-description="Seasons K-7">Trace Beaulieu</option>
+              <option value="LIKE '%bc%'" data-image="images/bill.jpg" data-description="Seasons 8-10">Bill Corbett</option>
+              <option value="LIKE '%hy%'" data-image="images/hampton.jpg" data-description="Seasons 11-Present">Hampton Yount</option>
+              <option value="LIKE '%kab%'" data-image="images/kelsey.jpg" data-description="Seasons 13-Present">Kelsey Ann Brady</option>
             </select>
-          </td><td style="color:white;">Choose A Tom Servo:<br/>
-            <select id="theTom">
-              <option value="IS NOT NULL" data-imagesrc="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
-              <option value="LIKE '%jw%'" data-imagesrc="images/josh.jpg" data-description="Seasons K-1,13">Josh Weinstein</option>
-              <option value="= 'km'" data-imagesrc="images/kevin.jpg" data-description="Seasons 2-10">Kevin Murphy</option>
-              <option value="= 'bv'" data-imagesrc="images/baron.jpg" data-description="Seasons 11-Present">Baron Vaughn</option>
-              <option value="LIKE '%cm%'" data-imagesrc="images/conor.jpg" data-description="Seasons 13-Present">Conor McGiffin</option>
+          </td><td style="color:white; text-align:center;">Choose A Tom Servo:<br/>
+            <select id="theTom" is="ms-dropdown">
+              <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+              <option value="LIKE '%jw%'" data-image="images/josh.jpg" data-description="Seasons K-1,13">Josh Weinstein</option>
+              <option value="LIKE '%km%" data-image="images/kevin.jpg" data-description="Seasons 2-10">Kevin Murphy</option>
+              <option value="LIKE '%bv%'" data-image="images/baron.jpg" data-description="Seasons 11-Present">Baron Vaughn</option>
+              <option value="LIKE '%cm%'" data-image="images/conor.jpg" data-description="Seasons 13-Present">Conor McGiffin</option>
             </select>
           </td></tr>
           </table>
@@ -89,13 +90,51 @@
           </table>
       </div>
       <div class="skltbs-panel">
-        <table style="width:100%">
+        <table style="width:100%;">
+          <tr><td style="color:white; text-align:center;">Choose A Decade:<br/>
+                <select id="theDecade" is="ms-dropdown" data-visible-rows="6">
+                  <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                  <option value="between 1940 and 1949" data-image="images/1940s.jpg" data-description="&nbsp;">1940's</option>
+                  <option value="between 1950 and 1959" data-image="images/1950s.jpg" data-description="&nbsp;">1950's</option>
+                  <option value="between 1960 and 1969" data-image="images/1960s.jpg" data-description="&nbsp;">1960's</option>
+                  <option value="between 1970 and 1979" data-image="images/1970s.jpg" data-description="&nbsp;">1970's</option>
+                  <option value="between 1980 and 1989" data-image="images/1980s.jpg" data-description="&nbsp;">1980's</option>
+                  <option value="between 1990 and 1999" data-image="images/1990s.jpg" data-description="&nbsp;">1990's</option>
+                  <!--<option value="between 2000 and 2009" data-image="images/jonah.jpg" data-description="&nbsp;">2000's</option>-->
+                  <option value="between 2010 and 2019" data-image="images/2010s.jpg" data-description="&nbsp;">2010's</option>
+                </select>
+              </td>
+              <td style="color:white; text-align:center;">Country of Origin:<br/>
+                <select id="theCountry" is="ms-dropdown" data-visible-rows="6">
+                  <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                  <option value="like '%Argentina%'" data-image="images/ar.svg" data-description="&nbsp;">Argentina</option>
+                  <option value="like '%Brazil%'" data-image="images/br.svg" data-description="&nbsp;">Brazil</option>
+                  <option value="like '%Canada%'" data-image="images/ca.svg" data-description="&nbsp;">Canada</option>
+                  <option value="like '%Denmark%'" data-image="images/dk.svg" data-description="&nbsp;">Denmark</option>
+                  <option value="like '%East Germany%'" data-image="images/eg.svg" data-description="&nbsp;">East Germany</option>
+                  <option value="like '%Finland%'" data-image="images/fi.svg" data-description="&nbsp;">Finland</option>
+                  <option value="like '%France%'" data-image="images/fr.svg" data-description="&nbsp;">France</option>
+                  <option value="like '%Italy%'" data-image="images/it.svg" data-description="&nbsp;">Italy</option>
+                  <option value="like '%Japan%'" data-image="images/jp.svg" data-description="&nbsp;">Japan</option>
+                  <option value="like '%Liechtenstein%'" data-image="images/li.svg" data-description="&nbsp;">Liechtenstein</option>
+                  <option value="like '%Mexico%'" data-image="images/mx.svg" data-description="&nbsp;">Mexico</option>
+                  <option value="like '%Philippines%'" data-image="images/ph.svg" data-description="&nbsp;">Philippines</option>
+                  <option value="like '%Poland%'" data-image="images/pl.svg" data-description="&nbsp;">Poland</option>
+                  <option value="like '%USSR%'" data-image="images/ussr.svg" data-description="&nbsp;">Russia</option>
+                  <option value="South Africa%'" data-image="images/za.svg" data-description="&nbsp;">South Africa</option>
+                  <option value="South Korea%'" data-image="images/kr.svg" data-description="&nbsp;">South Korea</option>
+                  <option value="like '%Spain%'" data-image="images/es.svg" data-description="&nbsp;">Spain</option>
+                  <option value="like '%UK%'" data-image="images/gb.svg" data-description="&nbsp;">United Kingdom</option>
+                  <option value="like '%USA%'" data-image="images/us.svg" data-description="&nbsp;">United States</option>
+                  <option value="like '%West Germany%'" data-image="images/wg.svg" data-description="&nbsp;">West Germany</option>
+                </select>
+              </td>
+              <td></td>
+            </tr>
             <tr>
               <td style="text-align:center;color:white;"><img class="optionsImage" name="short" src="images/short.jpg"><br/>Only show episodes with shorts</td>
               <td style="text-align:center;color:white;"><img class="optionsImage" name="streaming" src="images/streaming.png"><br/>Only show episodes available for streaming</td>
-            </tr>
-            <tr>
-              <td style="padding-top:20px; text-align:center;color:white;" colspan="2"><img class="optionsImage" name="bw" src="images/bw.png"><br/>Only show black and white movies</td>
+              <td style="padding-top:20px; text-align:center;color:white;"><img class="optionsImage" name="bw" src="images/bw.png"><br/>Only show black and white movies</td>
             </tr>
         </table>
       </div>
@@ -113,9 +152,6 @@
     </div>
     <div id="summaryContainer" style="width: 35%; height: 500px; display: table;">
       <div id="summary" style="display: table-cell; vertical-align: middle; padding: 10px; text-align: left;">
-        <!-- Your content here -->dfd
-        <p>First line with <i>italic text</i> continuing.</p>
-        <p>Another first line with <i>italic text</i> continuing.</p>
       </div>
     </div>
   </div>
@@ -168,9 +204,6 @@ tippy.setDefaultProps({theme: 'mst', arrow: false});
 getQuote()
 
 $(document).ready(function() {
-  $('#theHost').ddslick();
-  $("#theCrow").ddslick();
-  $("#theTom").ddslick();
   $("img.madsImage").imgCheckbox();
   $("img.optionsImage").imgCheckbox();
   tippy('[data-tippy-content]');
@@ -229,12 +262,15 @@ $("#movieSign").on("click",function(e){
     }
   })
 
-  data.host = $("#theHost").data('ddslick').selectedData.value
-  data.crow = $("#theCrow").data('ddslick').selectedData.value
-  data.tom = $("#theTom").data('ddslick').selectedData.value
+  data.host = $("#theHost").val()
+  data.crow = $("#theCrow").val()
+  data.tom = $("#theTom").val()
+  data.decade = $("#theDecade").val()
+  data.country = $("#theCountry").val()
   data.mads = mads
   data.options = options
-  ipcRenderer.send('movie-request', data)
+  console.log(data)
+  //ipcRenderer.send('movie-request', data)
 })
 
 ipcRenderer.on('movie-sign', (event, data) => { 
