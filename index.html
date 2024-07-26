@@ -105,7 +105,7 @@
     <input type="button" class="fakeSkeletab" id="movieSign" value="Push the button, Frank.">
   </div>
   <div id="movieSignPopup" class="white-popup mfp-hide">
-    <h2 style="width:100%; text-align:center;" id="experimentID"></h2>
+    <h1 style="width:100%; text-align:center;">WE'VE GOT MOVIE SIGN!!!!</h1>
     <h1 style="width:100%; text-align:center;" id="result"></h1>
     <div style="width: 100%; height: 500px; text-align: center; display: flex;">
   <div style="width: 65%; text-align: center; display: flex; align-items: center; justify-content: center;">
@@ -113,7 +113,7 @@
     </div>
     <div id="summaryContainer" style="width: 35%; height: 500px; display: table;">
       <div id="summary" style="display: table-cell; vertical-align: middle; padding: 10px; text-align: left;">
-        <!-- Your content here -->
+        <!-- Your content here -->dfd
         <p>First line with <i>italic text</i> continuing.</p>
         <p>Another first line with <i>italic text</i> continuing.</p>
       </div>
@@ -308,8 +308,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
       $("#tubiURL").attr("href","")
     }
     $(".streamTD").css("width",100/(streams+1)+"%")
-    $("#experimentID").html("Experiment "+data.movie.experiment+":")
-    $("#result").html("&quot;"+data.movie.movie+"&quot;")
+    $("#result").html("Experiment "+data.movie.experiment+": &quot;"+data.movie.movie+"&quot;")
     $("#moviePoster").attr("src","epthumbs/"+data.movie.experiment+".jpg")
     $("#streamingServices").html(JSON.stringify(streams))
     $("#summary").css({
