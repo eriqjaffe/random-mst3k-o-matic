@@ -64,22 +64,51 @@ ipcMain.on("movie-request", (event, arg) => {
     }
   });
 
+  if (arg.actors != "null") {
+    sql += "and experiment in (select experiment from actors where name = '"+arg.actors+"') "
+  }
+
+  if (arg.directors != "null") {
+    sql += "and experiment in (select experiment from directors where name = '"+arg.directors+"') "
+  }
+
+  if (arg.producers != "null") {
+    sql += "and experiment in (select experiment from actors where name = '"+arg.producers+"') "
+  }
+
   initSqlJs().then(function (SQL) {
     console.log(sql)
     db = new SQL.Database(dbBuffer);
-    const result = db.exec(sql + " ORDER BY RANDOM() LIMIT 1");
-
+    const result = db.exec(sql + " ORDER BY RANDOM() LIMIT 2");
+    let rowObject
+    
     if (result.length === 0 || result[0].values.length === 0) {
       db.close();
       event.sender.send("movie-sign", { rows: 0, message: "No rows found" });
       return false;
-    } else {
-      const row = result[0].values[0];
-      const rowObject = result[0].columns.reduce((obj, col, index) => {
+    }
+    if (result[0].values.length === 1) {
+/*       console.log("only 1 movie found!") */
+      const row = result[0].values[0]
+      rowObject = result[0].columns.reduce((obj, col, index) => {
         obj[col] = row[index];
         return obj;
       }, {});
-      console.log(rowObject.experiment)
+    } else {
+/*       console.log(arg.lastMovie)
+      console.log("more than one movie found")
+      console.log("found " +result[0].values[0][0], result[0].values[1][0]) */
+      let row;
+      if (result[0].values[0][0].toString() != arg.lastMovie.toString()) {
+        row = result[0].values[0];
+      } else {
+        row = result[0].values[1];
+      }
+      rowObject = result[0].columns.reduce((obj, col, index) => {
+        obj[col] = row[index];
+        return obj;
+      }, {});
+      //console.log(rowObject.experiment)
       
       
       // Get the first (and only) row
