@@ -235,13 +235,13 @@ const createWindow = () => {
       }).catch((error) => {
         console.error(error)
         console.log("using backup database")
-        dbBuffer = fs.readFileSync(path.join(app.getAppPath(), "db", "episodes_bak.sqlite"));
-        //mainWindow.webContents.send("hide-spinner", "episodes_bak.sqlite");
+        dbBuffer = fs.readFileSync(path.join(app.getAppPath(), "db", "episodes.sqlite"));
+        //mainWindow.webContents.send("hide-spinner", "episodes.sqlite");
       }); */
       if (app.isPackaged) {
-        dbBuffer = fs.readFileSync(path.join(process.resourcesPath, 'db', 'episodes_bak.sqlite'));
+        dbBuffer = fs.readFileSync(path.join(process.resourcesPath, 'db', 'episodes.sqlite'));
       } else {
-        dbBuffer = fs.readFileSync(path.join(app.getAppPath(), "db", "episodes_bak.sqlite"));
+        dbBuffer = fs.readFileSync(path.join(app.getAppPath(), "db", "episodes.sqlite"));
       }
     //})
   })
