@@ -22,6 +22,7 @@
   <script>
     const { ipcRenderer } = require('electron');
     require('./renderer.js')
+    let lastMovie = 99999
   </script>
 </head>
 
@@ -150,8 +151,8 @@
             </tr>
             <tr><td colspan="3">&nbsp;</td></tr>
             <tr><td style="color:white; text-align:center;">Recurring Directors:<br/>
-                <select id="theDecade" is="ms-dropdown" data-visible-rows="5">
-                  <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <select id="theDirectors" is="ms-dropdown" data-visible-rows="5">
+                  <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
                   <option data-image="images/directors/albert_band.jpg" value="Albert Band">Albert Band</option>
                   <option data-image="images/directors/alberto_de_martino.jpg" value="Alberto De Martino">Alberto De Martino</option>
                   <option data-image="images/directors/aleksandr_ptushko.jpg" value="Aleksandr Ptushko">Aleksandr Ptushko</option>
@@ -189,8 +190,8 @@
                 </select>
               </td>
               <td style="color:white; text-align:center;">Recurring Producers:<br/>
-                <select id="theCountry" is="ms-dropdown" data-visible-rows="5">
-                  <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <select id="theProducers" is="ms-dropdown" data-visible-rows="5">
+                  <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
                   <option data-image="images/producers/avi_lerner.jpg" value="Avi Lerner">Avi Lerner</option>
                   <option data-image="images/directors/bert_i_gordon.jpg" value="Bert I. Gordon">Bert I. Gordon</option>
                   <option data-image="images/directors/bill_rebane.jpg" value="Bill Rebane">Bill Rebane</option>
@@ -217,8 +218,8 @@
                 </select>
               </td>
               <td style="color:white; text-align:center;">Recurring Actors:<br/>
-                <select id="theCharacters" is="ms-dropdown" data-visible-rows="5">
-                  <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <select id="theActors" is="ms-dropdown" data-visible-rows="5">
+                  <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
                   <option data-image="images/actors/adolfo_celi.jpg" value="Adolfo Celi">Adolfo Celi</option>
                   <option data-image="images/actors/akihiro_hirata.jpg" value="Akihiro Hirata">Akihiro Hirata</option>
                   <option data-image="images/actors/alan_francis.jpg" value="Alan Francis">Alan Francis</option>
@@ -556,6 +557,10 @@ $("#movieSign").on("click",function(e){
   data.characters = $("#theCharacters").val()
   data.mads = mads
   data.options = options
+  data.actors = $("#theActors").val()
+  data.directors = $("#theDirectors").val()
+  data.producers = $("#theProducers").val()
+  data.lastMovie = lastMovie
   console.log(data)
   ipcRenderer.send('movie-request', data)
 })
@@ -570,6 +575,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
       type: 'inline'
     });
   } else {
+    lastMovie = data.movie.experiment
     let streams = 0
     if (data.movie.amazon != null) {
       $("#amazonTD").css("display","inline-block")
