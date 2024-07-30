@@ -22,6 +22,15 @@
   },
   "build": {
     "appId": "com.ootputilities.random-mst3k-o-matic",
+    "files": [
+      "!db/episodes_bak.sqlite"
+    ],
+    "extraResources": [
+      {
+        "from": "db/episodes_bak.sqlite",
+        "to": "db/episodes_bak.sqlite"
+      }
+    ],
     "mac": {
       "category": "public.app-category.utilities",
       "target": [
