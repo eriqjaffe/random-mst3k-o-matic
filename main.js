@@ -47,6 +47,7 @@ ipcMain.on('check-for-update', (event, arg) => {
 })
 
 ipcMain.on("movie-request", (event, arg) => {
+  console.log(arg)
   let sql = "select * from episodes where ";
   sql += "host " + arg.host + " ";
   sql += "and crow " + arg.crow + " ";
@@ -64,6 +65,10 @@ ipcMain.on("movie-request", (event, arg) => {
     }
   });
 
+  sql += "and originalyear " + arg.decade + " ";
+  sql += "and country " + arg.country + " ";
+  sql += "and genres " + arg.genre + " ";
+
   if (arg.actors != "null") {
     sql += "and experiment in (select experiment from actors where name = '"+arg.actors+"') "
   }
@@ -75,6 +80,10 @@ ipcMain.on("movie-request", (event, arg) => {
   if (arg.producers != "null") {
     sql += "and experiment in (select experiment from actors where name = '"+arg.producers+"') "
   }
+
+  if (arg.characters != "null") {
+    sql += "and experiment in (select experiment from characters where name = '"+arg.characters+"') "
+  } 
 
   initSqlJs().then(function (SQL) {
     console.log(sql)

@@ -91,338 +91,376 @@
           </table>
       </div>
       <div class="skltbs-panel">
-        <table style="width:100%;">
-          <tr><td colspan="3">&nbsp;</td></tr>
-          <tr><td style="color:white; text-align:center;">Choose A Decade:<br/>
-                <select id="theDecade" is="ms-dropdown" data-visible-rows="6">
-                  <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
-                  <option value="between 1940 and 1949" data-image="images/1940s.jpg" data-description="&nbsp;">1940's</option>
-                  <option value="between 1950 and 1959" data-image="images/1950s.jpg" data-description="&nbsp;">1950's</option>
-                  <option value="between 1960 and 1969" data-image="images/1960s.jpg" data-description="&nbsp;">1960's</option>
-                  <option value="between 1970 and 1979" data-image="images/1970s.jpg" data-description="&nbsp;">1970's</option>
-                  <option value="between 1980 and 1989" data-image="images/1980s.jpg" data-description="&nbsp;">1980's</option>
-                  <option value="between 1990 and 1999" data-image="images/1990s.jpg" data-description="&nbsp;">1990's</option>
-                  <!--<option value="between 2000 and 2009" data-image="images/jonah.jpg" data-description="&nbsp;">2000's</option>-->
-                  <option value="between 2010 and 2019" data-image="images/2010s.jpg" data-description="&nbsp;">2010's</option>
-                </select>
-              </td>
-              <td style="color:white; text-align:center;">Country of Origin:<br/>
-                <select id="theCountry" is="ms-dropdown" data-visible-rows="6">
-                  <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
-                  <option value="like '%Argentina%'" data-image="images/ar.svg" data-description="&nbsp;">Argentina</option>
-                  <option value="like '%Brazil%'" data-image="images/br.svg" data-description="&nbsp;">Brazil</option>
-                  <option value="like '%Canada%'" data-image="images/ca.svg" data-description="&nbsp;">Canada</option>
-                  <option value="like '%Denmark%'" data-image="images/dk.svg" data-description="&nbsp;">Denmark</option>
-                  <option value="like '%East Germany%'" data-image="images/eg.svg" data-description="&nbsp;">East Germany</option>
-                  <option value="like '%Finland%'" data-image="images/fi.svg" data-description="&nbsp;">Finland</option>
-                  <option value="like '%France%'" data-image="images/fr.svg" data-description="&nbsp;">France</option>
-                  <option value="like '%Italy%'" data-image="images/it.svg" data-description="&nbsp;">Italy</option>
-                  <option value="like '%Japan%'" data-image="images/jp.svg" data-description="&nbsp;">Japan</option>
-                  <option value="like '%Liechtenstein%'" data-image="images/li.svg" data-description="&nbsp;">Liechtenstein</option>
-                  <option value="like '%Mexico%'" data-image="images/mx.svg" data-description="&nbsp;">Mexico</option>
-                  <option value="like '%Philippines%'" data-image="images/ph.svg" data-description="&nbsp;">Philippines</option>
-                  <option value="like '%Poland%'" data-image="images/pl.svg" data-description="&nbsp;">Poland</option>
-                  <option value="like '%USSR%'" data-image="images/ussr.svg" data-description="&nbsp;">Russia</option>
-                  <option value="South Africa%'" data-image="images/za.svg" data-description="&nbsp;">South Africa</option>
-                  <option value="South Korea%'" data-image="images/kr.svg" data-description="&nbsp;">South Korea</option>
-                  <option value="like '%Spain%'" data-image="images/es.svg" data-description="&nbsp;">Spain</option>
-                  <option value="like '%UK%'" data-image="images/gb.svg" data-description="&nbsp;">United Kingdom</option>
-                  <option value="like '%USA%'" data-image="images/us.svg" data-description="&nbsp;">United States</option>
-                  <option value="like '%West Germany%'" data-image="images/wg.svg" data-description="&nbsp;">West Germany</option>
-                </select>
-              </td>
-              <td style="color:white; text-align:center;">Recurring Characters:<br/>
-                <select id="theCharacters" is="ms-dropdown" data-visible-rows="6">
-                  <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
-                  <option value="like '%callipygeas%'" data-image="images/callipygeas.jpg" data-description="Played by Kevin Murphy">Callipygeas</option>
-                  <option value="like '%phibes%'" data-image="images/phibes.jpg" data-description="Played by Deanna Rooney">Dr. Donna St. Phibes</option>
-                  <option value="like '%flavia%'" data-image="images/flavia.jpg" data-description="Played by Bridget Jones">Flavia</option>
-                  <option value="like '%jackperkins%'" data-image="images/jackperkins.jpg" data-description="Played by Mike Nelson">Jack Perkins</option>
-                  <option value="like '%janinthepan%'" data-image="images/janinthepan.jpg" data-description="Played by Mary Jo Pehl">Jan in the Pan</option>
-                  <option value="like '%mrbnatural%'" data-image="images/mrbnatural.jpg" data-description="Played by Bridget Jones">Mr. B Natural</option>
-                  <option value="like '%ortega%'" data-image="images/ortega.jpg" data-description="Played by Paul Chaplin">Ortega</option>
-                  <option value="like '%krankor%'" data-image="images/krankor.jpg" data-description="Played by Bill Corbett">Phantom of Krankor</option>
-                  <option value="like '%pitch%'" data-image="images/pitch.jpg" data-description="Played by Paul Chaplin">Pitch</option>
-                  <option value="like '%santa%'" data-image="images/santa.jpg" data-description="Played by Kevin Murphy and Joel Hodgson">Santa Claus</option>
-                  <option value="like '%spacechildren%'" data-image="images/spacechildren.jpg" data-description="Played by Bridget Jones, Paul Chaplin and Mike Nelson">Space Children</option>
-                  <option value="like '%torgo%'" data-image="images/torgo.jpg" data-description="Played by Mike Nelson">Torgo</option>
-                </select>
-              </td>
-            </tr>
-            <tr><td colspan="3">&nbsp;</td></tr>
-            <tr><td style="color:white; text-align:center;">Recurring Directors:<br/>
-                <select id="theDirectors" is="ms-dropdown" data-visible-rows="5">
-                  <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
-                  <option data-image="images/directors/albert_band.jpg" value="Albert Band">Albert Band</option>
-                  <option data-image="images/directors/alberto_de_martino.jpg" value="Alberto De Martino">Alberto De Martino</option>
-                  <option data-image="images/directors/aleksandr_ptushko.jpg" value="Aleksandr Ptushko">Aleksandr Ptushko</option>
-                  <option data-image="images/directors/arthur_c_pierce.jpg" value="Arthur C. Pierce">Arthur C. Pierce</option>
-                  <option data-image="images/directors/unknown.png" value="Atsushi Okunaka">Atsushi Okunaka</option>
-                  <option data-image="images/directors/bernard_l_kowalski.jpg" value="Bernard L. Kowalski">Bernard L. Kowalski</option>
-                  <option data-image="images/directors/bert_i_gordon.jpg" value="Bert I. Gordon">Bert I. Gordon</option>
-                  <option data-image="images/directors/bill_rebane.jpg" value="Bill Rebane">Bill Rebane</option>
-                  <option data-image="images/actors/coleman_francis.jpg" value="Coleman Francis">Coleman Francis</option>
-                  <option data-image="images/directors/ed_wood.jpg" value="Ed Wood">Ed Wood</option>
-                  <option data-image="images/directors/gene_fowler_jr.jpg" value="Gene Fowler Jr.">Gene Fowler Jr.</option>
-                  <option data-image="images/directors/greydon_clark.jpg" value="Greydon Clark">Greydon Clark</option>
-                  <option data-image="images/directors/hollingsworth_morse.jpg" value="Hollingsworth Morse">Hollingsworth Morse</option>
-                  <option data-image="images/directors/jack_arnold.jpg" value="Jack Arnold">Jack Arnold</option>
-                  <option data-image="images/directors/jack_pollexfen.jpg" value="Jack Pollexfen">Jack Pollexfen</option>
-                  <option data-image="images/directors/jerry_jameson.jpg" value="Jerry Jameson">Jerry Jameson</option>
-                  <option data-image="images/directors/joe_damato.jpg" value="Joe D'Amato">Joe D'Amato</option>
-                  <option data-image="images/directors/jun_fukuda.jpg" value="Jun Fukuda">Jun Fukuda</option>
-                  <option data-image="images/directors/kazuho_mitsuta.jpg" value="Kazuho Mitsuta">Kazuho Mitsuta</option>
-                  <option data-image="images/directors/kevin_connor.jpg" value="Kevin Connor">Kevin Connor</option>
-                  <option data-image="images/directors/unknown.png" value="Kiyosumi Fukazawa">Kiyosumi Fukazawa</option>
-                  <option data-image="images/directors/lindsay_shonteff.jpg" value="Lindsay Shonteff">Lindsay Shonteff</option>
-                  <option data-image="images/directors/noriaki_yuasa.jpg" value="Noriaki Yuasa">Noriaki Yuasa</option>
-                  <option data-image="images/directors/pietro_francisci.jpg" value="Pietro Francisci">Pietro Francisci</option>
-                  <option data-image="images/directors/ray_austin.jpg" value="Ray Austin">Ray Austin</option>
-                  <option data-image="images/directors/ray_kellogg.jpg" value="Ray Kellogg">Ray Kellogg</option>
-                  <option data-image="images/actors/rene_cardona.jpg" value="Rene Cardona">Rene Cardona</option>
-                  <option data-image="images/directors/roger_corman.jpg" value="Roger Corman">Roger Corman</option>
-                  <option data-image="images/directors/sam_newfield.jpg" value="Sam Newfield">Sam Newfield</option>
-                  <option data-image="images/directors/samaji_nonagase.jpg" value="Samaji Nonagase">Samaji Nonagase</option>
-                  <option data-image="images/directors/shigeo_tanaka.jpg" value="Shigeo Tanaka">Shigeo Tanaka</option>
-                  <option data-image="images/directors/unknown.png" value="Shunichiro Kazuki">Shunichiro Kazuki</option>
-                  <option data-image="images/directors/unknown.png" value="Sogoro Tsuchiya">Sogoro Tsuchiya</option>
-                  <option data-image="images/directors/unknown.png" value="Tsuneo Kobayashi">Tsuneo Kobayashi</option>
-                </select>
-              </td>
-              <td style="color:white; text-align:center;">Recurring Producers:<br/>
-                <select id="theProducers" is="ms-dropdown" data-visible-rows="5">
-                  <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
-                  <option data-image="images/producers/avi_lerner.jpg" value="Avi Lerner">Avi Lerner</option>
-                  <option data-image="images/directors/bert_i_gordon.jpg" value="Bert I. Gordon">Bert I. Gordon</option>
-                  <option data-image="images/directors/bill_rebane.jpg" value="Bill Rebane">Bill Rebane</option>
-                  <option data-image="images/producers/chares_band.jpg" value="Charles Band">Charles Band</option>
-                  <option data-image="images/producers/david_sheldon.jpg" value="David Sheldon">David Sheldon</option>
-                  <option data-image="images/directors/ed_wood.jpg" value="Ed Wood">Ed Wood</option>
-                  <option data-image="images/producers/gerry_anderson.jpg" value="Gerry Anderson">Gerry Anderson</option>
-                  <option data-image="images/producers/harry_alan_towers.jpg" value="Harry Alan Towers">Harry Alan Towers</option>
-                  <option data-image="images/directors/unknown.png" value="Hugo Grimaldi">Hugo Grimaldi</option>
-                  <option data-image="images/directors/jack_pollexfen.jpg" value="Jack Pollexfen">Jack Pollexfen</option>
-                  <option data-image="images/producers/k_gordon_murray.jpg" value="K. Gordon Murray">K. Gordon Murray</option>
-                  <option data-image="images/producers/mark_l_rosen.jpg" value="Mark L. Rosen">Mark L. Rosen</option>
-                  <option data-image="images/producers/max_rosenberg.jpg" value="Max Rosenberg">Max Rosenberg</option>
-                  <option data-image="images/producers/milton_subotsky.jpg" value="Milton Subotsky">Milton Subotsky</option>
-                  <option data-image="images/producers/robert_l_lippert.jpg" value="Robert L. Lippert">Robert L. Lippert</option>
-                  <option data-image="images/directors/roger_corman.jpg" value="Roger Corman">Roger Corman</option>
-                  <option data-image="images/producers/sam_katzman.jpg" value="Sam Katzman">Sam Katzman</option>
-                  <option data-image="images/producers/samuel_z_arkoff.jpg" value="Samuel Z. Arkoff">Samuel Z. Arkoff</option>
-                  <option data-image="images/producers/sandy_frank.jpg" value="Sandy Frank">Sandy Frank</option>
-                  <option data-image="images/producers/sylvia_anderson.jpg" value="Sylvia Anderson">Sylvia Anderson</option>
-                  <option data-image="images/producers/tomoyuki_tanaka.jpg" value="Tomoyuki Tanaka">Tomoyuki Tanaka</option>
-                  <option data-image="images/actors/tony_cardoza.jpg" value="Tony Cardoza">Tony Cardoza</option>
-                  <option data-image="images/directors/unknown.png" value="Walter Manley">Walter Manley</option>
-                </select>
-              </td>
-              <td style="color:white; text-align:center;">Recurring Actors:<br/>
-                <select id="theActors" is="ms-dropdown" data-visible-rows="5">
-                  <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
-                  <option data-image="images/actors/adolfo_celi.jpg" value="Adolfo Celi">Adolfo Celi</option>
-                  <option data-image="images/actors/akihiro_hirata.jpg" value="Akihiro Hirata">Akihiro Hirata</option>
-                  <option data-image="images/actors/alan_francis.jpg" value="Alan Francis">Alan Francis</option>
-                  <option data-image="images/actors/alan_hale_jr.jpg" value="Alan Hale Jr.">Alan Hale Jr.</option>
-                  <option data-image="images/actors/allison_hayes.jpg" value="Allison Hayes">Allison Hayes</option>
-                  <option data-image="images/actors/angelo_rossitto.jpg" value="Angelo Rossitto">Angelo Rossitto</option>
-                  <option data-image="images/actors/anthony_dexter.jpg" value="Anthony Dexter">Anthony Dexter</option>
-                  <option data-image="images/actors/arthur_batanides.jpg" value="Arthur Batanides">Arthur Batanides</option>
-                  <option data-image="images/actors/arturo_martinez.jpg" value="Arturo Martinez">Arturo Martinez</option>
-                  <option data-image="images/actors/barbara_francis.jpg" value="Barbara Francis">Barbara Francis</option>
-                  <option data-image="images/actors/bela_lugosi.jpg" value="Bela Lugosi">Bela Lugosi</option>
-                  <option data-image="images/actors/ben_murphy.jpg" value="Ben Murphy">Ben Murphy</option>
-                  <option data-image="images/actors/beverly_garland.jpg" value="Beverly Garland">Beverly Garland</option>
-                  <option data-image="images/actors/bill_coontz.jpg" value="Bill Coontz">Bill Coontz</option>
-                  <option data-image="images/actors/bill_giorgio.jpg" value="Bill Giorgio">Bill Giorgio</option>
-                  <option data-image="images/actors/bill_mckinney.jpg" value="Bill McKinney">Bill McKinney</option>
-                  <option data-image="images/actors/bobby_parr.jpg" value="Bobby Parr">Bobby Parr</option>
-                  <option data-image="images/actors/bradford_dillman.jpg" value="Bradford Dillman">Bradford Dillman</option>
-                  <option data-image="images/actors/brett_halsey.jpg" value="Brett Halsey">Brett Halsey</option>
-                  <option data-image="images/actors/bruno_vesota.jpg" value="Bruno VeSota">Bruno VeSota</option>
-                  <option data-image="images/actors/bryant_haliday.jpg" value="Bryant Haliday">Bryant Haliday</option>
-                  <option data-image="images/actors/burgess_meredith.jpg" value="Burgess Meredith">Burgess Meredith</option>
-                  <option data-image="images/actors/cameron_mitchell.jpg" value="Cameron Mitchell">Cameron Mitchell</option>
-                  <option data-image="images/actors/carlos_rivas.jpg" value="Carlos Rivas">Carlos Rivas</option>
-                  <option data-image="images/actors/caroline_munro.jpg" value="Caroline Munro">Caroline Munro</option>
-                  <option data-image="images/actors/catherine_schell.jpg" value="Catherine Schell">Catherine Schell</option>
-                  <option data-image="images/actors/cathy_downs.jpg" value="Cathy Downs">Cathy Downs</option>
-                  <option data-image="images/actors/choei_takahashi.jpg" value="Choei Takahashi">Choei Takahashi</option>
-                  <option data-image="images/actors/clu_gulager.jpg" value="Clu Gulager">Clu Gulager</option>
-                  <option data-image="images/actors/coleen_gray.jpg" value="Coleen Gray">Coleen Gray</option>
-                  <option data-image="images/actors/coleman_francis.jpg" value="Coleman Francis">Coleman Francis</option>
-                  <option data-image="images/actors/conrad_brooks.jpg" value="Conrad Brooks">Conrad Brooks</option>
-                  <option data-image="images/actors/david_janssen.jpg" value="David Janssen">David Janssen</option>
-                  <option data-image="images/actors/david_mcmahon.jpg" value="David McMahon">David McMahon</option>
-                  <option data-image="images/actors/dennis_patrick.jpg" value="Dennis Patrick">Dennis Patrick</option>
-                  <option data-image="images/actors/dick_contino.jpg" value="Dick Contino">Dick Contino</option>
-                  <option data-image="images/actors/dick_miller.jpg" value="Dick Miller">Dick Miller</option>
-                  <option data-image="images/actors/dolores_faith.jpg" value="Dolores Faith">Dolores Faith</option>
-                  <option data-image="images/actors/don_c_harvey.jpg" value="Don C. Harvey">Don C. Harvey</option>
-                  <option data-image="images/actors/don_michael_paul.jpg" value="Don Michael Paul">Don Michael Paul</option>
-                  <option data-image="images/actors/don_sullivan.jpg" value="Don Sullivan">Don Sullivan</option>
-                  <option data-image="images/actors/donald_hodson.jpg" value="Donald Hodson">Donald Hodson</option>
-                  <option data-image="images/actors/donald_pleasance.jpg" value="Donald Pleasance">Donald Pleasance</option>
-                  <option data-image="images/actors/doug_mcclure.jpg" value="Doug McClure">Doug McClure</option>
-                  <option data-image="images/actors/ed_nelson.jpg" value="Ed Nelson">Ed Nelson</option>
-                  <option data-image="images/actors/edward_erwin.jpg" value="Edward Erwin">Edward Erwin</option>
-                  <option data-image="images/actors/eugene_persson.jpg" value="Eugene Persson">Eugene Persson</option>
-                  <option data-image="images/actors/forrest_j_ackerman.jpg" value="Forrest J. Ackerman">Forrest J. Ackerman</option>
-                  <option data-image="images/actors/francis_x_bushman.jpg" value="Francis X. Bushman">Francis X. Bushman</option>
-                  <option data-image="images/actors/frank_gerstle.jpg" value="Frank Gerstle">Frank Gerstle</option>
-                  <option data-image="images/actors/gary_collins.jpg" value="Gary Collins">Gary Collins</option>
-                  <option data-image="images/actors/gary_lockwood.jpg" value="Gary Lockwood">Gary Lockwood</option>
-                  <option data-image="images/actors/gene_roth.jpg" value="Gene Roth">Gene Roth</option>
-                  <option data-image="images/actors/george_buck_fowler.jpg" value="George 'Buck' Fowler">George 'Buck' Fowler</option>
-                  <option data-image="images/actors/george_becwar.jpg" value="George Becwar">George Becwar</option>
-                  <option data-image="images/actors/george_cisar.jpg" value="George Cisar">George Cisar</option>
-                  <option data-image="images/actors/george_nader.jpg" value="George Nader">George Nader</option>
-                  <option data-image="images/actors/giovanni_cianfriglia.jpg" value="Giovanni Cianfriglia">Giovanni Cianfriglia</option>
-                  <option data-image="images/actors/glenn_langan.jpg" value="Glenn Langan">Glenn Langan</option>
-                  <option data-image="images/actors/gloria_talbott.jpg" value="Gloria Talbott">Gloria Talbott</option>
-                  <option data-image="images/actors/godfrey_james.jpg" value="Godfrey James">Godfrey James</option>
-                  <option data-image="images/actors/hank_patterson.jpg" value="Hank Patterson">Hank Patterson</option>
-                  <option data-image="images/actors/harry_keaton.jpg" value="Harry Keaton">Harry Keaton</option>
-                  <option data-image="images/actors/haruo_nakajima.jpg" value="Haruo Nakajima">Haruo Nakajima</option>
-                  <option data-image="images/actors/harvey_b_dunn.jpg" value="Harvey B. Dunn">Harvey B. Dunn</option>
-                  <option data-image="images/actors/hiro_tateyama.jpg" value="Hiro Tateyama">Hiro Tateyama</option>
-                  <option data-image="images/actors/hugh_beaumont.jpg" value="Hugh Beaumont">Hugh Beaumont</option>
-                  <option data-image="images/actors/i_stanford_jolley.jpg" value="I. Stanford Jolley">I. Stanford Jolley</option>
-                  <option data-image="images/actors/j_stewart_taylor.jpg" value="J. Stewart Taylor">J. Stewart Taylor</option>
-                  <option data-image="images/actors/jack_kosslyn.jpg" value="Jack Kosslyn">Jack Kosslyn</option>
-                  <option data-image="images/actors/jack_palance.jpg" value="Jack Palance">Jack Palance</option>
-                  <option data-image="images/actors/james_best.jpg" value="James Best">James Best</option>
-                  <option data-image="images/actors/james_franciscus.jpg" value="James Franciscus">James Franciscus</option>
-                  <option data-image="images/actors/james_griffith.jpg" value="James Griffith">James Griffith</option>
-                  <option data-image="images/actors/james_seay.jpg" value="James Seay">James Seay</option>
-                  <option data-image="images/actors/jean_moorhead.jpg" value="Jean Moorhead">Jean Moorhead</option>
-                  <option data-image="images/actors/jim_begg.jpg" value="Jim Begg">Jim Begg</option>
-                  <option data-image="images/actors/jody_daniels.jpg" value="Jody Daniels">Jody Daniels</option>
-                  <option data-image="images/actors/joe_don_baker.jpg" value="Joe Don Baker">Joe Don Baker</option>
-                  <option data-image="images/actors/joe_estevez.jpg" value="Joe Estevez">Joe Estevez</option>
-                  <option data-image="images/actors/joe_shishido.jpg" value="Joe Shishido">Joe Shishido</option>
-                  <option data-image="images/actors/joe_turkel.jpg" value="Joe Turkel">Joe Turkel</option>
-                  <option data-image="images/actors/john_agar.jpg" value="John Agar">John Agar</option>
-                  <option data-image="images/actors/john_ashley.jpg" value="John Ashley">John Ashley</option>
-                  <option data-image="images/actors/john_banner.jpg" value="John Banner">John Banner</option>
-                  <option data-image="images/actors/john_carradine.jpg" value="John Carradine">John Carradine</option>
-                  <option data-image="images/actors/john_forsythe.jpg" value="John Forsythe">John Forsythe</option>
-                  <option data-image="images/actors/john_hoyt.jpg" value="John Hoyt">John Hoyt</option>
-                  <option data-image="images/actors/john_ireland.jpg" value="John Ireland">John Ireland</option>
-                  <option data-image="images/actors/john_phillip_law.jpg" value="John Phillip Law">John Phillip Law</option>
-                  <option data-image="images/actors/johnny_crawford.jpg" value="Johnny Crawford">Johnny Crawford</option>
-                  <option data-image="images/actors/jonathan_haze.jpg" value="Jonathan Haze">Jonathan Haze</option>
-                  <option data-image="images/actors/jonathan_ledford.jpg" value="Jonathan Ledford">Jonathan Ledford</option>
-                  <option data-image="images/actors/june_kenney.jpg" value="June Kenney">June Kenney</option>
-                  <option data-image="images/actors/keenan_wynn.jpg" value="Keenan Wynn">Keenan Wynn</option>
-                  <option data-image="images/actors/keith_barron.jpg" value="Keith Barron">Keith Barron</option>
-                  <option data-image="images/actors/ken_clark.jpg" value="Ken Clark">Ken Clark</option>
-                  <option data-image="images/actors/koji_fujiyama.jpg" value="Koji Fujiyama">Koji Fujiyama</option>
-                  <option data-image="images/actors/kon_omura.jpg" value="Kon Omura">Kon Omura</option>
-                  <option data-image="images/actors/lance_fuller.jpg" value="Lance Fuller">Lance Fuller</option>
-                  <option data-image="images/actors/larry_blake.jpg" value="Larry Blake">Larry Blake</option>
-                  <option data-image="images/actors/lee_majors.jpg" value="Lee Majors">Lee Majors</option>
-                  <option data-image="images/actors/lee_van_cleef.jpg" value="Lee Van Cleef">Lee Van Cleef</option>
-                  <option data-image="images/actors/lidia_alfonsi.jpg" value="Lidia Alfonsi">Lidia Alfonsi</option>
-                  <option data-image="images/actors/lois_maxwell.jpg" value="Lois Maxwell">Lois Maxwell</option>
-                  <option data-image="images/actors/lon_chaney_jr.jpg" value="Lon Chaney Jr.">Lon Chaney Jr.</option>
-                  <option data-image="images/actors/lori_nelson.jpg" value="Lori Nelson">Lori Nelson</option>
-                  <option data-image="images/actors/luana_walters.jpg" value="Luana Walters">Luana Walters</option>
-                  <option data-image="images/actors/malcolm_atterbury.jpg" value="Malcolm Atterbury">Malcolm Atterbury</option>
-                  <option data-image="images/actors/mamie_van_doren.jpg" value="Mamie Van Doren">Mamie Van Doren</option>
-                  <option data-image="images/actors/marisa_mell.jpg" value="Marisa Mell">Marisa Mell</option>
-                  <option data-image="images/actors/mary_beth_hughes.jpg" value="Mary Beth Hughes">Mary Beth Hughes</option>
-                  <option data-image="images/actors/mel_welles.jpg" value="Mel Welles">Mel Welles</option>
-                  <option data-image="images/actors/merritt_stone.jpg" value="Merritt Stone">Merritt Stone</option>
-                  <option data-image="images/actors/merry_anders.jpg" value="Merry Anders">Merry Anders</option>
-                  <option data-image="images/actors/michael_emmett.jpg" value="Michael Emmett">Michael Emmett</option>
-                  <option data-image="images/actors/michael_pataki.jpg" value="Michael Pataki">Michael Pataki</option>
-                  <option data-image="images/actors/miguel_angel_fuentes.jpg" value="Miguel Angel Fuentes">Miguel Angel Fuentes</option>
-                  <option data-image="images/actors/miles_okeeffe.jpg" value="Miles O'Keeffe">Miles O'Keeffe</option>
-                  <option data-image="images/actors/miyuki_tanigawa.jpg" value="Miyuki Tanigawa">Miyuki Tanigawa</option>
-                  <option data-image="images/actors/morris_ankrum.jpg" value="Morris Ankrum">Morris Ankrum</option>
-                  <option data-image="images/actors/myron_healey.jpg" value="Myron Healey">Myron Healey</option>
-                  <option data-image="images/actors/nello_pazzafini.jpg" value="Nello Pazzafini">Nello Pazzafini</option>
-                  <option data-image="images/actors/nestor_paiva.jpg" value="Nestor Paiva">Nestor Paiva</option>
-                  <option data-image="images/actors/olan_soule.jpg" value="Olan Soule">Olan Soule</option>
-                  <option data-image="images/actors/osiride_pevarello.jpg" value="Osiride Pevarello">Osiride Pevarello</option>
-                  <option data-image="images/actors/patrick_whyte.jpg" value="Patrick Whyte">Patrick Whyte</option>
-                  <option data-image="images/actors/paul_costello.jpg" value="Paul Costello">Paul Costello</option>
-                  <option data-image="images/actors/paul_frees.jpg" value="Paul Frees">Paul Frees</option>
-                  <option data-image="images/actors/peggie_castle.jpg" value="Peggie Castle">Peggie Castle</option>
-                  <option data-image="images/actors/peggy_converse.jpg" value="Peggy Converse">Peggy Converse</option>
-                  <option data-image="images/actors/peggy_webber.jpg" value="Peggy Webber">Peggy Webber</option>
-                  <option data-image="images/actors/peter_breck.jpg" value="Peter Breck">Peter Breck</option>
-                  <option data-image="images/actors/peter_graves.jpg" value="Peter Graves">Peter Graves</option>
-                  <option data-image="images/actors/peter_haskell.jpg" value="Peter Haskell">Peter Haskell</option>
-                  <option data-image="images/actors/peter_leeds.jpg" value="Peter Leeds">Peter Leeds</option>
-                  <option data-image="images/actors/rafael_campos.jpg" value="Rafael Campos">Rafael Campos</option>
-                  <option data-image="images/actors/ralph_byrd.jpg" value="Ralph Byrd">Ralph Byrd</option>
-                  <option data-image="images/actors/ray_dennis_steckler.jpg" value="Ray Dennis Steckler">Ray Dennis Steckler</option>
-                  <option data-image="images/actors/reed_hadley.jpg" value="Reed Hadley">Reed Hadley</option>
-                  <option data-image="images/actors/reiko_kasahara.jpg" value="Reiko Kasahara">Reiko Kasahara</option>
-                  <option data-image="images/actors/rene_cardona.jpg" value="Rene Cardona">Rene Cardona</option>
-                  <option data-image="images/actors/riccardo_petrazzi.jpg" value="Riccardo Petrazzi">Riccardo Petrazzi</option>
-                  <option data-image="images/actors/richard_devon.jpg" value="Richard Devon">Richard Devon</option>
-                  <option data-image="images/actors/richard_keil.jpg" value="Richard Keil">Richard Keil</option>
-                  <option data-image="images/actors/robert_donner.jpg" value="Robert Donner">Robert Donner</option>
-                  <option data-image="images/actors/robert_easton.jpg" value="Robert Easton">Robert Easton</option>
-                  <option data-image="images/actors/robert_ito.jpg" value="Robert Ito">Robert Ito</option>
-                  <option data-image="images/actors/robert_kent.jpg" value="Robert Kent">Robert Kent</option>
-                  <option data-image="images/actors/robert_random.jpg" value="Robert Random">Robert Random</option>
-                  <option data-image="images/actors/robert_reed.jpg" value="Robert Reed">Robert Reed</option>
-                  <option data-image="images/actors/robert_tessier.jpg" value="Robert Tessier">Robert Tessier</option>
-                  <option data-image="images/actors/robert_vaughn.jpg" value="Robert Vaughn">Robert Vaughn</option>
-                  <option data-image="images/actors/robert_zdar.jpg" value="Robert Z'Dar">Robert Z'Dar</option>
-                  <option data-image="images/actors/roberto_contreras.jpg" value="Roberto Contreras">Roberto Contreras</option>
-                  <option data-image="images/actors/robin_hughes.jpg" value="Robin Hughes">Robin Hughes</option>
-                  <option data-image="images/actors/ronald_francis.jpg" value="Ronald Francis">Ronald Francis</option>
-                  <option data-image="images/actors/ross_hagen.jpg" value="Ross Hagen">Ross Hagen</option>
-                  <option data-image="images/actors/rossano_brazzi.jpg" value="Rossano Brazzi">Rossano Brazzi</option>
-                  <option data-image="images/actors/russ_bender.jpg" value="Russ Bender">Russ Bender</option>
-                  <option data-image="images/actors/russ_conway.jpg" value="Russ Conway">Russ Conway</option>
-                  <option data-image="images/actors/russell_johnson.jpg" value="Russell Johnson">Russell Johnson</option>
-                  <option data-image="images/actors/sally_fraser.jpg" value="Sally Fraser">Sally Fraser</option>
-                  <option data-image="images/actors/sally_todd.jpg" value="Sally Todd">Sally Todd</option>
-                  <option data-image="images/actors/santo.jpg" value="Santo">Santo</option>
-                  <option data-image="images/actors/scotty_beckett.jpg" value="Scotty Beckett">Scotty Beckett</option>
-                  <option data-image="images/actors/sho_kosugi.jpg" value="Sho Kosugi">Sho Kosugi</option>
-                  <option data-image="images/actors/sid_haig.jpg" value="Sid Haig">Sid Haig</option>
-                  <option data-image="images/actors/sid_melton.jpg" value="Sid Melton">Sid Melton</option>
-                  <option data-image="images/actors/steve_brodie.jpg" value="Steve Brodie">Steve Brodie</option>
-                  <option data-image="images/actors/steve_franken.jpg" value="Steve Franken">Steve Franken</option>
-                  <option data-image="images/actors/steve_reeves.jpg" value="Steve Reeves">Steve Reeves</option>
-                  <option data-image="images/actors/sylva_koscina.jpg" value="Sylva Koscina">Sylva Koscina</option>
-                  <option data-image="images/actors/tatsuya_azuma.jpg" value="Tatsuya Azuma">Tatsuya Azuma</option>
-                  <option data-image="images/actors/thom_christopher.jpg" value="Thom Christopher">Thom Christopher</option>
-                  <option data-image="images/actors/tim_condren.jpg" value="Tim Condren">Tim Condren</option>
-                  <option data-image="images/actors/timothy_farrell.jpg" value="Timothy Farrell">Timothy Farrell</option>
-                  <option data-image="images/actors/timothy_van_patten.jpg" value="Timothy Van Patten">Timothy Van Patten</option>
-                  <option data-image="images/actors/tom_conway.jpg" value="Tom Conway">Tom Conway</option>
-                  <option data-image="images/actors/tom_neal.jpg" value="Tom Neal">Tom Neal</option>
-                  <option data-image="images/actors/tommy_kirk.jpg" value="Tommy Kirk">Tommy Kirk</option>
-                  <option data-image="images/actors/tony_cardoza.jpg" value="Tony Cardoza">Tony Cardoza</option>
-                  <option data-image="images/actors/tony_lorea.jpg" value="Tony Lorea">Tony Lorea</option>
-                  <option data-image="images/actors/tor_johnson.jpg" value="Tor Johnson">Tor Johnson</option>
-                  <option data-image="images/actors/tristram_coffin.jpg" value="Tristram Coffin">Tristram Coffin</option>
-                  <option data-image="images/actors/troy_patterson.jpg" value="Troy Patterson">Troy Patterson</option>
-                  <option data-image="images/actors/tsutomu_yukawa.jpg" value="Tsutomu Yukawa">Tsutomu Yukawa</option>
-                  <option data-image="images/actors/virginia_gregg.jpg" value="Virginia Gregg">Virginia Gregg</option>
-                  <option data-image="images/actors/ward_costello.jpg" value="Ward Costello">Ward Costello</option>
-                  <option data-image="images/actors/warren_hammack.jpg" value="Warren Hammack">Warren Hammack</option>
-                  <option data-image="images/actors/warren_mitchell.jpg" value="Warren Mitchell">Warren Mitchell</option>
-                  <option data-image="images/actors/wendell_corey.jpg" value="Wendell Corey">Wendell Corey</option>
-                  <option data-image="images/actors/whit_bissell.jpg" value="Whit Bissell">Whit Bissell</option>
-                  <option data-image="images/actors/william_schallert.jpg" value="William Schallert">William Schallert</option>
-                  <option data-image="images/actors/william_sylvester.jpg" value="William Sylvester">William Sylvester</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td style="text-align:center;color:white;"><img class="optionsImage" name="short" src="images/short.jpg"><br/>Only show episodes with shorts</td>
-              <td style="text-align:center;color:white;"><img class="optionsImage" name="streaming" src="images/streaming.png"><br/>Only show episodes available for streaming</td>
-              <td style="padding-top:20px; text-align:center;color:white;"><img class="optionsImage" name="bw" src="images/bw.png"><br/>Only show black and white movies</td>
-            </tr>
+        <table style="width:100%; padding-top:10px;">
+          <tr>
+            <td style="color:white; text-align:center;">Choose A Decade:<br/>
+              <select id="theDecade" is="ms-dropdown" data-visible-rows="6">
+                <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option value="between 1940 and 1949" data-image="images/1940s.jpg" data-description="&nbsp;">1940's</option>
+                <option value="between 1950 and 1959" data-image="images/1950s.jpg" data-description="&nbsp;">1950's</option>
+                <option value="between 1960 and 1969" data-image="images/1960s.jpg" data-description="&nbsp;">1960's</option>
+                <option value="between 1970 and 1979" data-image="images/1970s.jpg" data-description="&nbsp;">1970's</option>
+                <option value="between 1980 and 1989" data-image="images/1980s.jpg" data-description="&nbsp;">1980's</option>
+                <option value="between 1990 and 1999" data-image="images/1990s.jpg" data-description="&nbsp;">1990's</option>
+                <!--<option value="between 2000 and 2009" data-image="images/jonah.jpg" data-description="&nbsp;">2000's</option>-->
+                <option value="between 2010 and 2019" data-image="images/2010s.jpg" data-description="&nbsp;">2010's</option>
+              </select>
+            </td>
+            <td style="color:white; text-align:center;">Genre:<br/>
+              <select id="theGenre" is="ms-dropdown" data-visible-rows="6">
+                <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option data-image="images/genres/action.jpg"  value="LIKE '%Action%'">Action</option>
+                <option data-image="images/genres/adventure.jpg"  value="LIKE '%Adventure%'">Adventure</option>
+                <option data-image="images/genres/alien_invasion.jpg"  value="LIKE '%Alien Invasion%'">Alien Invasion</option>
+                <option data-image="images/genres/biker.jpg"  value="LIKE '%Biker%'">Biker</option>
+                <option data-image="images/genres/comedy.jpg"  value="LIKE '%Comedy%'">Comedy</option>
+                <option data-image="images/genres/crime.jpg"  value="LIKE '%Crime%'">Crime</option>
+                <option data-image="images/genres/disaster.jpg"  value="LIKE '%Disaster%'">Disaster</option>
+                <option data-image="images/genres/drama.jpg"  value="LIKE '%Drama%'">Drama</option>
+                <option data-image="images/genres/dystopian.jpg"  value="LIKE '%Dystopian%'">Dystopian</option>
+                <option data-image="images/genres/family.jpg"  value="LIKE '%Family%'">Family</option>
+                <option data-image="images/genres/fantasy.jpg"  value="LIKE '%Fantasy%'">Fantasy</option>
+                <option data-image="images/genres/giant_monster.jpg"  value="LIKE '%Giant Monster%'">Giant Monster</option>
+                <option data-image="images/genres/holiday.jpg"  value="LIKE '%Holiday%'">Holiday</option>
+                <option data-image="images/genres/horror.jpg"  value="LIKE '%Horror%'">Horror</option>
+                <option data-image="images/genres/juvenile_delinquent.jpg"  value="LIKE '%Juvenile Delinquent%'">Juvenile Delinquent</option>
+                <option data-image="images/genres/kaiju.jpg"  value="LIKE '%Kaiju%'">Kaiju</option>
+                <option data-image="images/genres/music.jpg"  value="LIKE '%Music%'">Music</option>
+                <option data-image="images/genres/mystery.jpg"  value="LIKE '%Mystery%'">Mystery</option>
+                <option data-image="images/genres/romance.jpg"  value="LIKE '%Romance%'">Romance</option>
+                <option data-image="images/genres/sci-fi.jpg"  value="LIKE '%Sci-Fi%'">Sci-Fi</option>
+                <option data-image="images/genres/space.jpg"  value="LIKE '%Space%'">Space</option>
+                <option data-image="images/genres/sport.jpg"  value="LIKE '%Sport%'">Sport</option>
+                <option data-image="images/genres/spy_movie.jpg"  value="LIKE '%Spy Movie%'">Spy Movie</option>
+                <option data-image="images/genres/superhero.jpg"  value="LIKE '%Superhero%'">Superhero</option>
+                <option data-image="images/genres/sandals.jpg"  value="LIKE '%Sandals%'">Sword & Sandals</option>
+                <option data-image="images/genres/sorcery.jpg"  value="LIKE '%Sorcery%'">Sword & Sorcery</option>
+                <option data-image="images/genres/thriller.jpg"  value="LIKE '%Thriller%'">Thriller</option>
+                <option data-image="images/genres/time_travel.jpg"  value="LIKE '%Time Travel%'">Time Travel</option>
+                <option data-image="images/genres/TV.jpg"  value="LIKE '%TV%'">TV</option>
+                <option data-image="images/genres/war.jpg"  value="LIKE '%War%'">War</option>
+                <option data-image="images/genres/western.jpg"  value="LIKE '%Western%'">Western</option>
+              </select>
+            </td>
+            <td style="color:white; text-align:center;">Country of Origin:<br/>
+              <select id="theCountry" is="ms-dropdown" data-visible-rows="6">
+                <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option value="like '%Argentina%'" data-image="images/ar.svg" data-description="&nbsp;">Argentina</option>
+                <option value="like '%Brazil%'" data-image="images/br.svg" data-description="&nbsp;">Brazil</option>
+                <option value="like '%Canada%'" data-image="images/ca.svg" data-description="&nbsp;">Canada</option>
+                <option value="like '%Denmark%'" data-image="images/dk.svg" data-description="&nbsp;">Denmark</option>
+                <option value="like '%East Germany%'" data-image="images/eg.svg" data-description="&nbsp;">East Germany</option>
+                <option value="like '%Finland%'" data-image="images/fi.svg" data-description="&nbsp;">Finland</option>
+                <option value="like '%France%'" data-image="images/fr.svg" data-description="&nbsp;">France</option>
+                <option value="like '%Italy%'" data-image="images/it.svg" data-description="&nbsp;">Italy</option>
+                <option value="like '%Japan%'" data-image="images/jp.svg" data-description="&nbsp;">Japan</option>
+                <option value="like '%Liechtenstein%'" data-image="images/li.svg" data-description="&nbsp;">Liechtenstein</option>
+                <option value="like '%Mexico%'" data-image="images/mx.svg" data-description="&nbsp;">Mexico</option>
+                <option value="like '%Philippines%'" data-image="images/ph.svg" data-description="&nbsp;">Philippines</option>
+                <option value="like '%Poland%'" data-image="images/pl.svg" data-description="&nbsp;">Poland</option>
+                <option value="like '%USSR%'" data-image="images/ussr.svg" data-description="&nbsp;">Russia</option>
+                <option value="South Africa%'" data-image="images/za.svg" data-description="&nbsp;">South Africa</option>
+                <option value="South Korea%'" data-image="images/kr.svg" data-description="&nbsp;">South Korea</option>
+                <option value="like '%Spain%'" data-image="images/es.svg" data-description="&nbsp;">Spain</option>
+                <option value="like '%UK%'" data-image="images/gb.svg" data-description="&nbsp;">United Kingdom</option>
+                <option value="like '%USA%'" data-image="images/us.svg" data-description="&nbsp;">United States</option>
+                <option value="like '%West Germany%'" data-image="images/wg.svg" data-description="&nbsp;">West Germany</option>
+              </select>
+            </td>
+            <td style="color:white; text-align:center;">Recurring Characters:<br/>
+              <select id="theCharacters" is="ms-dropdown" data-visible-rows="6">
+                <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option value="Callipygeas" data-image="images/callipygeas.jpg" data-description="Played by Kevin Murphy">Callipygeas</option>
+                <option value="Dr. Donna St. Phibes" data-image="images/phibes.jpg" data-description="Played by Deanna Rooney">Dr. Donna St. Phibes</option>
+                <option value="Flavia" data-image="images/flavia.jpg" data-description="Played by Bridget Jones">Flavia</option>
+                <option value="Jack Perkins" data-image="images/jackperkins.jpg" data-description="Played by Mike Nelson">Jack Perkins</option>
+                <option value="Jan in the Pan" data-image="images/janinthepan.jpg" data-description="Played by Mary Jo Pehl">Jan in the Pan</option>
+                <option value="Mr. B Natural" data-image="images/mrbnatural.jpg" data-description="Played by Bridget Jones">Mr. B Natural</option>
+                <option value="Ortega" data-image="images/ortega.jpg" data-description="Played by Paul Chaplin">Ortega</option>
+                <option value="Phantom of Krankor" data-image="images/krankor.jpg" data-description="Played by Bill Corbett">Phantom of Krankor</option>
+                <option value="Pitch" data-image="images/pitch.jpg" data-description="Played by Paul Chaplin">Pitch</option>
+                <option value="Santa Claus" data-image="images/santa.jpg" data-description="Played by Kevin Murphy and Joel Hodgson">Santa Claus</option>
+                <option value="Space Children" data-image="images/spacechildren.jpg" data-description="Played by Bridget Jones, Paul Chaplin and Mike Nelson">Space Children</option>
+                <option value="Torgo" data-image="images/torgo.jpg" data-description="Played by Mike Nelson">Torgo</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+        <table style="width:100%; padding-top:10px;">
+          <tr>
+            <td style="color:white; text-align:center;">Recurring Directors:<br/>
+              <select id="theDirectors" is="ms-dropdown" data-visible-rows="5">
+                <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option data-image="images/directors/albert_band.jpg" value="Albert Band">Albert Band</option>
+                <option data-image="images/directors/alberto_de_martino.jpg" value="Alberto De Martino">Alberto De Martino</option>
+                <option data-image="images/directors/aleksandr_ptushko.jpg" value="Aleksandr Ptushko">Aleksandr Ptushko</option>
+                <option data-image="images/directors/arthur_c_pierce.jpg" value="Arthur C. Pierce">Arthur C. Pierce</option>
+                <option data-image="images/directors/unknown.png" value="Atsushi Okunaka">Atsushi Okunaka</option>
+                <option data-image="images/directors/bernard_l_kowalski.jpg" value="Bernard L. Kowalski">Bernard L. Kowalski</option>
+                <option data-image="images/directors/bert_i_gordon.jpg" value="Bert I. Gordon">Bert I. Gordon</option>
+                <option data-image="images/directors/bill_rebane.jpg" value="Bill Rebane">Bill Rebane</option>
+                <option data-image="images/actors/coleman_francis.jpg" value="Coleman Francis">Coleman Francis</option>
+                <option data-image="images/directors/ed_wood.jpg" value="Ed Wood">Ed Wood</option>
+                <option data-image="images/directors/gene_fowler_jr.jpg" value="Gene Fowler Jr.">Gene Fowler Jr.</option>
+                <option data-image="images/directors/greydon_clark.jpg" value="Greydon Clark">Greydon Clark</option>
+                <option data-image="images/directors/hollingsworth_morse.jpg" value="Hollingsworth Morse">Hollingsworth Morse</option>
+                <option data-image="images/directors/jack_arnold.jpg" value="Jack Arnold">Jack Arnold</option>
+                <option data-image="images/directors/jack_pollexfen.jpg" value="Jack Pollexfen">Jack Pollexfen</option>
+                <option data-image="images/directors/jerry_jameson.jpg" value="Jerry Jameson">Jerry Jameson</option>
+                <option data-image="images/directors/joe_damato.jpg" value="Joe D'Amato">Joe D'Amato</option>
+                <option data-image="images/directors/jun_fukuda.jpg" value="Jun Fukuda">Jun Fukuda</option>
+                <option data-image="images/directors/kazuho_mitsuta.jpg" value="Kazuho Mitsuta">Kazuho Mitsuta</option>
+                <option data-image="images/directors/kevin_connor.jpg" value="Kevin Connor">Kevin Connor</option>
+                <option data-image="images/directors/unknown.png" value="Kiyosumi Fukazawa">Kiyosumi Fukazawa</option>
+                <option data-image="images/directors/lindsay_shonteff.jpg" value="Lindsay Shonteff">Lindsay Shonteff</option>
+                <option data-image="images/directors/noriaki_yuasa.jpg" value="Noriaki Yuasa">Noriaki Yuasa</option>
+                <option data-image="images/directors/pietro_francisci.jpg" value="Pietro Francisci">Pietro Francisci</option>
+                <option data-image="images/directors/ray_austin.jpg" value="Ray Austin">Ray Austin</option>
+                <option data-image="images/directors/ray_kellogg.jpg" value="Ray Kellogg">Ray Kellogg</option>
+                <option data-image="images/actors/rene_cardona.jpg" value="Rene Cardona">Rene Cardona</option>
+                <option data-image="images/directors/roger_corman.jpg" value="Roger Corman">Roger Corman</option>
+                <option data-image="images/directors/sam_newfield.jpg" value="Sam Newfield">Sam Newfield</option>
+                <option data-image="images/directors/samaji_nonagase.jpg" value="Samaji Nonagase">Samaji Nonagase</option>
+                <option data-image="images/directors/shigeo_tanaka.jpg" value="Shigeo Tanaka">Shigeo Tanaka</option>
+                <option data-image="images/directors/unknown.png" value="Shunichiro Kazuki">Shunichiro Kazuki</option>
+                <option data-image="images/directors/unknown.png" value="Sogoro Tsuchiya">Sogoro Tsuchiya</option>
+                <option data-image="images/directors/unknown.png" value="Tsuneo Kobayashi">Tsuneo Kobayashi</option>
+              </select>
+            </td>
+            <td style="color:white; text-align:center;">Recurring Producers:<br/>
+              <select id="theProducers" is="ms-dropdown" data-visible-rows="5">
+                <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option data-image="images/producers/avi_lerner.jpg" value="Avi Lerner">Avi Lerner</option>
+                <option data-image="images/directors/bert_i_gordon.jpg" value="Bert I. Gordon">Bert I. Gordon</option>
+                <option data-image="images/directors/bill_rebane.jpg" value="Bill Rebane">Bill Rebane</option>
+                <option data-image="images/producers/chares_band.jpg" value="Charles Band">Charles Band</option>
+                <option data-image="images/producers/david_sheldon.jpg" value="David Sheldon">David Sheldon</option>
+                <option data-image="images/directors/ed_wood.jpg" value="Ed Wood">Ed Wood</option>
+                <option data-image="images/producers/gerry_anderson.jpg" value="Gerry Anderson">Gerry Anderson</option>
+                <option data-image="images/producers/harry_alan_towers.jpg" value="Harry Alan Towers">Harry Alan Towers</option>
+                <option data-image="images/directors/unknown.png" value="Hugo Grimaldi">Hugo Grimaldi</option>
+                <option data-image="images/directors/jack_pollexfen.jpg" value="Jack Pollexfen">Jack Pollexfen</option>
+                <option data-image="images/producers/k_gordon_murray.jpg" value="K. Gordon Murray">K. Gordon Murray</option>
+                <option data-image="images/producers/mark_l_rosen.jpg" value="Mark L. Rosen">Mark L. Rosen</option>
+                <option data-image="images/producers/max_rosenberg.jpg" value="Max Rosenberg">Max Rosenberg</option>
+                <option data-image="images/producers/milton_subotsky.jpg" value="Milton Subotsky">Milton Subotsky</option>
+                <option data-image="images/producers/robert_l_lippert.jpg" value="Robert L. Lippert">Robert L. Lippert</option>
+                <option data-image="images/directors/roger_corman.jpg" value="Roger Corman">Roger Corman</option>
+                <option data-image="images/producers/sam_katzman.jpg" value="Sam Katzman">Sam Katzman</option>
+                <option data-image="images/producers/samuel_z_arkoff.jpg" value="Samuel Z. Arkoff">Samuel Z. Arkoff</option>
+                <option data-image="images/producers/sandy_frank.jpg" value="Sandy Frank">Sandy Frank</option>
+                <option data-image="images/producers/sylvia_anderson.jpg" value="Sylvia Anderson">Sylvia Anderson</option>
+                <option data-image="images/producers/tomoyuki_tanaka.jpg" value="Tomoyuki Tanaka">Tomoyuki Tanaka</option>
+                <option data-image="images/actors/tony_cardoza.jpg" value="Tony Cardoza">Tony Cardoza</option>
+                <option data-image="images/directors/unknown.png" value="Walter Manley">Walter Manley</option>
+              </select>
+            </td>
+            <td style="color:white; text-align:center;">Recurring Actors:<br/>
+              <select id="theActors" is="ms-dropdown" data-visible-rows="5">
+                <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option data-image="images/actors/adolfo_celi.jpg" value="Adolfo Celi">Adolfo Celi</option>
+                <option data-image="images/actors/akihiro_hirata.jpg" value="Akihiro Hirata">Akihiro Hirata</option>
+                <option data-image="images/actors/alan_francis.jpg" value="Alan Francis">Alan Francis</option>
+                <option data-image="images/actors/alan_hale_jr.jpg" value="Alan Hale Jr.">Alan Hale Jr.</option>
+                <option data-image="images/actors/allison_hayes.jpg" value="Allison Hayes">Allison Hayes</option>
+                <option data-image="images/actors/angelo_rossitto.jpg" value="Angelo Rossitto">Angelo Rossitto</option>
+                <option data-image="images/actors/anthony_dexter.jpg" value="Anthony Dexter">Anthony Dexter</option>
+                <option data-image="images/actors/arthur_batanides.jpg" value="Arthur Batanides">Arthur Batanides</option>
+                <option data-image="images/actors/arturo_martinez.jpg" value="Arturo Martinez">Arturo Martinez</option>
+                <option data-image="images/actors/barbara_francis.jpg" value="Barbara Francis">Barbara Francis</option>
+                <option data-image="images/actors/bela_lugosi.jpg" value="Bela Lugosi">Bela Lugosi</option>
+                <option data-image="images/actors/ben_murphy.jpg" value="Ben Murphy">Ben Murphy</option>
+                <option data-image="images/actors/beverly_garland.jpg" value="Beverly Garland">Beverly Garland</option>
+                <option data-image="images/actors/bill_coontz.jpg" value="Bill Coontz">Bill Coontz</option>
+                <option data-image="images/actors/bill_giorgio.jpg" value="Bill Giorgio">Bill Giorgio</option>
+                <option data-image="images/actors/bill_mckinney.jpg" value="Bill McKinney">Bill McKinney</option>
+                <option data-image="images/actors/bobby_parr.jpg" value="Bobby Parr">Bobby Parr</option>
+                <option data-image="images/actors/bradford_dillman.jpg" value="Bradford Dillman">Bradford Dillman</option>
+                <option data-image="images/actors/brett_halsey.jpg" value="Brett Halsey">Brett Halsey</option>
+                <option data-image="images/actors/bruno_vesota.jpg" value="Bruno VeSota">Bruno VeSota</option>
+                <option data-image="images/actors/bryant_haliday.jpg" value="Bryant Haliday">Bryant Haliday</option>
+                <option data-image="images/actors/burgess_meredith.jpg" value="Burgess Meredith">Burgess Meredith</option>
+                <option data-image="images/actors/cameron_mitchell.jpg" value="Cameron Mitchell">Cameron Mitchell</option>
+                <option data-image="images/actors/carlos_rivas.jpg" value="Carlos Rivas">Carlos Rivas</option>
+                <option data-image="images/actors/caroline_munro.jpg" value="Caroline Munro">Caroline Munro</option>
+                <option data-image="images/actors/catherine_schell.jpg" value="Catherine Schell">Catherine Schell</option>
+                <option data-image="images/actors/cathy_downs.jpg" value="Cathy Downs">Cathy Downs</option>
+                <option data-image="images/actors/choei_takahashi.jpg" value="Choei Takahashi">Choei Takahashi</option>
+                <option data-image="images/actors/clu_gulager.jpg" value="Clu Gulager">Clu Gulager</option>
+                <option data-image="images/actors/coleen_gray.jpg" value="Coleen Gray">Coleen Gray</option>
+                <option data-image="images/actors/coleman_francis.jpg" value="Coleman Francis">Coleman Francis</option>
+                <option data-image="images/actors/conrad_brooks.jpg" value="Conrad Brooks">Conrad Brooks</option>
+                <option data-image="images/actors/david_janssen.jpg" value="David Janssen">David Janssen</option>
+                <option data-image="images/actors/david_mcmahon.jpg" value="David McMahon">David McMahon</option>
+                <option data-image="images/actors/dennis_patrick.jpg" value="Dennis Patrick">Dennis Patrick</option>
+                <option data-image="images/actors/dick_contino.jpg" value="Dick Contino">Dick Contino</option>
+                <option data-image="images/actors/dick_miller.jpg" value="Dick Miller">Dick Miller</option>
+                <option data-image="images/actors/dolores_faith.jpg" value="Dolores Faith">Dolores Faith</option>
+                <option data-image="images/actors/don_c_harvey.jpg" value="Don C. Harvey">Don C. Harvey</option>
+                <option data-image="images/actors/don_michael_paul.jpg" value="Don Michael Paul">Don Michael Paul</option>
+                <option data-image="images/actors/don_sullivan.jpg" value="Don Sullivan">Don Sullivan</option>
+                <option data-image="images/actors/donald_hodson.jpg" value="Donald Hodson">Donald Hodson</option>
+                <option data-image="images/actors/donald_pleasance.jpg" value="Donald Pleasance">Donald Pleasance</option>
+                <option data-image="images/actors/doug_mcclure.jpg" value="Doug McClure">Doug McClure</option>
+                <option data-image="images/actors/ed_nelson.jpg" value="Ed Nelson">Ed Nelson</option>
+                <option data-image="images/actors/edward_erwin.jpg" value="Edward Erwin">Edward Erwin</option>
+                <option data-image="images/actors/eugene_persson.jpg" value="Eugene Persson">Eugene Persson</option>
+                <option data-image="images/actors/forrest_j_ackerman.jpg" value="Forrest J. Ackerman">Forrest J. Ackerman</option>
+                <option data-image="images/actors/francis_x_bushman.jpg" value="Francis X. Bushman">Francis X. Bushman</option>
+                <option data-image="images/actors/frank_gerstle.jpg" value="Frank Gerstle">Frank Gerstle</option>
+                <option data-image="images/actors/gary_collins.jpg" value="Gary Collins">Gary Collins</option>
+                <option data-image="images/actors/gary_lockwood.jpg" value="Gary Lockwood">Gary Lockwood</option>
+                <option data-image="images/actors/gene_roth.jpg" value="Gene Roth">Gene Roth</option>
+                <option data-image="images/actors/george_buck_fowler.jpg" value="George 'Buck' Fowler">George 'Buck' Fowler</option>
+                <option data-image="images/actors/george_becwar.jpg" value="George Becwar">George Becwar</option>
+                <option data-image="images/actors/george_cisar.jpg" value="George Cisar">George Cisar</option>
+                <option data-image="images/actors/george_nader.jpg" value="George Nader">George Nader</option>
+                <option data-image="images/actors/giovanni_cianfriglia.jpg" value="Giovanni Cianfriglia">Giovanni Cianfriglia</option>
+                <option data-image="images/actors/glenn_langan.jpg" value="Glenn Langan">Glenn Langan</option>
+                <option data-image="images/actors/gloria_talbott.jpg" value="Gloria Talbott">Gloria Talbott</option>
+                <option data-image="images/actors/godfrey_james.jpg" value="Godfrey James">Godfrey James</option>
+                <option data-image="images/actors/hank_patterson.jpg" value="Hank Patterson">Hank Patterson</option>
+                <option data-image="images/actors/harry_keaton.jpg" value="Harry Keaton">Harry Keaton</option>
+                <option data-image="images/actors/haruo_nakajima.jpg" value="Haruo Nakajima">Haruo Nakajima</option>
+                <option data-image="images/actors/harvey_b_dunn.jpg" value="Harvey B. Dunn">Harvey B. Dunn</option>
+                <option data-image="images/actors/hiro_tateyama.jpg" value="Hiro Tateyama">Hiro Tateyama</option>
+                <option data-image="images/actors/hugh_beaumont.jpg" value="Hugh Beaumont">Hugh Beaumont</option>
+                <option data-image="images/actors/i_stanford_jolley.jpg" value="I. Stanford Jolley">I. Stanford Jolley</option>
+                <option data-image="images/actors/j_stewart_taylor.jpg" value="J. Stewart Taylor">J. Stewart Taylor</option>
+                <option data-image="images/actors/jack_kosslyn.jpg" value="Jack Kosslyn">Jack Kosslyn</option>
+                <option data-image="images/actors/jack_palance.jpg" value="Jack Palance">Jack Palance</option>
+                <option data-image="images/actors/james_best.jpg" value="James Best">James Best</option>
+                <option data-image="images/actors/james_franciscus.jpg" value="James Franciscus">James Franciscus</option>
+                <option data-image="images/actors/james_griffith.jpg" value="James Griffith">James Griffith</option>
+                <option data-image="images/actors/james_seay.jpg" value="James Seay">James Seay</option>
+                <option data-image="images/actors/jean_moorhead.jpg" value="Jean Moorhead">Jean Moorhead</option>
+                <option data-image="images/actors/jim_begg.jpg" value="Jim Begg">Jim Begg</option>
+                <option data-image="images/actors/jody_daniels.jpg" value="Jody Daniels">Jody Daniels</option>
+                <option data-image="images/actors/joe_don_baker.jpg" value="Joe Don Baker">Joe Don Baker</option>
+                <option data-image="images/actors/joe_estevez.jpg" value="Joe Estevez">Joe Estevez</option>
+                <option data-image="images/actors/joe_shishido.jpg" value="Joe Shishido">Joe Shishido</option>
+                <option data-image="images/actors/joe_turkel.jpg" value="Joe Turkel">Joe Turkel</option>
+                <option data-image="images/actors/john_agar.jpg" value="John Agar">John Agar</option>
+                <option data-image="images/actors/john_ashley.jpg" value="John Ashley">John Ashley</option>
+                <option data-image="images/actors/john_banner.jpg" value="John Banner">John Banner</option>
+                <option data-image="images/actors/john_carradine.jpg" value="John Carradine">John Carradine</option>
+                <option data-image="images/actors/john_forsythe.jpg" value="John Forsythe">John Forsythe</option>
+                <option data-image="images/actors/john_hoyt.jpg" value="John Hoyt">John Hoyt</option>
+                <option data-image="images/actors/john_ireland.jpg" value="John Ireland">John Ireland</option>
+                <option data-image="images/actors/john_phillip_law.jpg" value="John Phillip Law">John Phillip Law</option>
+                <option data-image="images/actors/johnny_crawford.jpg" value="Johnny Crawford">Johnny Crawford</option>
+                <option data-image="images/actors/jonathan_haze.jpg" value="Jonathan Haze">Jonathan Haze</option>
+                <option data-image="images/actors/jonathan_ledford.jpg" value="Jonathan Ledford">Jonathan Ledford</option>
+                <option data-image="images/actors/june_kenney.jpg" value="June Kenney">June Kenney</option>
+                <option data-image="images/actors/keenan_wynn.jpg" value="Keenan Wynn">Keenan Wynn</option>
+                <option data-image="images/actors/keith_barron.jpg" value="Keith Barron">Keith Barron</option>
+                <option data-image="images/actors/ken_clark.jpg" value="Ken Clark">Ken Clark</option>
+                <option data-image="images/actors/koji_fujiyama.jpg" value="Koji Fujiyama">Koji Fujiyama</option>
+                <option data-image="images/actors/kon_omura.jpg" value="Kon Omura">Kon Omura</option>
+                <option data-image="images/actors/lance_fuller.jpg" value="Lance Fuller">Lance Fuller</option>
+                <option data-image="images/actors/larry_blake.jpg" value="Larry Blake">Larry Blake</option>
+                <option data-image="images/actors/lee_majors.jpg" value="Lee Majors">Lee Majors</option>
+                <option data-image="images/actors/lee_van_cleef.jpg" value="Lee Van Cleef">Lee Van Cleef</option>
+                <option data-image="images/actors/lidia_alfonsi.jpg" value="Lidia Alfonsi">Lidia Alfonsi</option>
+                <option data-image="images/actors/lois_maxwell.jpg" value="Lois Maxwell">Lois Maxwell</option>
+                <option data-image="images/actors/lon_chaney_jr.jpg" value="Lon Chaney Jr.">Lon Chaney Jr.</option>
+                <option data-image="images/actors/lori_nelson.jpg" value="Lori Nelson">Lori Nelson</option>
+                <option data-image="images/actors/luana_walters.jpg" value="Luana Walters">Luana Walters</option>
+                <option data-image="images/actors/malcolm_atterbury.jpg" value="Malcolm Atterbury">Malcolm Atterbury</option>
+                <option data-image="images/actors/mamie_van_doren.jpg" value="Mamie Van Doren">Mamie Van Doren</option>
+                <option data-image="images/actors/marisa_mell.jpg" value="Marisa Mell">Marisa Mell</option>
+                <option data-image="images/actors/mary_beth_hughes.jpg" value="Mary Beth Hughes">Mary Beth Hughes</option>
+                <option data-image="images/actors/mel_welles.jpg" value="Mel Welles">Mel Welles</option>
+                <option data-image="images/actors/merritt_stone.jpg" value="Merritt Stone">Merritt Stone</option>
+                <option data-image="images/actors/merry_anders.jpg" value="Merry Anders">Merry Anders</option>
+                <option data-image="images/actors/michael_emmett.jpg" value="Michael Emmett">Michael Emmett</option>
+                <option data-image="images/actors/michael_pataki.jpg" value="Michael Pataki">Michael Pataki</option>
+                <option data-image="images/actors/miguel_angel_fuentes.jpg" value="Miguel Angel Fuentes">Miguel Angel Fuentes</option>
+                <option data-image="images/actors/miles_okeeffe.jpg" value="Miles O'Keeffe">Miles O'Keeffe</option>
+                <option data-image="images/actors/miyuki_tanigawa.jpg" value="Miyuki Tanigawa">Miyuki Tanigawa</option>
+                <option data-image="images/actors/morris_ankrum.jpg" value="Morris Ankrum">Morris Ankrum</option>
+                <option data-image="images/actors/myron_healey.jpg" value="Myron Healey">Myron Healey</option>
+                <option data-image="images/actors/nello_pazzafini.jpg" value="Nello Pazzafini">Nello Pazzafini</option>
+                <option data-image="images/actors/nestor_paiva.jpg" value="Nestor Paiva">Nestor Paiva</option>
+                <option data-image="images/actors/olan_soule.jpg" value="Olan Soule">Olan Soule</option>
+                <option data-image="images/actors/osiride_pevarello.jpg" value="Osiride Pevarello">Osiride Pevarello</option>
+                <option data-image="images/actors/patrick_whyte.jpg" value="Patrick Whyte">Patrick Whyte</option>
+                <option data-image="images/actors/paul_costello.jpg" value="Paul Costello">Paul Costello</option>
+                <option data-image="images/actors/paul_frees.jpg" value="Paul Frees">Paul Frees</option>
+                <option data-image="images/actors/peggie_castle.jpg" value="Peggie Castle">Peggie Castle</option>
+                <option data-image="images/actors/peggy_converse.jpg" value="Peggy Converse">Peggy Converse</option>
+                <option data-image="images/actors/peggy_webber.jpg" value="Peggy Webber">Peggy Webber</option>
+                <option data-image="images/actors/peter_breck.jpg" value="Peter Breck">Peter Breck</option>
+                <option data-image="images/actors/peter_graves.jpg" value="Peter Graves">Peter Graves</option>
+                <option data-image="images/actors/peter_haskell.jpg" value="Peter Haskell">Peter Haskell</option>
+                <option data-image="images/actors/peter_leeds.jpg" value="Peter Leeds">Peter Leeds</option>
+                <option data-image="images/actors/rafael_campos.jpg" value="Rafael Campos">Rafael Campos</option>
+                <option data-image="images/actors/ralph_byrd.jpg" value="Ralph Byrd">Ralph Byrd</option>
+                <option data-image="images/actors/ray_dennis_steckler.jpg" value="Ray Dennis Steckler">Ray Dennis Steckler</option>
+                <option data-image="images/actors/reed_hadley.jpg" value="Reed Hadley">Reed Hadley</option>
+                <option data-image="images/actors/reiko_kasahara.jpg" value="Reiko Kasahara">Reiko Kasahara</option>
+                <option data-image="images/actors/rene_cardona.jpg" value="Rene Cardona">Rene Cardona</option>
+                <option data-image="images/actors/riccardo_petrazzi.jpg" value="Riccardo Petrazzi">Riccardo Petrazzi</option>
+                <option data-image="images/actors/richard_devon.jpg" value="Richard Devon">Richard Devon</option>
+                <option data-image="images/actors/richard_keil.jpg" value="Richard Keil">Richard Keil</option>
+                <option data-image="images/actors/robert_donner.jpg" value="Robert Donner">Robert Donner</option>
+                <option data-image="images/actors/robert_easton.jpg" value="Robert Easton">Robert Easton</option>
+                <option data-image="images/actors/robert_ito.jpg" value="Robert Ito">Robert Ito</option>
+                <option data-image="images/actors/robert_kent.jpg" value="Robert Kent">Robert Kent</option>
+                <option data-image="images/actors/robert_random.jpg" value="Robert Random">Robert Random</option>
+                <option data-image="images/actors/robert_reed.jpg" value="Robert Reed">Robert Reed</option>
+                <option data-image="images/actors/robert_tessier.jpg" value="Robert Tessier">Robert Tessier</option>
+                <option data-image="images/actors/robert_vaughn.jpg" value="Robert Vaughn">Robert Vaughn</option>
+                <option data-image="images/actors/robert_zdar.jpg" value="Robert Z'Dar">Robert Z'Dar</option>
+                <option data-image="images/actors/roberto_contreras.jpg" value="Roberto Contreras">Roberto Contreras</option>
+                <option data-image="images/actors/robin_hughes.jpg" value="Robin Hughes">Robin Hughes</option>
+                <option data-image="images/actors/ronald_francis.jpg" value="Ronald Francis">Ronald Francis</option>
+                <option data-image="images/actors/ross_hagen.jpg" value="Ross Hagen">Ross Hagen</option>
+                <option data-image="images/actors/rossano_brazzi.jpg" value="Rossano Brazzi">Rossano Brazzi</option>
+                <option data-image="images/actors/russ_bender.jpg" value="Russ Bender">Russ Bender</option>
+                <option data-image="images/actors/russ_conway.jpg" value="Russ Conway">Russ Conway</option>
+                <option data-image="images/actors/russell_johnson.jpg" value="Russell Johnson">Russell Johnson</option>
+                <option data-image="images/actors/sally_fraser.jpg" value="Sally Fraser">Sally Fraser</option>
+                <option data-image="images/actors/sally_todd.jpg" value="Sally Todd">Sally Todd</option>
+                <option data-image="images/actors/santo.jpg" value="Santo">Santo</option>
+                <option data-image="images/actors/scotty_beckett.jpg" value="Scotty Beckett">Scotty Beckett</option>
+                <option data-image="images/actors/sho_kosugi.jpg" value="Sho Kosugi">Sho Kosugi</option>
+                <option data-image="images/actors/sid_haig.jpg" value="Sid Haig">Sid Haig</option>
+                <option data-image="images/actors/sid_melton.jpg" value="Sid Melton">Sid Melton</option>
+                <option data-image="images/actors/steve_brodie.jpg" value="Steve Brodie">Steve Brodie</option>
+                <option data-image="images/actors/steve_franken.jpg" value="Steve Franken">Steve Franken</option>
+                <option data-image="images/actors/steve_reeves.jpg" value="Steve Reeves">Steve Reeves</option>
+                <option data-image="images/actors/sylva_koscina.jpg" value="Sylva Koscina">Sylva Koscina</option>
+                <option data-image="images/actors/tatsuya_azuma.jpg" value="Tatsuya Azuma">Tatsuya Azuma</option>
+                <option data-image="images/actors/thom_christopher.jpg" value="Thom Christopher">Thom Christopher</option>
+                <option data-image="images/actors/tim_condren.jpg" value="Tim Condren">Tim Condren</option>
+                <option data-image="images/actors/timothy_farrell.jpg" value="Timothy Farrell">Timothy Farrell</option>
+                <option data-image="images/actors/timothy_van_patten.jpg" value="Timothy Van Patten">Timothy Van Patten</option>
+                <option data-image="images/actors/tom_conway.jpg" value="Tom Conway">Tom Conway</option>
+                <option data-image="images/actors/tom_neal.jpg" value="Tom Neal">Tom Neal</option>
+                <option data-image="images/actors/tommy_kirk.jpg" value="Tommy Kirk">Tommy Kirk</option>
+                <option data-image="images/actors/tony_cardoza.jpg" value="Tony Cardoza">Tony Cardoza</option>
+                <option data-image="images/actors/tony_lorea.jpg" value="Tony Lorea">Tony Lorea</option>
+                <option data-image="images/actors/tor_johnson.jpg" value="Tor Johnson">Tor Johnson</option>
+                <option data-image="images/actors/tristram_coffin.jpg" value="Tristram Coffin">Tristram Coffin</option>
+                <option data-image="images/actors/troy_patterson.jpg" value="Troy Patterson">Troy Patterson</option>
+                <option data-image="images/actors/tsutomu_yukawa.jpg" value="Tsutomu Yukawa">Tsutomu Yukawa</option>
+                <option data-image="images/actors/virginia_gregg.jpg" value="Virginia Gregg">Virginia Gregg</option>
+                <option data-image="images/actors/ward_costello.jpg" value="Ward Costello">Ward Costello</option>
+                <option data-image="images/actors/warren_hammack.jpg" value="Warren Hammack">Warren Hammack</option>
+                <option data-image="images/actors/warren_mitchell.jpg" value="Warren Mitchell">Warren Mitchell</option>
+                <option data-image="images/actors/wendell_corey.jpg" value="Wendell Corey">Wendell Corey</option>
+                <option data-image="images/actors/whit_bissell.jpg" value="Whit Bissell">Whit Bissell</option>
+                <option data-image="images/actors/william_schallert.jpg" value="William Schallert">William Schallert</option>
+                <option data-image="images/actors/william_sylvester.jpg" value="William Sylvester">William Sylvester</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align:center;color:white;"><img class="optionsImage" name="short" src="images/short.jpg"><br/>Only show episodes with shorts</td>
+            <td style="text-align:center;color:white;"><img class="optionsImage" name="streaming" src="images/streaming.png"><br/>Only show episodes available for streaming</td>
+            <td style="padding-top:20px; text-align:center;color:white;"><img class="optionsImage" name="bw" src="images/bw.png"><br/>Only show black and white movies</td>
+          </tr>
         </table>
       </div>
     </div>
@@ -553,6 +591,7 @@ $("#movieSign").on("click",function(e){
   data.crow = $("#theCrow").val()
   data.tom = $("#theTom").val()
   data.decade = $("#theDecade").val()
+  data.genre = $("#theGenre").val()
   data.country = $("#theCountry").val()
   data.characters = $("#theCharacters").val()
   data.mads = mads
