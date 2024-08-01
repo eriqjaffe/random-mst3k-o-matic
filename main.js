@@ -7,6 +7,7 @@ const download = require("download");
 const versionCheck = require('github-version-checker');
 const pkg = require('./package.json');
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
+const movier = require('movier')
 let db;
 let dbBuffer;
 let mainWindow
@@ -48,41 +49,41 @@ ipcMain.on('check-for-update', (event, arg) => {
 
 ipcMain.on("movie-request", (event, arg) => {
   console.log(arg)
-  let sql = "select * from episodes where ";
-  sql += "host " + arg.host + " ";
-  sql += "and crow " + arg.crow + " ";
-  sql += "and tom " + arg.tom + " ";
+  let sql = "SELECT e.*, s.summary  FROM episodes e JOIN summaries s ON e.experiment = s.experiment where ";
+  sql += "e.host " + arg.host + " ";
+  sql += "and e.crow " + arg.crow + " ";
+  sql += "and e.tom " + arg.tom + " ";
 
   arg.mads.forEach(function (mad) {
     for (const [key, value] of Object.entries(mad)) {
-      sql += `and ${key} = ${value} `;
+      sql += `and e.${key} = ${value} `;
     }
   });
 
   arg.options.forEach(function (option) {
     for (const [key, value] of Object.entries(option)) {
-      sql += `and ${key} = ${value} `;
+      sql += `and e.${key} = ${value} `;
     }
   });
 
-  sql += "and originalyear " + arg.decade + " ";
-  sql += "and country " + arg.country + " ";
-  sql += "and genres " + arg.genre + " ";
+  sql += "and e.originalyear " + arg.decade + " ";
+  sql += "and e.country " + arg.country + " ";
+  sql += "and e.genres " + arg.genre + " ";
 
   if (arg.actors != "null") {
-    sql += "and experiment in (select experiment from actors where name = '"+arg.actors+"') "
+    sql += "and e.experiment in (select experiment from actors where name = '"+arg.actors+"') "
   }
 
   if (arg.directors != "null") {
-    sql += "and experiment in (select experiment from directors where name = '"+arg.directors+"') "
+    sql += "and e.experiment in (select experiment from directors where name = '"+arg.directors+"') "
   }
 
   if (arg.producers != "null") {
-    sql += "and experiment in (select experiment from actors where name = '"+arg.producers+"') "
+    sql += "and e.experiment in (select experiment from actors where name = '"+arg.producers+"') "
   }
 
   if (arg.characters != "null") {
-    sql += "and experiment in (select experiment from characters where name = '"+arg.characters+"') "
+    sql += "and e.experiment in (select experiment from characters where name = '"+arg.characters+"') "
   } 
 
   initSqlJs().then(function (SQL) {
@@ -90,6 +91,7 @@ ipcMain.on("movie-request", (event, arg) => {
     db = new SQL.Database(dbBuffer);
     const result = db.exec(sql + " ORDER BY RANDOM() LIMIT 2");
     let rowObject
+    let json = {}
     
     if (result.length === 0 || result[0].values.length === 0) {
       db.close();
@@ -121,8 +123,45 @@ ipcMain.on("movie-request", (event, arg) => {
       
       
       // Get the first (and only) row
-      event.sender.send("movie-sign", { rows: 1, movie: rowObject })
-      db.close()
+      try {
+        movier.getTitleDetailsByIMDBId(rowObject.imdb).then((data) => {
+          let directors = [];
+          let producers = [];
+          let writers = [];
+          let actors = [];
+          let productionCompanies = []
+          for (director of data.directors) {
+            directors.push(director.name)
+          }
+          json.directors = directors.join(', ');
+          for (producer of data.producers) {
+            producers.push(producer.name)
+          }
+          json.producers = producers.join(', ');
+          for (writer of data.writers) {
+            writers.push(writer.name)
+          }
+          json.writers = writers.join(', ');
+          for (x = 0; x < 4; x++) {
+            actors.push(data.casts[x].name +" ("+data.casts[x].roles[0].name+")")
+          }
+          json.actors = actors.join(', ');
+
+          json.tagline = (data.taglines.length > 0) ? data.taglines[Math.floor(Math.random()*data.taglines.length)] : null;
+          
+          for (productionCompany of data.productionCompanies) {
+            if (productionCompany.extraInfo == "Production Companies") { productionCompanies.push(productionCompany.name) }
+          }
+          json.productionCompanies = productionCompanies.join(', ')
+          json.runtime = (parseInt(data.runtime.seconds) / 60)
+          //console.log(json)
+          event.sender.send("movie-sign", { rows: 1, movie: rowObject, meta: json })
+          db.close()
+        });
+      } catch (err) {
+        event.sender.send("movie-sign", { rows: 1, movie: rowObject, meta: null })
+        db.close()
+      }
     }
   });
 });

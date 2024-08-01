@@ -477,6 +477,10 @@
     </div>
     <div id="summaryContainer" style="width: 35%; height: 500px; display: table;">
       <div id="summary" style="display: table-cell; vertical-align: middle; padding: 10px; text-align: left;">
+        <table style="width:100%; border:1px solid blue;">
+          <tr><td colspan="2" id="tagline" style="text-align:center; font-weight:bold;"></td></tr>
+          <tr><td>HELLO WORLD</td></tr>
+        </table>
       </div>
     </div>
   </div>
@@ -688,8 +692,13 @@ ipcRenderer.on('movie-sign', (event, data) => {
       'background-image': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./posters/" + data.movie.experiment + ".jpg')",
       'background-position': 'center',
       'background-repeat': 'no-repeat'
-  });
-    $("#summary").html(summaries[data.movie.experiment])
+    });
+    if (data.meta.tagline != null) {
+      $("#tagline").html(data.meta.tagline)
+    } else {
+      $("#tagline").html("")
+    }
+    //$("#summary").html(data.movie.summary)
     $.magnificPopup.open({
       items: {
         src: '#movieSignPopup'
