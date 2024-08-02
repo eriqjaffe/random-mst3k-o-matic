@@ -99,30 +99,11 @@ ipcMain.on("movie-request", (event, arg) => {
       return false;
     }
     if (result[0].values.length === 1) {
-/*       console.log("only 1 movie found!") */
       const row = result[0].values[0]
       rowObject = result[0].columns.reduce((obj, col, index) => {
         obj[col] = row[index];
         return obj;
       }, {});
-    } else {
-/*       console.log(arg.lastMovie)
-      console.log("more than one movie found")
-      console.log("found " +result[0].values[0][0], result[0].values[1][0]) */
-      let row;
-      if (result[0].values[0][0].toString() != arg.lastMovie.toString()) {
-        row = result[0].values[0];
-      } else {
-        row = result[0].values[1];
-      }
-      rowObject = result[0].columns.reduce((obj, col, index) => {
-        obj[col] = row[index];
-        return obj;
-      }, {});
-      //console.log(rowObject.experiment)
-      
-      
-      // Get the first (and only) row
       try {
         movier.getTitleDetailsByIMDBId(rowObject.imdb).then((data) => {
           let directors = [];
@@ -143,7 +124,67 @@ ipcMain.on("movie-request", (event, arg) => {
           }
           json.writers = writers.join(', ');
           for (x = 0; x < 4; x++) {
-            actors.push(data.casts[x].name +" ("+data.casts[x].roles[0].name+")")
+            actors.push(data.casts[x].name)
+          }
+          json.actors = actors.join(', ');
+
+          json.tagline = (data.taglines.length > 0) ? data.taglines[Math.floor(Math.random()*data.taglines.length)] : null;
+          
+          for (productionCompany of data.productionCompanies) {
+            if (productionCompany.extraInfo == "Production Companies") { productionCompanies.push(productionCompany.name) }
+          }
+
+          json.productionCompanies = productionCompanies.join(', ')
+          json.year = data.dates.titleYear
+          json.runtime = (parseInt(data.runtime.seconds) / 60)
+          event.sender.send("movie-sign", { rows: 1, movie: rowObject, meta: json })
+          db.close()
+        });
+      } catch (err) {
+        console.log(err)
+        json.directors = ""
+        json.producers = ""
+        json.writers = ""
+        json.actors = ""
+        json.tagline = ""
+        json.productionCompanies = ""
+        json.runtime = ""
+        event.sender.send("movie-sign", { rows: 1, movie: rowObject, meta: json })
+        db.close()
+      }
+    } else {
+      let row;
+      if (result[0].values[0][0].toString() != arg.lastMovie.toString()) {
+        row = result[0].values[0];
+      } else {
+        row = result[0].values[1];
+      }
+      rowObject = result[0].columns.reduce((obj, col, index) => {
+        obj[col] = row[index];
+        return obj;
+      }, {});
+
+      try {
+        movier.getTitleDetailsByIMDBId(rowObject.imdb).then((data) => {
+          let directors = [];
+          let producers = [];
+          let writers = [];
+          let actors = [];
+          let productionCompanies = []
+          for (director of data.directors) {
+            directors.push(director.name)
+          }
+          json.directors = directors.join(', ');
+          for (producer of data.producers) {
+            producers.push(producer.name)
+          }
+          json.producers = producers.join(', ');
+          for (writer of data.writers) {
+            writers.push(writer.name)
+          }
+          json.writers = writers.join(', ');
+          for (x = 0; x < 4; x++) {
+            actors.push(data.casts[x].name)
           }
           json.actors = actors.join(', ');
 
@@ -153,13 +194,22 @@ ipcMain.on("movie-request", (event, arg) => {
             if (productionCompany.extraInfo == "Production Companies") { productionCompanies.push(productionCompany.name) }
           }
           json.productionCompanies = productionCompanies.join(', ')
+          json.year = data.dates.titleYear
           json.runtime = (parseInt(data.runtime.seconds) / 60)
           //console.log(json)
           event.sender.send("movie-sign", { rows: 1, movie: rowObject, meta: json })
           db.close()
         });
       } catch (err) {
-        event.sender.send("movie-sign", { rows: 1, movie: rowObject, meta: null })
+        console.log(err)
+        json.directors = ""
+        json.producers = ""
+        json.writers = ""
+        json.actors = ""
+        json.tagline = ""
+        json.productionCompanies = ""
+        json.runtime = ""
+        event.sender.send("movie-sign", { rows: 1, movie: rowObject, meta: json })
         db.close()
       }
     }

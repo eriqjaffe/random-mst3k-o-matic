@@ -159,12 +159,12 @@
                 <option value="like '%Philippines%'" data-image="images/ph.svg" data-description="&nbsp;">Philippines</option>
                 <option value="like '%Poland%'" data-image="images/pl.svg" data-description="&nbsp;">Poland</option>
                 <option value="like '%USSR%'" data-image="images/ussr.svg" data-description="&nbsp;">Russia</option>
-                <option value="South Africa%'" data-image="images/za.svg" data-description="&nbsp;">South Africa</option>
-                <option value="South Korea%'" data-image="images/kr.svg" data-description="&nbsp;">South Korea</option>
+                <option value="like '%South Africa%'" data-image="images/za.svg" data-description="&nbsp;">South Africa</option>
+                <option value="like '%South Korea%'" data-image="images/kr.svg" data-description="&nbsp;">South Korea</option>
                 <option value="like '%Spain%'" data-image="images/es.svg" data-description="&nbsp;">Spain</option>
                 <option value="like '%UK%'" data-image="images/gb.svg" data-description="&nbsp;">United Kingdom</option>
                 <option value="like '%USA%'" data-image="images/us.svg" data-description="&nbsp;">United States</option>
-                <option value="like '%West Germany%'" data-image="images/wg.svg" data-description="&nbsp;">West Germany</option>
+                <option value="like '%West Germany%'" data-image="images/de.svg" data-description="&nbsp;">West Germany</option>
               </select>
             </td>
             <td style="color:white; text-align:center;">Recurring Characters:<br/>
@@ -476,10 +476,42 @@
     <img id="moviePoster" src="" style="max-height: 500px; max-width: 667px;">
     </div>
     <div id="summaryContainer" style="width: 35%; height: 500px; display: table;">
-      <div id="summary" style="display: table-cell; vertical-align: middle; padding: 10px; text-align: left;">
-        <table style="width:100%; border:1px solid blue;">
-          <tr><td colspan="2" id="tagline" style="text-align:center; font-weight:bold;"></td></tr>
-          <tr><td>HELLO WORLD</td></tr>
+      <div id="summaryParent" style="display: table-cell; padding: 10px; text-align: left;">
+        <table style="width:100%; height:95%">
+          <tr class="tagline"><td colspan="2" id="tagline" style="text-align:center; font-weight:bold;"></td></tr>
+          <tr class="tagline><td colspan="2">&nbsp;</td></tr>
+          <tr class="altTitle"><td colspan="2" style="text-align:center;">a.k.a. <span style="font-style: italic;" id="altTitle"></span></td></tr>
+          <tr class="altTitle><td colspan="2">&nbsp;</td></tr>
+          <tr><td colspan="2" id="summary" style=" text-align: justify; text-justify: inter-word;"></td></tr>
+          <tr><td colspan="2">&nbsp;</td></tr>
+          <tr>
+            <td style="font-weight:bold; vertical-align:top; width:40%;">Directed By:</td>
+            <td id="director" style="vertical-align:top;"></td>
+          </tr>
+          <tr>
+            <td style="font-weight:bold; vertical-align:top; width:40%;">Written By:</td>
+            <td id="writer" style="vertical-align:top;"></td>
+          </tr>
+          <tr>
+            <td style="font-weight:bold; vertical-align:top; width:40%;">Produced By:</td>
+            <td id="producer" style="vertical-align:top;"></td>
+          </tr>
+          <tr>
+            <td style="font-weight:bold; vertical-align:top; width:40%;">Starring:</td>
+            <td id="actors" style="vertical-align:top;"></td>
+          </tr>
+          <!--<tr>
+            <td style="font-weight:bold; vertical-align:top; width:40%;">Production Co.:</td>
+            <td id="prodCo" style="vertical-align:top;"></td>
+          </tr>-->
+          <tr>
+            <td style="font-weight:bold; vertical-align:top; width:40%;">Release Year:</td>
+            <td id="year" style="vertical-align:top;"></td>
+          </tr>
+          <tr>
+            <td style="font-weight:bold; vertical-align:top">Original Runtime:</td>
+            <td id="runtime" style="vertical-align:top;"></td>
+          </tr>
         </table>
       </div>
     </div>
@@ -688,17 +720,34 @@ ipcRenderer.on('movie-sign', (event, data) => {
     $("#result").html("Experiment "+data.movie.experiment+": &quot;"+data.movie.movie+"&quot;")
     $("#moviePoster").attr("src","epthumbs/"+data.movie.experiment+".jpg")
     $("#streamingServices").html(JSON.stringify(streams))
-    $("#summary").css({
+    $("#summaryParent").css({
       'background-image': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./posters/" + data.movie.experiment + ".jpg')",
       'background-position': 'center',
       'background-repeat': 'no-repeat'
     });
     if (data.meta.tagline != null) {
       $("#tagline").html(data.meta.tagline)
+      $(".tagline").css('display','table-row')
     } else {
       $("#tagline").html("")
+      $(".tagline").css('display','none')
     }
-    //$("#summary").html(data.movie.summary)
+    console.log(data.movie.altTitle)
+    if (data.movie.altTitle != null) {
+      $("#altTitle").html(data.movie.altTitle)
+      $(".altTitle").css('display','table-row')
+    } else {
+      $("#altTitle").html("")
+      $(".altTitle").css('display','none')
+    }
+    $("#director").html(data.meta.directors)
+    $("#writer").html(data.meta.writers)
+    $("#producer").html(data.meta.producers)
+    $("#actors").html(data.meta.actors)
+    $("#prodCo").html(data.meta.productionCompanies)
+    $("#year").html(data.meta.year)
+    $("#runtime").html(data.meta.runtime + " minutes")
+    $("#summary").html(data.movie.summary)
     $.magnificPopup.open({
       items: {
         src: '#movieSignPopup'
