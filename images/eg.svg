@@ -9,7 +9,7 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    height="480"
-   width="480"
+   width="640"
    version="1.1"
    id="svg338"
    sodipodi:docname="eg.svg"
@@ -37,8 +37,8 @@
      guidetolerance="10"
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
-     inkscape:window-width="1415"
-     inkscape:window-height="794"
+     inkscape:window-width="1696"
+     inkscape:window-height="936"
      id="namedview340"
      showgrid="false"
      fit-margin-top="0"
@@ -46,7 +46,7 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:zoom="0.3"
-     inkscape:cx="-317.49935"
+     inkscape:cx="-243.33333"
      inkscape:cy="300"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -54,21 +54,21 @@
      inkscape:current-layer="svg338" />
   <path
      style="stroke-width:0.80000001"
-     d="M 0,0 V 480 H 480 V 0 Z"
+     d="M 0,0 V 480 H 640 V 0 Z"
      id="path2"
      inkscape:connector-curvature="0" />
   <path
      style="fill:#dd0000;stroke-width:0.80000001"
-     d="M 0,160 V 480 H 480 V 160 Z"
+     d="M 0,160 V 480 H 640 V 160 Z"
      id="path4"
      inkscape:connector-curvature="0" />
   <path
      style="fill:#ffce00;stroke-width:0.80000001"
-     d="M 0,320 V 480 H 480 V 320 Z"
+     d="M 0,320 V 480 H 640 V 320 Z"
      id="path6"
      inkscape:connector-curvature="0" />
   <g
-     transform="matrix(0.1636728,0,0,0.1636384,112.63406,203.79312)"
+     transform="matrix(0.1636728,0,0,0.1636384,186.80008,203.79312)"
      id="g336">
     <path
        d="m 1351.01,228.29 a 520,570.51 0 1 1 -1040,0 520,570.51 0 1 1 1040,0 z"
