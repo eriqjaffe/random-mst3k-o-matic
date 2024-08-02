@@ -22,6 +22,7 @@
     const { ipcRenderer } = require('electron');
     require('./renderer.js')
     let lastMovie = 99999
+    const trailerURL = "https://www.youtube.com/embed/pkTs2LAcBi0"
   </script>
 </head>
 
@@ -471,7 +472,10 @@
     <h1 style="width:100%; text-align:center;" id="result"></h1>
     <div style="width: 100%; height: 500px; text-align: center; display: flex;">
   <div style="width: 65%; text-align: center; display: flex; align-items: center; justify-content: center;">
-    <img id="moviePoster" src="" style="max-height: 500px; max-width: 667px;">
+    <iframe id="videoIframe", src=""
+    style="height:500px; width: 667px; z-index:1; border: none;" allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture', 
+    allowfullscreen: true></iframe>
+    <img id="moviePoster" src="" style="position: absolute; max-height: 500px; max-width: 667px; z-index:2">
     </div>
     <div id="summaryContainer" style="width: 35%; height: 500px; display: table;">
       <div id="summaryParent" style="display: table-cell; padding: 10px; text-align: left;">
@@ -573,6 +577,12 @@ $(document).ready(function() {
       type: 'inline',
       modal: true
     }); */
+})
+
+$("#moviePoster").on("click", function(e) {
+  $(this).css("z-index", 0)
+  let trailer = $("#videoIframe").attr("src")
+  $("#videoIframe").attr("src",trailer+"?autoplay=1")
 })
 
 $("#about").on("click", function() {
@@ -715,6 +725,8 @@ ipcRenderer.on('movie-sign', (event, data) => {
     $(".streamTD").css("width",100/(streams+1)+"%")
     $("#result").html("Experiment "+data.movie.experiment+": &quot;"+data.movie.movie+"&quot;")
     $("#moviePoster").attr("src","images/epthumbs/"+data.movie.experiment+".jpg")
+    $("#moviePoster").css("z-index", 1)
+    $("#videoIframe").attr("src","https://www.youtube.com/embed/pkTs2LAcBi0")
     $("#streamingServices").html(JSON.stringify(streams))
     $("#summaryParent").css({
       'background-image': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./images/posters/" + data.movie.experiment + ".jpg')",
@@ -749,6 +761,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
       },
       type: 'inline'
     });
+    console.log($("#videoIframe").attr("src"))
   }
 })
 
