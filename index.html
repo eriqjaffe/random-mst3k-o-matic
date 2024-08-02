@@ -714,10 +714,10 @@ ipcRenderer.on('movie-sign', (event, data) => {
     }
     $(".streamTD").css("width",100/(streams+1)+"%")
     $("#result").html("Experiment "+data.movie.experiment+": &quot;"+data.movie.movie+"&quot;")
-    $("#moviePoster").attr("src","epthumbs/"+data.movie.experiment+".jpg")
+    $("#moviePoster").attr("src","images/epthumbs/"+data.movie.experiment+".jpg")
     $("#streamingServices").html(JSON.stringify(streams))
     $("#summaryParent").css({
-      'background-image': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./posters/" + data.movie.experiment + ".jpg')",
+      'background-image': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./images/posters/" + data.movie.experiment + ".jpg')",
       'background-position': 'center',
       'background-repeat': 'no-repeat'
     });
