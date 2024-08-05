@@ -153,3 +153,22 @@ h1, h2, h3 {
      filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.7));
      cursor: pointer;
   }
+
+  .tdleft {
+    font-weight:bold;
+    width: 30%; 
+    position:relative; 
+    float:left; 
+    margin-bottom: 10px; 
+    display:table-cell; 
+    border:1px solid green;
+  }
+
+  .tdright {
+    width: 60%; 
+    position:relative; 
+    float:right; 
+    margin-bottom: 10px; 
+    display:table-cell;  
+    border:1px solid green;
+  }
