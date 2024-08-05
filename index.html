@@ -22,7 +22,7 @@
     const { ipcRenderer } = require('electron');
     require('./renderer.js')
     let lastMovie = 99999
-    const trailerURL = "https://www.youtube.com/embed/pkTs2LAcBi0"
+    //const trailerURL = "https://www.youtube.com/embed/pkTs2LAcBi0"
   </script>
 </head>
 
@@ -473,9 +473,9 @@
     <div style="width: 100%; height: 500px; text-align: center; display: flex;">
   <div style="width: 65%; text-align: center; display: flex; align-items: center; justify-content: center;">
     <iframe id="videoIframe", src=""
-    style="height:500px; width: 667px; z-index:1; border: none;" allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture', 
+    style="height:500px; width: 667px; z-index:1; border: none; visibility: hidden;" allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture', 
     allowfullscreen: true></iframe>
-    <img id="moviePoster" src="" style="position: absolute; max-height: 500px; max-width: 667px; z-index:2">
+    <img id="moviePoster" class="moviePoster" src="" style="position: absolute; max-height: 500px; max-width: 667px; z-index:2">
     </div>
     <div id="summaryContainer" style="width: 35%; height: 500px; display: table;">
       <div id="summaryParent" style="display: table-cell; padding: 10px; text-align: left;">
@@ -520,15 +520,15 @@
   </div>
 
     <div class="footer" style="bottom: 50px!important; text-align:center; width:100%; padding-top:20px;">
-        <div class="streamTD" id="mst3kTD"><a id="mst3kURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream or Buy this episode at The Gizmoplex"><img src="images/mst3k.png" style="width:50px;"></a></div>
-        <div class="streamTD" id="rifftraxTD"><a id="rifftraxURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy this episode from RiffTrax"><img src="images/rifftrax.png" style="width:50px;"></a></div>
-        <div class="streamTD" id="netflixTD"><a id="netflixURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Netflix"><img src="images/netflix.png" style="width:50px;"></a></div>
-        <div class="streamTD" id="youtubeTD"><a id="youtubeURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on YouTube"><img src="images/youtube.png" style="width:50px;"></a></div>
-        <div class="streamTD" id="shoutTD"><a id="shoutURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode at Shout Factory"><img src="images/shout.png" style="width:50px;"></a></div>
-        <div class="streamTD" id="tubiTD"><a id="tubiURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Tubi"><img src="images/tubi.png" style="width:50px;"></a></div>
-        <div class="streamTD" id="amazonTD"><a id="amazonURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy or rent this episode from Amazon"><img src="images/amazon.png" style="width:50px;"></a></div>
-        <div class="streamTD" id="itunesTD"><a id="itunesURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy or rent this epsiode on iTunes"><img src="images/itunes.png" style="width:50px;"></a></div>
-        <div class="streamTD"><a id="refresh" href="" class="zebra_tips1" data-tippy-content="Search for a different episode with the same criteria"><img src="images/reload.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="mst3kTD"><a id="mst3kURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream or Buy this episode at The Gizmoplex"><img class="streamImg" src="images/mst3k.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="rifftraxTD"><a id="rifftraxURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy this episode from RiffTrax"><img class="streamImg" src="images/rifftrax.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="netflixTD"><a id="netflixURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Netflix"><img class="streamImg" src="images/netflix.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="youtubeTD"><a id="youtubeURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on YouTube"><img class="streamImg" src="images/youtube.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="shoutTD"><a id="shoutURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode at Shout Factory"><img class="streamImg" src="images/shout.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="tubiTD"><a id="tubiURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Tubi"><img class="streamImg" src="images/tubi.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="amazonTD"><a id="amazonURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy or rent this episode from Amazon"><img class="streamImg" src="images/amazon.png" style="width:50px;"></a></div>
+        <div class="streamTD" id="itunesTD"><a id="itunesURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy or rent this epsiode on iTunes"><img class="streamImg" src="images/itunes.png" style="width:50px;"></a></div>
+        <div class="streamTD"><a id="refresh" href="" class="zebra_tips1" data-tippy-content="Search for a different episode with the same criteria"><img class="streamImg" src="images/reload.png" style="width:50px;"></a></div>
     </div>
   </div>
   <div id="noMovie" class="white-popup mfp-hide">
@@ -566,6 +566,8 @@ tippy.setDefaultProps({theme: 'mst', arrow: false});
 
 getQuote()
 
+
+
 $(document).ready(function() {
   $("img.madsImage").imgCheckbox();
   $("img.optionsImage").imgCheckbox();
@@ -580,8 +582,10 @@ $(document).ready(function() {
 })
 
 $("#moviePoster").on("click", function(e) {
+  $(this).removeClass("moviePoster")
   $(this).css("z-index", 0)
   let trailer = $("#videoIframe").attr("src")
+  $("#videoIframe").css("visibility","visible")
   $("#videoIframe").attr("src",trailer+"?autoplay=1")
 })
 
@@ -606,6 +610,8 @@ $('#tabContainer')
 
 $("#refresh").on("click",function(e) {
   e.preventDefault()
+  $("#videoIframe").css("visibility","hidden")
+  $("#videoIframe").attr("src","")
   $("#movieSign").click()
 })
 
@@ -648,7 +654,7 @@ $("#movieSign").on("click",function(e){
 })
 
 ipcRenderer.on('movie-sign', (event, data) => { 
-  console.log(data)
+  
   if (data.rows == 0) { 
     $.magnificPopup.open({
       items: {
@@ -657,6 +663,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
       type: 'inline'
     });
   } else {
+    $("#moviePoster").addClass("moviePoster")
     lastMovie = data.movie.experiment
     let streams = 0
     if (data.movie.amazon != null) {
@@ -727,7 +734,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
     $("#result").html("Experiment "+data.movie.experiment+": &quot;"+data.movie.movie+"&quot;")
     $("#moviePoster").attr("src","images/epthumbs/"+data.movie.experiment+".jpg")
     $("#moviePoster").css("z-index", 1)
-    $("#videoIframe").attr("src","https://www.youtube.com/embed/pkTs2LAcBi0")
+    $("#videoIframe").attr("src","https://www.youtube.com/embed/"+data.movie.trailer)
     $("#streamingServices").html(JSON.stringify(streams))
     $("#summaryParent").css({
       'background-image': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./images/posters/" + data.movie.experiment + ".jpg')",
@@ -759,6 +766,12 @@ ipcRenderer.on('movie-sign', (event, data) => {
     $.magnificPopup.open({
       items: {
         src: '#movieSignPopup'
+      },
+      callbacks: {
+        close: function() {
+          $("#videoIframe").css("visibility","hidden")
+          $("#videoIframe").attr("src","")
+        }
       },
       type: 'inline'
     });
