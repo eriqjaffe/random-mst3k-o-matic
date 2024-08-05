@@ -477,8 +477,37 @@
     allowfullscreen: true></iframe>
     <img id="moviePoster" class="moviePoster" src="" style="position: absolute; max-height: 500px; max-width: 667px; z-index:2">
     </div>
-    <div id="summaryContainer" style="width: 35%; height: 500px;">
-      <div id="summaryParent" style="display: table; height: 480px; max-height: 480px; height: 480px; padding: 10px; text-align: left; overflow:auto;">
+    <div id="summaryContainer" style="width: 35%; height: 480px; padding:10px;">
+      <table style="width:100%; height:480px;">
+        <tr colspan="2" style="display:block;" id="altTitleParent"><td style="padding-bottom: 15px; vertical-align: top; text-align:center;">a.k.a. <span id="altTitle" style="font-style: italic;"></span></td></tr>
+        <tr colspan="2" style="display:block;"><td id="summary" style="padding-bottom: 15px; vertical-align: top; text-align: justify; text-justify: inter-word; "></td></tr>
+        <tr style="display:block;">
+          <td style="width:141px; font-weight:bold; text-align:left; vertical-align: top;">Directed By:</td>
+          <td style="width:212px; text-align:left; vertical-align: top;" id="director"></td>
+        </tr>
+        <tr style="display:block;">
+          <td style="width:141px; font-weight:bold; text-align:left; vertical-align: top;;">Written By:</td>
+          <td style="width:212px; text-align:left; vertical-align: top;;" id="writer"></td>
+        </tr>
+        <tr style="display:block;">
+          <td style="width:141px; font-weight:bold; text-align:left; vertical-align: top;">Produced By:</td>
+          <td style="width:212px; text-align:left; vertical-align: top;" id="producer"></td>
+        </tr>
+        <tr style="display:block;">
+          <td style="width:141px; font-weight:bold; text-align:left; vertical-align: top;">Starring:</td>
+          <td style="width:212px; text-align:left; vertical-align: top;" id="actors"></td>
+        </tr>
+        <tr style="display:block;">
+          <td style="width:141px; font-weight:bold; text-align:left; vertical-align: top;">Release Year:</td>
+          <td style="width:212px; text-align:left; vertical-align: top;" id="year"></td>
+        </tr>
+        <tr style="display:block;">
+          <td style="width:141px; font-weight:bold; text-align:left; vertical-align: top;">Runtime:</td>
+          <td style="width:212px; text-align:left; vertical-align: top;" id="runtime"></td>
+        </tr>
+        <tr colspan="2" style="display:block;"><td style="vertical-align: top; text-align: justify; text-justify: inter-word;">With Shorts: <span id="shorts"></span></td></tr>
+        </table>
+      <!--<div id="summaryParent" style="display: table; height: 480px; max-height: 480px; height: 480px; padding: 10px; text-align: left; overflow:auto;">
         <div id="altTitleParent" style="text-align:center; margin-bottom:10px; display:table-row; vertical-align: top;">a.k.a. <span style="font-style: italic;" id="altTitle"></span></div>
         <div id="summary" style="text-align: justify; text-justify: inter-word; padding-bottom: 10px; display:table-row; vertical-align: top;"></div>
         <div id="directorParent" style="width:100%; display:table-row; vertical-align: top;">
@@ -506,7 +535,7 @@
           <div id="runtime" class="tdright"></div>
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
 
     <div class="footer" style="bottom: 50px!important; text-align:center; width:100%; padding-top:20px;">
@@ -653,6 +682,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
       type: 'inline'
     });
   } else {
+    console.log(data.movie)
     $("#moviePoster").addClass("moviePoster")
     lastMovie = data.movie.experiment
     let streams = 0
@@ -726,7 +756,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
     $("#moviePoster").css("z-index", 1)
     $("#videoIframe").attr("src","https://www.youtube.com/embed/"+data.movie.trailer)
     $("#streamingServices").html(JSON.stringify(streams))
-    $("#summaryParent").css({
+    $("#summaryContainer").css({
       'background-image': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./images/posters/" + data.movie.experiment + ".jpg')",
       'background-position': 'center',
       'background-repeat': 'no-repeat'
@@ -740,7 +770,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
     }
     if (data.movie.altTitle != null) {
       $("#altTitle").html(data.movie.altTitle)
-      $("#altTitleParent").css('display','inline-block')
+      $("#altTitleParent").css('display','inline')
       $("#altTitleParent").css('width','100%')
     } else {
       $("#altTitle").html("")
@@ -752,6 +782,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
     $("#actors").html(data.movie.actors)
     $("#prodCo").html(data.movie.productionCompanies)
     $("#year").html(data.movie.originalyear)
+    $("#shorts").html(data.movie.shorts)
     $("#runtime").html(data.movie.runtime + " minutes")
     $("#summary").html(data.movie.summary)
     $.magnificPopup.open({

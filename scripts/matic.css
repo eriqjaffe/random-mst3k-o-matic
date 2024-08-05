@@ -161,7 +161,6 @@ h1, h2, h3 {
     float:left; 
     margin-bottom: 10px; 
     display:table-cell; 
-    border:1px solid green;
   }
 
   .tdright {
@@ -170,5 +169,4 @@ h1, h2, h3 {
     float:right; 
     margin-bottom: 10px; 
     display:table-cell;  
-    border:1px solid green;
   }
