@@ -7,7 +7,6 @@ const download = require("download");
 const versionCheck = require('github-version-checker');
 const pkg = require('./package.json');
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
-const movier = require('movier')
 let db;
 let dbBuffer;
 let mainWindow
@@ -87,6 +86,7 @@ ipcMain.on("movie-request", (event, arg) => {
 
   initSqlJs().then(function (SQL) {
     db = new SQL.Database(dbBuffer);
+    console.log(sql + " ORDER BY RANDOM() LIMIT 2")
     const result = db.exec(sql + " ORDER BY RANDOM() LIMIT 2");
     let rowObject
     let json = {}
@@ -114,52 +114,9 @@ ipcMain.on("movie-request", (event, arg) => {
         return obj;
       }, {});
     }
-    try {
-      movier.getTitleDetailsByIMDBId(rowObject.imdb).then((data) => {
-        let directors = [];
-        let producers = [];
-        let writers = [];
-        let actors = [];
-        let productionCompanies = []
-        for (director of data.directors) {
-          directors.push(director.name)
-        }
-        json.directors = directors.join(', ');
-        for (producer of data.producers) {
-          producers.push(producer.name)
-        }
-        json.producers = producers.join(', ');
-        for (writer of data.writers) {
-          writers.push(writer.name)
-        }
-        json.writers = writers.join(', ');
-        for (x = 0; x < 4; x++) {
-          actors.push(data.casts[x].name)
-        }
-        json.actors = actors.join(', ');
-
-        json.tagline = (data.taglines.length > 0) ? data.taglines[Math.floor(Math.random()*data.taglines.length)] : null;
-        
-        for (productionCompany of data.productionCompanies) {
-          if (productionCompany.extraInfo == "Production Companies") { productionCompanies.push(productionCompany.name) }
-        }
-        json.productionCompanies = productionCompanies.join(', ')
-        json.year = data.dates.titleYear
-        json.runtime = (parseInt(data.runtime.seconds) / 60)
-        event.sender.send("movie-sign", { rows: 1, movie: rowObject, meta: json })
-        db.close()
-      });
-    } catch (err) {
-      json.directors = ""
-      json.producers = ""
-      json.writers = ""
-      json.actors = ""
-      json.tagline = ""
-      json.productionCompanies = ""
-      json.runtime = ""
-      event.sender.send("movie-sign", { rows: 1, movie: rowObject, meta: json })
-      db.close()
-    }
+    console.log(rowObject)
+    event.sender.send("movie-sign", { rows: 1, movie: rowObject, meta: json })
+    db.close()
   });
 });
 
