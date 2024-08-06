@@ -88,6 +88,10 @@
               <td class="aboveSelect"><img class="madsImage" name="synthia" src="images/characters/synthia.jpg"><br/>Synthia<br/><span style="font-size:.8em;">Rebecca Hanson<br/>Seasons 11-Present</span></td>
               <td class="aboveSelect"><img class="madsImage" name="megasynthia" src="images/characters/megasynthia.jpg"><br/>Mega-Synthia<br/><span style="font-size:.8em;">Yvonne Freese<br/>Seasons 13-Present</span></td>
             </tr>
+            <tr>
+              <td class="aboveSelect"><img class="madsImage" name="drk" src="images/characters/drkabahl.jpg"><br/>Dr. Kabahl<br/><span style="font-size:.8em;">Baron Vaughn<br/>Seasons 13-Present</span></td>
+              <td colspan="4"></td>
+            </tr>
           </table>
       </div>
       <div class="skltbs-panel">
@@ -555,19 +559,10 @@ tippy.setDefaultProps({theme: 'mst', arrow: false});
 
 getQuote()
 
-
-
 $(document).ready(function() {
   $("img.madsImage").imgCheckbox();
   $("img.optionsImage").imgCheckbox();
   tippy('[data-tippy-content]');
-/*   $.magnificPopup.open({
-      items: {
-        src: '#pleaseWait'
-      },
-      type: 'inline',
-      modal: true
-    }); */
 })
 
 $("#moviePoster").on("click", function(e) {
@@ -642,8 +637,7 @@ $("#movieSign").on("click",function(e){
   ipcRenderer.send('movie-request', data)
 })
 
-ipcRenderer.on('movie-sign', (event, data) => { 
-  
+ipcRenderer.on('movie-sign', (event, data) => {   
   if (data.rows == 0) { 
     $.magnificPopup.open({
       items: {
@@ -652,9 +646,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
       type: 'inline'
     });
   } else {
-    //console.log(data.movie)
     const trailers = data.movie.trailer.split("|")
-    console.log(trailers)
     $("#moviePoster").addClass("moviePoster")
     lastMovie = data.movie.experiment
     let streams = 0
@@ -777,7 +769,6 @@ ipcRenderer.on('movie-sign', (event, data) => {
       },
       type: 'inline'
     });
-    console.log($("#videoIframe").attr("src"))
   }
 })
 
