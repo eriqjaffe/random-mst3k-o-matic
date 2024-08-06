@@ -532,9 +532,9 @@
 		</div>
     <div style="width: 100%; text-align:center; margin-top:50px;">
       This app was created because my wife and I frequently sit down to watch an episode of Mystery Science Theater 3000, but can't decide which episode we want to watch.<br/><br/>
-      So I decided to let a random number generator determine our entertainment fate (not to be confused with the Hands of Fate).<br/><br/>
-      I am not affiliated with the creators and/or rights holders of Mystery Science Theater 3000, Netflix, Rifftrax, Shout Factory, Best Brains, Alternaversal, any of the movies or anybody or anything else who has any official capacity with the show that I may be forgetting or unaware of.<br/><br/>
-      Basically, this is really just a fancy dartboard.
+      So I decided to let a random number generator decide <s>who lives and who dies</s> our entertainment fate (not to be confused with the Hands of Fate).  It's basically a fancy dartboard.<br/><br/>
+      I am not affiliated with the creators and/or rights holders of Mystery Science Theater 3000, Netflix, The Gizmoplex, Rifftrax, Shout Factory, Deep 13, Best Brains, Alternaversal, The Gizmonics Institute, the producers and/or rights holders of any of the movies or anybody or anything else who has any official capacity with the show that I may be forgetting or unaware of.<br/><br/>
+      <img src="images/keep_circulating.jpg" class="fade-in-image">
     </div>
   </div>
   <div id="pleaseWait" class="white-popup mfp-hide">
@@ -652,7 +652,9 @@ ipcRenderer.on('movie-sign', (event, data) => {
       type: 'inline'
     });
   } else {
-    console.log(data.movie)
+    //console.log(data.movie)
+    const trailers = data.movie.trailer.split("|")
+    console.log(trailers)
     $("#moviePoster").addClass("moviePoster")
     lastMovie = data.movie.experiment
     let streams = 0
@@ -724,7 +726,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
     $("#result").html("Experiment "+data.movie.experiment+": &quot;"+data.movie.movie+"&quot;")
     $("#moviePoster").attr("src","images/epthumbs/"+data.movie.experiment+".jpg")
     $("#moviePoster").css("z-index", 1)
-    $("#videoIframe").attr("src","https://www.youtube.com/embed/"+data.movie.trailer)
+    $("#videoIframe").attr("src","https://www.youtube.com/embed/"+trailers[(Math.floor(Math.random() * trailers.length))])
     $("#streamingServices").html(JSON.stringify(streams))
     $("#summaryContainer").css({
       'background-image': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./images/posters/" + data.movie.experiment + ".jpg')",
