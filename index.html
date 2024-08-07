@@ -37,6 +37,9 @@
         <button class="skltbs-tab">The Mads</button>
       </li>
       <li class="skltbs-tab-item">
+        <button class="skltbs-tab">The Movies</button>
+      </li>
+      <li class="skltbs-tab-item">
         <button class="skltbs-tab">The Options</button>
       </li>
     </ul>
@@ -93,8 +96,7 @@
               <td colspan="4"></td>
             </tr>
           </table>
-      </div>
-      <div class="skltbs-panel">
+      </div><div class="skltbs-panel">
         <table style="width:100%; padding-top:10px;">
           <tr>
             <td class="aboveSelect">Choose A Decade:<br/>
@@ -170,8 +172,23 @@
                 <option value="like '%West Germany%'" data-image="images/flags/de.svg" data-description="&nbsp;">West Germany</option>
               </select>
             </td>
+            <td class="aboveSelect">Network:<br/>
+              <select id="theNetwork" is="ms-dropdown" data-visible-rows="6">
+                <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option value="= 'K'" data-image="images/ktma.png" data-description="Season &quot;K&quot;">KTMA</option>
+                <option value="= 'CCh'" data-image="images/comedy_channel.png" data-description="Seasons 1-2">Comedy Channel</option>
+                <option value="= 'CCe'" data-image="images/comedy_central.svg" data-description="Seasons 3-7">Comedy Central</option>
+                <option value="= 'U'" data-image="images/universal.png" data-description="really just MST The Movie">Universal</option>
+                <option value="= 'S'" data-image="images/scifi_channel.svg" data-description="Seasons 8-10">Sci-Fi Channel</option>
+                <option value="= 'N'" data-image="images/netflix.png" data-description="Seasons 11-12">Netflix</option>
+                <option value="= 'G'" data-image="images/mst3k.png" data-description="Seasons 13-Present">The Gizmoplex</option>
+              </select>
+            </td>
+          </tr>
+          <tr><td colspan="4">&nbsp;</td></tr>
+          <tr>
             <td class="aboveSelect">Recurring Characters:<br/>
-              <select id="theCharacters" is="ms-dropdown" data-visible-rows="6">
+              <select id="theCharacters" is="ms-dropdown" data-visible-rows="5">
                 <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
                 <option value="Callipygeas" data-image="images/characters/callipygeas.jpg" data-description="Played by Kevin Murphy">Callipygeas</option>
                 <option value="Dr. Donna St. Phibes" data-image="images/characters/phibes.jpg" data-description="Played by Deanna Rooney">Dr. Donna St. Phibes</option>
@@ -187,10 +204,6 @@
                 <option value="Torgo" data-image="images/characters/torgo.jpg" data-description="Played by Mike Nelson">Torgo</option>
               </select>
             </td>
-          </tr>
-        </table>
-        <table style="width:100%; padding-top:10px;">
-          <tr>
             <td class="aboveSelect">Recurring Directors:<br/>
               <select id="theDirectors" is="ms-dropdown" data-visible-rows="5">
                 <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
@@ -459,10 +472,15 @@
               </select>
             </td>
           </tr>
+        </table>
+      </div>
+      <div class="skltbs-panel">
+        <table style="width:100%; padding-top:10px;">
           <tr>
-            <td class="aboveSelect"><img class="optionsImage" name="short" src="images/short.jpg"><br/>Only show episodes with shorts</td>
-            <td class="aboveSelect"><img class="optionsImage" name="streaming" src="images/streaming.png"><br/>Only show episodes available for streaming</td>
-            <td style="padding-top:20px;" class="aboveSelect"><img class="optionsImage" name="bw" src="images/bw.png"><br/>Only show black and white movies</td>
+            <td class="aboveSelect" style="width:25%;"><img class="optionsImage" name="short" src="images/short.jpg"><br/>Only show episodes<br/>with shorts</td>
+            <td class="aboveSelect" style="width:25%;"><img class="optionsImage" name="streaming" src="images/streaming.png"><br/>Only show episodes<br/>available for streaming</td>
+            <td class="aboveSelect" style="width:25%;"><img class="bwColor" name="bw" src="images/bw.png"><br/>Only show black<br/>and white movies</td>
+            <td class="aboveSelect" style="width:25%;"><img class="bwColor" name="color" src="images/color.png"><br/>Only show<br/>color movies</td>
           </tr>
         </table>
       </div>
@@ -563,6 +581,7 @@ getQuote()
 $(document).ready(function() {
   $("img.madsImage").imgCheckbox();
   $("img.optionsImage").imgCheckbox();
+  $("img.bwColor").imgCheckbox( { radio: true, canDeselect: true })
   tippy('[data-tippy-content]');
 })
 
@@ -622,6 +641,16 @@ $("#movieSign").on("click",function(e){
     }
   })
 
+  $(".bwColor").each(function() {
+    if ($(this).parent().hasClass("imgChked")) {
+      let obj = {}
+      obj["bw"] = ($(this).attr("name") == "bw") ? 1: 0
+      options.push(obj)
+    }
+  })
+
+  console.log(options)
+
   data.host = $("#theHost").val()
   data.crow = $("#theCrow").val()
   data.tom = $("#theTom").val()
@@ -629,6 +658,7 @@ $("#movieSign").on("click",function(e){
   data.genre = $("#theGenre").val()
   data.country = $("#theCountry").val()
   data.characters = $("#theCharacters").val()
+  data.network = $("#theNetwork").val()
   data.mads = mads
   data.options = options
   data.actors = $("#theActors").val()
