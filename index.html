@@ -172,7 +172,7 @@
                 <option value="like '%West Germany%'" data-image="images/flags/de.svg" data-description="4 movies">West Germany</option>
               </select>
             </td>
-            <td class="aboveSelect">Network:<br/>
+            <td class="aboveSelect">Broadcast Network:<br/>
               <select id="theNetwork" is="ms-dropdown" data-visible-rows="6">
                 <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
                 <option value="= 'K'" data-image="images/ktma.png" data-description="Season &quot;K&quot;">KTMA</option>
@@ -529,6 +529,7 @@
           <td class="tdLeft">Runtime:</td>
           <td class="tdRight" id="runtime"></td>
         </tr>
+        <tr colspan="2" style="display:block;" id="notesParent"><td id="notes" style="padding-top:15px; vertical-align: top; text-align:center;"></td></tr>
       </table>
     </div>
     <div class="footer2" >
@@ -766,7 +767,8 @@ ipcRenderer.on('movie-sign', (event, data) => {
     $("#summaryContainer").css({
       'background-image': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./images/posters/" + data.movie.experiment + ".jpg')",
       'background-position': 'center',
-      'background-repeat': 'no-repeat'
+      'background-repeat': 'no-repeat',
+      'background-size': '120% 120%'
     });
     if (data.meta.tagline != null) {
       $("#tagline").html(data.meta.tagline)
@@ -790,6 +792,14 @@ ipcRenderer.on('movie-sign', (event, data) => {
     } else {
       $("#shorts").html("")
       $("#shortsParent").css('display','none')
+    }
+    if (data.movie.notes != null) {
+      $("#notes").html(data.movie.notes)
+      $("#notesParent").css('display','inline')
+      $("#notesParent").css('width','100%')
+    } else {
+      $("#notes").html("")
+      $("#notesParent").css('display','none')
     }
     $("#director").html(data.movie.director)
     $("#writer").html(data.movie.writer)
