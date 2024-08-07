@@ -87,7 +87,6 @@ ipcMain.on("movie-request", (event, arg) => {
 
   initSqlJs().then(function (SQL) {
     db = new SQL.Database(dbBuffer);
-    console.log(sql + " ORDER BY RANDOM() LIMIT 2")
     const result = db.exec(sql + " ORDER BY RANDOM() LIMIT 2");
     let rowObject
     let json = {}
@@ -115,7 +114,6 @@ ipcMain.on("movie-request", (event, arg) => {
         return obj;
       }, {});
     }
-    console.log(rowObject)
     event.sender.send("movie-sign", { rows: 1, movie: rowObject, meta: json })
     db.close()
   });

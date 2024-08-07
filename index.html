@@ -126,6 +126,7 @@
                 <option data-image="images/genres/family.jpg" data-description="32 movies" value="LIKE '%Family%'">Family</option>
                 <option data-image="images/genres/fantasy.jpg" data-description="34 movies" value="LIKE '%Fantasy%'">Fantasy</option>
                 <option data-image="images/genres/giant_monster.jpg" data-description="3 movies" value="LIKE '%Giant Monster%'">Giant Monster</option>
+                <option data-image="images/genres/sandals.jpg" data-description="6 movies" value="LIKE '%Sandals%'">Gladiator</option>
                 <option data-image="images/genres/holiday.jpg" data-description="4 movies" value="LIKE '%Holiday%'">Holiday</option>
                 <option data-image="images/genres/horror.jpg" data-description="85 movies" value="LIKE '%Horror%'">Horror</option>
                 <option data-image="images/genres/juvenile_delinquent.jpg" data-description="11 movies" value="LIKE '%Juvenile Delinquent%'">Juvenile Delinquent</option>
@@ -138,7 +139,6 @@
                 <option data-image="images/genres/sport.jpg" data-description="6 movies" value="LIKE '%Sport%'">Sport</option>
                 <option data-image="images/genres/spy_movie.jpg" data-description="6 movies" value="LIKE '%Spy Movie%'">Spy Movie</option>
                 <option data-image="images/genres/superhero.jpg" data-description="9 movies" value="LIKE '%Superhero%'">Superhero</option>
-                <option data-image="images/genres/sandals.jpg" data-description="6 movies" value="LIKE '%Sandals%'">Gladiator</option>
                 <option data-image="images/genres/sorcery.jpg" data-description="9 movies" value="LIKE '%Sorcery%'">Sword & Sorcery</option>
                 <option data-image="images/genres/thriller.jpg" data-description="38 movies" value="LIKE '%Thriller%'">Thriller</option>
                 <option data-image="images/genres/time_travel.jpg" data-description="4 movies" value="LIKE '%Time Travel%'">Time Travel</option>
@@ -163,9 +163,9 @@
                 <option value="like '%Mexico%'" data-image="images/flags/mx.svg" data-description="7 movies">Mexico</option>
                 <option value="like '%Philippines%'" data-image="images/flags/ph.svg" data-description="1 movie">Philippines</option>
                 <option value="like '%Poland%'" data-image="images/flags/pl.svg" data-description="1 movie">Poland</option>
-                <option value="like '%USSR%'" data-image="images/flags/ussr.svg" data-description="5 movies">Soviet Union</option>
                 <option value="like '%South Africa%'" data-image="images/flags/za.svg" data-description="2 movies">South Africa</option>
                 <option value="like '%South Korea%'" data-image="images/flags/kr.svg" data-description="1 movie">South Korea</option>
+                <option value="like '%USSR%'" data-image="images/flags/ussr.svg" data-description="5 movies">Soviet Union</option>
                 <option value="like '%Spain%'" data-image="images/flags/es.svg" data-description="3 movies">Spain</option>
                 <option value="like '%UK%'" data-image="images/flags/gb.svg" data-description="16 movies">United Kingdom</option>
                 <option value="like '%USA%'" data-image="images/flags/us.svg" data-description="156 movies">United States</option>
@@ -538,7 +538,7 @@
         <div class="streamTD zebra_tips1" id="youtubeTD" data-tippy-content="Stream this epsiode on YouTube"><a id="youtubeURL" href="" target="_blank"><img class="streamImg" src="images/youtube.png" style="width:50px;"></a></div>
         <div class="streamTD zebra_tips1" id="shoutTD" data-tippy-content="Stream this epsiode at Shout Factory"><a id="shoutURL" href="" target="_blank"><img class="streamImg" src="images/shout.png" style="width:50px;"></a></div>
         <div class="streamTD zebra_tips1" id="tubiTD" data-tippy-content="Stream this epsiode on Tubi"><a id="tubiURL" href="" target="_blank"><img class="streamImg" src="images/tubi.png" style="width:50px;"></a></div>
-        <div class="streamTD zebra_tips1" id="amazonTD" data-tippy-content="Buy or rent this episode from Amazon"><a id="amazonURL" href="" target="_blank"><img class="streamImg" src="images/amazon.png" style="width:50px;"></a></div>
+        <div class="streamTD zebra_tips1" id="amazonTD" data-tippy-content="Buy, rent, or maybe stream this episode from Amazon"><a id="amazonURL" href="" target="_blank"><img class="streamImg" src="images/amazon.png" style="width:50px;"></a></div>
         <div class="streamTD zebra_tips1" id="itunesTD" data-tippy-content="Buy or rent this epsiode on iTunes"><a id="itunesURL" href="" target="_blank"><img class="streamImg" src="images/itunes.png" style="width:50px;"></a></div>
         <!--<div class="streamTD zebra_tips1" data-tippy-content="Search for a different episode with the same criteria"><a id="refresh" href=""><img class="streamImg" src="images/reload.png" style="width:50px;"></a></div>-->
     </div>
@@ -581,9 +581,9 @@ tippy.setDefaultProps({theme: 'mst', arrow: false});
 getQuote()
 
 $(document).ready(function() {
-  $("img.madsImage").imgCheckbox();
-  $("img.optionsImage").imgCheckbox();
-  $("img.bwColor").imgCheckbox( { radio: true, canDeselect: true })
+  $("img.madsImage").imgCheckbox({ graySelected: false, fadeCheckMark: true });
+  $("img.optionsImage").imgCheckbox({ graySelected: false, fadeCheckMark: true });
+  $("img.bwColor").imgCheckbox({ radio: true, canDeselect: true, graySelected: false, fadeCheckMark: true })
   tippy('[data-tippy-content]');
 })
 
@@ -661,8 +661,6 @@ $("#movieSign").on("click",function(e){
       options.push(obj)
     }
   })
-
-  console.log(options)
 
   data.host = $("#theHost").val()
   data.crow = $("#theCrow").val()
@@ -786,7 +784,6 @@ ipcRenderer.on('movie-sign', (event, data) => {
       $("#altTitleParent").css('display','none')
     }
     if (data.movie.shorts != null) {
-      console.log(data.movie.shorts)
       $("#shorts").html(data.movie.shorts.replace("|", "and"))
       $("#shortsParent").css('display','inline')
       $("#shortsParent").css('width','100%')
