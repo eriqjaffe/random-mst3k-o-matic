@@ -490,7 +490,7 @@
     <input type="button" class="fakeSkeletab" id="movieSign" value="Push the button, Frank.">
   </div>
   <div id="movieSignPopup" class="white-popup mfp-hide">
-    <div style="position:relative; float:right;"><img class="magnificImage" src="images/arrows-rotate-solid.svg" style="width:15px;"></div>
+    <div class="closeDiv"></div><div id="refreshDiv" data-tippy-content="Search for a different episode with the same criteria"></div>
     <h1 style="width:100%; text-align:center;">WE'VE GOT MOVIE SIGN!!!!</h1>
     <h1 style="width:100%; text-align:center;" id="result"></h1>
     <div style="width: 100%; height: 500px; text-align: center; display: flex;">
@@ -540,16 +540,18 @@
         <div class="streamTD zebra_tips1" id="tubiTD" data-tippy-content="Stream this epsiode on Tubi"><a id="tubiURL" href="" target="_blank"><img class="streamImg" src="images/tubi.png" style="width:50px;"></a></div>
         <div class="streamTD zebra_tips1" id="amazonTD" data-tippy-content="Buy or rent this episode from Amazon"><a id="amazonURL" href="" target="_blank"><img class="streamImg" src="images/amazon.png" style="width:50px;"></a></div>
         <div class="streamTD zebra_tips1" id="itunesTD" data-tippy-content="Buy or rent this epsiode on iTunes"><a id="itunesURL" href="" target="_blank"><img class="streamImg" src="images/itunes.png" style="width:50px;"></a></div>
-        <div class="streamTD zebra_tips1" data-tippy-content="Search for a different episode with the same criteria"><a id="refresh" href=""><img class="streamImg" src="images/reload.png" style="width:50px;"></a></div>
+        <!--<div class="streamTD zebra_tips1" data-tippy-content="Search for a different episode with the same criteria"><a id="refresh" href=""><img class="streamImg" src="images/reload.png" style="width:50px;"></a></div>-->
     </div>
   </div>
   <div id="noMovie" class="white-popup mfp-hide">
+    <div class="closeDiv"></div>
     <div style="width: 100%; text-align:center;">
       <img src="images/poopie.jpg">
     </div>
     <h2 style="width:100%; text-align:center;">Sorry, no movies were found that match your criteria.  Try again!</h2>
   </div>
   <div id="aboutDiv" class="white-popup mfp-hide">
+    <div class="closeDiv"></div>
     <div style="width:100%; text-align:center;">	
 			<span class="header" style="font-size:2em!important;">About The Random MST3K-O-Matic</span><div id="currentVersion"></div>
 		</div>
@@ -598,8 +600,19 @@ $("#about").on("click", function() {
       items: {
         src: '#aboutDiv'
       },
+      showCloseBtn: false,
       type: 'inline'
     });
+})
+
+$("#refreshDiv").on("click",function() {
+  $("#videoIframe").css("visibility","hidden")
+  $("#videoIframe").attr("src","")
+  $("#movieSign").click()
+})
+
+$(".closeDiv").on("click",function() {
+  $.magnificPopup.close();
 })
 
 $("#checkForUpdates").on("click", function() {
@@ -674,6 +687,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
       items: {
         src: '#noMovie'
       },
+      showCloseBtn: false,
       type: 'inline'
     });
   } else {
@@ -745,7 +759,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
       $("#tubiTD").css("display","none")
       $("#tubiURL").attr("href","")
     }
-    $(".streamTD").css("width",100/(streams+1)+"%")
+    $(".streamTD").css("width",100/(streams)+"%")
     $("#result").html("Experiment "+data.movie.experiment+": &quot;"+data.movie.movie+"&quot;")
     $("#moviePoster").attr("src","images/epthumbs/"+data.movie.experiment+".jpg")
     $("#moviePoster").css("z-index", 1)
@@ -791,10 +805,8 @@ ipcRenderer.on('movie-sign', (event, data) => {
     $.magnificPopup.open({
       items: {
         src: '#movieSignPopup'
-        
       },
       showCloseBtn: false,
-      //closeMarkup: '<button class=mfp-close mfp-new-close" type="button" title="Search Again" id="searchAgain">REFRESH</button>&nbsp;<button class="mfp-close mfp-new-close" type="button" title="Close (Esc)">&#215;</button>',
       callbacks: {
         close: function() {
           $("#videoIframe").css("visibility","hidden")
