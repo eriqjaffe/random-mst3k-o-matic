@@ -631,11 +631,11 @@ $(document).ready(function() {
 })
 
 $("#moviePoster").on("click", function(e) {
+  let trailer = $("#videoIframe").attr("src")
+  $("#videoIframe").css("visibility","visible").hide().fadeIn('1000');
+  $("#videoIframe").attr("src",trailer+"?autoplay=1")
   $(this).removeClass("moviePoster")
   $(this).css("z-index", 0)
-  let trailer = $("#videoIframe").attr("src")
-  $("#videoIframe").css("visibility","visible")
-  $("#videoIframe").attr("src",trailer+"?autoplay=1")
 })
 
 $("#about").on("click", function() {
@@ -824,13 +824,6 @@ ipcRenderer.on('movie-sign', (event, data) => {
       'background-repeat': 'no-repeat',
       'background-size': '120% 120%'
     });
-    if (data.meta.tagline != null) {
-      $("#tagline").html(data.meta.tagline)
-      $(".tagline").css('display','table-row')
-    } else {
-      $("#tagline").html("")
-      $(".tagline").css('display','none')
-    }
     if (data.movie.altTitle != null) {
       $("#altTitle").html(data.movie.altTitle)
       $("#altTitleParent").css('display','inline')
@@ -863,6 +856,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
     $("#year").html(data.movie.originalyear)   
     $("#runtime").html(data.movie.runtime + " minutes")
     $("#summary").html(data.movie.summary)
+
     $.magnificPopup.open({
       items: {
         src: '#movieSignPopup'
