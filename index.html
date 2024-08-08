@@ -643,6 +643,7 @@ $("#about").on("click", function() {
       items: {
         src: '#aboutDiv'
       },
+      removalDelay: 250,
       showCloseBtn: false,
       type: 'inline'
     });
@@ -729,6 +730,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
       items: {
         src: '#noMovie'
       },
+      removalDelay: 250,
       showCloseBtn: false,
       type: 'inline'
     });
@@ -862,6 +864,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
         src: '#movieSignPopup'
       },
       showCloseBtn: false,
+      removalDelay: 250,
       callbacks: {
         close: function() {
           $("#videoIframe").css("visibility","hidden")
