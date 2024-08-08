@@ -472,6 +472,48 @@
               </select>
             </td>
           </tr>
+          <tr><td colspan="4">&nbsp;</td></tr>
+          <tr>
+            <td class="aboveSelect">Involved Academy Award Winners:<br/>
+              <select id="theOscars" is="ms-dropdown" data-visible-rows="3">
+                  <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                  <option value="LIKE '%Clint Eastwood%'" data-image="images/people/clint_eastwood.jpg" data-description="Best Picture / Best Director, 4 awards">Clint Eastwood</option>
+                  <option value="LIKE '%Daniel L. Fapp%'" data-image="images/people/daniel_l_fapp.jpg" data-description="Best Cinematorgraphy, 1961">Daniel L. Fapp</option>
+                  <option value="LIKE '%Ennio De Concini%'" data-image="images/people/ennio_de_concini.jpg" data-description="Best Original Screenplay, 1963">Ennio De Concini</option>
+                  <option value="LIKE '%Ennio Morricone%'" data-image="images/people/ennio_morricone.jpg" data-description="Honorary, 2007 and Best Original Score, 2016">Ennio Morricone</option>
+                  <option value="LIKE '%Ernest Borgnine%'" data-image="images/people/ernest_borgnine.jpg" data-description="Best Actor, 1955">Ernest Borgnine</option>
+                  <option value="LIKE '%Ernest Laszlo%'" data-image="images/people/ernest_laszlo.jpg" data-description="Best Cinematorgraphy, 1966">Ernest Laszlo</option>
+                  <option value="LIKE '%Francis Ford Coppola%'" data-image="images/people/francis_ford_coppola.jpg" data-description="Multiple Categories, 6 awards">Francis Ford Coppola</option>
+                  <option value="LIKE '%Gene Hackman%'" data-image="images/people/gene_hackman.jpg" data-description="Best Actor / Best Supporting Actor, 2 awards">Gene Hackman</option>
+                  <option value="LIKE '%Gene Warren%'" data-image="images/people/gene_warren.jpg" data-description="Best Special Effects (Visual), 1961">Gene Warren</option>
+                  <option value="LIKE '%Gregory Peck%'" data-image="images/people/gregory_peck.jpg" data-description="Best Actor, 1962 and Jean Hersholt Humanitarian Award, 1967">Gregory Peck</option>
+                  <option value="LIKE '%Henry Mancini%'" data-image="images/people/henry_mancini.jpg" data-description="Best Score / Best Song, 4 awards">Henry Mancini</option>
+                  <option value="LIKE '%Jack Palance%'" data-image="images/people/jack_palance.jpg" data-description="Best Supporting Actor, 1992">Jack Palance</option>
+                  <option value="LIKE '%James Earl Jones%'" data-image="images/people/james_earl_jones.jpg" data-description="Honorary, 2011">James Earl Jones</option>
+                  <option value="LIKE '%Jay Livingston%'" data-image="images/people/jay_livingston.jpg" data-description="Best Song, 3 awards">Jay Livingston</option>
+                  <option value="LIKE '%John Barry%'" data-image="images/people/john_barry.jpg" data-description="Best Original Score / Best Original Song, 5 awards">John Barry</option>
+                  <option value="LIKE '%John Williams%'" data-image="images/people/john_williams.jpg" data-description="Best Score, 5 awards">John Williams</option>
+                  <option value="LIKE '%Joseph Biroc%'" data-image="images/people/joseph_biroc.jpg" data-description="Best Cinematorgraphy, 1974">Joseph Biroc</option>
+                  <option value="LIKE '%Karl Struss%'" data-image="images/people/karl_struss.jpg" data-description="Best Cinematorgraphy, 1927/28">Karl Struss</option>
+                  <option value="LIKE '%Kit West%'" data-image="images/people/kit_west.jpg" data-description="Best Visual Effects, 1981">Kit West</option>
+                  <option value="LIKE '%Leslie I. Carey%'" data-image="images/directors/unknown.png" data-description="Best Sound Recording, 1955">Leslie I. Carey</option>
+                  <option value="LIKE '%Martin Balsam%'" data-image="images/people/martin_balsam.jpg" data-description="Best Supporting Actor, 1966">Martin Balsam</option>
+                  <option value="LIKE '%Martin Landau%'" data-image="images/people/martin_landau.jpg" data-description="Best Supporting Actor, 1994">Martin Landau</option>
+                  <option value="LIKE '%Nathan Juran%'" data-image="images/people/nathan_juran.jpg" data-description="Best Art Direction, 1942">Nathan Juran</option>
+                  <option value="LIKE '%Ray Evans%'" data-image="images/people/ray_evans.jpg" data-description="Best Song, 3 awards">Ray Evans</option>
+                  <option value="LIKE '%Rick Baker%'" data-image="images/people/rick_baker.jpg" data-description="Best Makeup, 7 awards">Rick Baker</option>
+                  <option value="LIKE '%Robie Robertson%'" data-image="images/directors/unknown.png" data-description="Best Visual Effects, 1969">Robie Robertson</option>
+                  <option value="LIKE '%Roger Corman%'" data-image="images/directors/roger_corman.jpg" data-description="Honorary, 2009">Roger Corman</option>
+                  <option value="LIKE '%Ron Howard%'" data-image="images/people/ron_howard.jpg" data-description="Best Picture / Best Director, 2001">Ron Howard</option>
+                  <option value="LIKE '%Stan Winston%'" data-image="images/people/stan_winston.jpg" data-description="Best Visual Effects / Best Makeup, 4 awards">Stan Winston</option>
+                  <option value="LIKE '%Verna Fields%'" data-image="images/people/verna_fields.jpg" data-description="Best Editing, 1975">Verna Fields</option>
+                  <option value="LIKE '%Vilmos Zsigmond%'" data-image="images/people/vilmos_zsigmond.jpg" data-description="Best Cinematorgraphy, 1977">Vilmos Zsigmond</option>
+                  <option value="LIKE '%Walter Mirisch%'" data-image="images/people/walter_mirisch.jpg" data-description="Best Picture, 1967">Walter Mirisch</option>
+                  <option value="LIKE '%Willis O'Brien%'" data-image="images/people/willis_obrien.jpg" data-description="Best Visual Effects, 1950">Willis O'Brien</option>
+              </select>
+            </td>
+            <td colspan="3">&nbsp;</td>
+          </tr>
         </table>
       </div>
       <div class="skltbs-panel">
@@ -529,7 +571,7 @@
           <td class="tdLeft">Runtime:</td>
           <td class="tdRight" id="runtime"></td>
         </tr>
-        <tr colspan="2" style="display:block;" id="notesParent"><td id="notes" style="padding-top:15px; vertical-align: top; text-align:center;"></td></tr>
+        <tr colspan="2" style="display:block;" id="notesParent"><td id="notes" style="padding-top:15px; vertical-align: top; text-align: justify; text-justify: inter-word;"></td></tr>
       </table>
     </div>
     <div class="footer2" >
@@ -671,6 +713,7 @@ $("#movieSign").on("click",function(e){
   data.country = $("#theCountry").val()
   data.characters = $("#theCharacters").val()
   data.network = $("#theNetwork").val()
+  data.oscar = $("#theOscars").val()
   data.mads = mads
   data.options = options
   data.actors = $("#theActors").val()
@@ -759,6 +802,17 @@ ipcRenderer.on('movie-sign', (event, data) => {
       $("#tubiURL").attr("href","")
     }
     $(".streamTD").css("width",100/(streams)+"%")
+    if (streams < 1) {
+      $(".footer2").css({
+        "background-image": "url('./images/no_streams.png')",
+        "background-repeat": "no-repeat"
+      })
+    } else {
+      $(".footer2").css({
+        "background-image": "url('')",
+        "background-repeat": "no-repeat"
+      })
+    }
     $("#result").html("Experiment "+data.movie.experiment+": &quot;"+data.movie.movie+"&quot;")
     $("#moviePoster").attr("src","images/epthumbs/"+data.movie.experiment+".jpg")
     $("#moviePoster").css("z-index", 1)

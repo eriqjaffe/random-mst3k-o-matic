@@ -52,6 +52,7 @@ ipcMain.on("movie-request", (event, arg) => {
   sql += "and e.crow " + arg.crow + " ";
   sql += "and e.tom " + arg.tom + " ";
   sql += "and e.network " + arg.network + " ";
+  sql += "and e.oscar " + arg.oscar + " ";
 
   arg.mads.forEach(function (mad) {
     for (const [key, value] of Object.entries(mad)) {
