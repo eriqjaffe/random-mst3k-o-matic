@@ -113,5 +113,5 @@ const quotes = [
     "You look at it, I'm bitter.",
     "You sound like a manure salesman with a mouthful of samples.",
     "You're a disgrace to all Kens.",
-    "You're not my real father, mister!'"
+    "You're not my real father, mister!"
 ]

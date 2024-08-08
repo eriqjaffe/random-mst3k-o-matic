@@ -23,12 +23,12 @@
   "build": {
     "appId": "com.ootputilities.random-mst3k-o-matic",
     "files": [
-      "!db/episodes_bak.sqlite"
+      "!db/episodes.sqlite"
     ],
     "extraResources": [
       {
-        "from": "db/episodes_bak.sqlite",
-        "to": "db/episodes_bak.sqlite"
+        "from": "db/episodes.sqlite",
+        "to": "db/episodes.sqlite"
       }
     ],
     "mac": {

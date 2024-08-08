@@ -128,7 +128,7 @@ const createWindow = () => {
     icon: __dirname + "/images/icon.ico",
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false,
+      contextIsolation: false
     },
   });
 
@@ -219,6 +219,9 @@ const createWindow = () => {
     Menu.setApplicationMenu(menu)
 
   // and load the index.html of the app.
+
+  
+
   mainWindow.loadFile("index.html");
 
   mainWindow.once('ready-to-show', () => {
