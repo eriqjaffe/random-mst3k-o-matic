@@ -79,13 +79,14 @@ ipcMain.on("movie-request", (event, arg) => {
   }
 
   if (arg.producers != "null") {
-    sql += "and e.experiment in (select experiment from actors where name = '"+arg.producers+"') "
+    sql += "and e.experiment in (select experiment from producers where name = '"+arg.producers+"') "
   }
 
   if (arg.characters != "null") {
     sql += "and e.experiment in (select experiment from characters where name = '"+arg.characters+"') "
   } 
 
+  console.log(sql)
   initSqlJs().then(function (SQL) {
     db = new SQL.Database(dbBuffer);
     const result = db.exec(sql + " ORDER BY RANDOM() LIMIT 2");
