@@ -47,45 +47,77 @@ ipcMain.on('check-for-update', (event, arg) => {
 })
 
 ipcMain.on("movie-request", (event, arg) => {
-  let sql = "select * from episodes where ";
-  sql += "host " + arg.host + " ";
-  sql += "and crow " + arg.crow + " ";
-  sql += "and tom " + arg.tom + " ";
+  let sql = "SELECT e.*, s.summary  FROM episodes e JOIN summaries s ON e.experiment = s.experiment where ";
+  sql += "e.host " + arg.host + " ";
+  sql += "and e.crow " + arg.crow + " ";
+  sql += "and e.tom " + arg.tom + " ";
+  sql += "and e.network " + arg.network + " ";
+  sql += "and e.oscar " + arg.oscar + " ";
 
   arg.mads.forEach(function (mad) {
     for (const [key, value] of Object.entries(mad)) {
-      sql += `and ${key} = ${value} `;
+      sql += `and e.${key} = ${value} `;
     }
   });
 
   arg.options.forEach(function (option) {
     for (const [key, value] of Object.entries(option)) {
-      sql += `and ${key} = ${value} `;
+      sql += `and e.${key} = ${value} `;
     }
   });
 
-  initSqlJs().then(function (SQL) {
-    console.log(sql)
-    db = new SQL.Database(dbBuffer);
-    const result = db.exec(sql + " ORDER BY RANDOM() LIMIT 1");
+  sql += "and e.originalyear " + arg.decade + " ";
+  sql += "and e.country " + arg.country + " ";
+  sql += "and e.genres " + arg.genre + " ";
 
+  if (arg.actors != "null") {
+    sql += "and e.experiment in (select experiment from actors where name = '"+arg.actors+"') "
+  }
+
+  if (arg.directors != "null") {
+    sql += "and e.experiment in (select experiment from directors where name = '"+arg.directors+"') "
+  }
+
+  if (arg.producers != "null") {
+    sql += "and e.experiment in (select experiment from producers where name = '"+arg.producers+"') "
+  }
+
+  if (arg.characters != "null") {
+    sql += "and e.experiment in (select experiment from characters where name = '"+arg.characters+"') "
+  } 
+
+  console.log(sql)
+  initSqlJs().then(function (SQL) {
+    db = new SQL.Database(dbBuffer);
+    const result = db.exec(sql + " ORDER BY RANDOM() LIMIT 2");
+    let rowObject
+    let json = {}
+    
     if (result.length === 0 || result[0].values.length === 0) {
       db.close();
       event.sender.send("movie-sign", { rows: 0, message: "No rows found" });
       return false;
-    } else {
-      const row = result[0].values[0];
-      const rowObject = result[0].columns.reduce((obj, col, index) => {
+    }
+    if (result[0].values.length === 1) {
+      const row = result[0].values[0]
+      rowObject = result[0].columns.reduce((obj, col, index) => {
         obj[col] = row[index];
         return obj;
       }, {});
-      console.log(rowObject.experiment)
-      
-      
-      // Get the first (and only) row
-      event.sender.send("movie-sign", { rows: 1, movie: rowObject })
-      db.close()
+    } else {
+      let row;
+      if (result[0].values[0][0].toString() != arg.lastMovie.toString()) {
+        row = result[0].values[0];
+      } else {
+        row = result[0].values[1];
+      }
+      rowObject = result[0].columns.reduce((obj, col, index) => {
+        obj[col] = row[index];
+        return obj;
+      }, {});
     }
+    event.sender.send("movie-sign", { rows: 1, movie: rowObject, meta: json })
+    db.close()
   });
 });
 
@@ -97,7 +129,7 @@ const createWindow = () => {
     icon: __dirname + "/images/icon.ico",
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false,
+      contextIsolation: false
     },
   });
 
@@ -188,27 +220,17 @@ const createWindow = () => {
     Menu.setApplicationMenu(menu)
 
   // and load the index.html of the app.
+
+  
+
   mainWindow.loadFile("index.html");
 
   mainWindow.once('ready-to-show', () => {
-    //sleep(3000).then(() => {
-      try {
-        fs.unlinkSync(os.tmpdir()+"/episodes.sqlite");
-      } catch (err) {}
-      
-      download(
-        "https://eriqjaffe.github.io/db/episodes.sqlite",
-        app.getPath('userData')
-      ).then(() => {
-        console.log('database downloaded')
-        dbBuffer = fs.readFileSync(app.getPath('userData')+"/episodes.sqlite");
-        mainWindow.webContents.send("hide-spinner", "episodes.sqlite")
-      }).catch((error) => {
-        console.error(error)
-        dbBuffer = fs.readFileSync(path.join(app.getAppPath(), "db", "episodes_bak.sqlite"));
-        mainWindow.webContents.send("hide-spinner", "episodes_bak.sqlite");
-      });
-    //})
+    if (app.isPackaged) {
+      dbBuffer = fs.readFileSync(path.join(process.resourcesPath, 'db', 'episodes.sqlite'));
+    } else {
+      dbBuffer = fs.readFileSync(path.join(app.getAppPath(), "db", "episodes.sqlite"));
+    }
   })
 
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {

@@ -14,6 +14,37 @@ h1, h2, h3 {
     font-family: 'Raleway', sans-serif;
 }
 
+#refreshDiv {
+  padding-left: 10px;
+  position:relative; 
+  float:right; 
+  height:20px; 
+  width:20px;
+  background-image: url("../images/arrows-rotate-solid.svg");
+  background-repeat: no-repeat;
+}
+
+#refreshDiv:hover {
+  background-image: url("../images/arrows-rotate-solid-white.svg");
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.closeDiv {
+  position:relative; 
+  float:right; 
+  height:20px; 
+  width:20px;
+  background-image: url("../images/xmark-solid.svg");
+  background-repeat: no-repeat;
+}
+
+.closeDiv:hover {
+  background-image: url("../images/xmark-solid-white.svg");
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
 .header {
   font-weight: bold;
 	color:#FFFFFF;
@@ -48,6 +79,18 @@ h1, h2, h3 {
     width:100%;
     height: 50px;
     text-align: center;
+    /*bottom: 50px!important;*/
+    padding-top:20px;
+}
+
+.footer2 {
+  position:fixed;
+    left:0;
+    width:100%;
+    height: 50px;
+    text-align: center;
+    bottom: 50px;
+    padding-top:20px;
 }
 
 .fakeSkeletab {
@@ -127,4 +170,111 @@ h1, h2, h3 {
     background-color: #2E2B56;
     border: 1px solid #625F89;
     color: white;
+  }
+
+  .ms-dd-label {
+    font-family: 'Raleway', sans-serif;
+  }
+
+  .ms-dd-desc {
+    text-align: left;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.8em;
+  }
+
+  .ms-dd-option-content {
+    text-align: left!important;
+  }
+
+  .streamImg:hover {
+    -webkit-filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.7));
+     filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.7));
+  }
+
+  .moviePoster:hover {
+    -webkit-filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.7));
+     filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.7));
+     cursor: pointer;
+  }
+
+  .optionsImage:hover {
+    -webkit-filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.7));
+     filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.7));
+     cursor: pointer;
+  }
+
+  .madsImage:hover {
+    -webkit-filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.7));
+     filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.7));
+     cursor: pointer;
+  }
+
+  .bwColor:hover {
+    -webkit-filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.7));
+     filter: drop-shadow(0px 0px 7px rgba(255, 255, 255, 0.7));
+     cursor: pointer;
+  }
+
+  .tdLeft {
+    width:141px; 
+    font-weight:bold; 
+    text-align:left; 
+    vertical-align: top;
+  }
+
+  .tdRight {
+    width:212px; 
+    text-align:left; 
+    vertical-align: top;
+  }
+
+  .fade-in-image {
+    animation: fadeIn 10s;
+    -webkit-animation: fadeIn 10s;
+    -moz-animation: fadeIn 10s;
+    -o-animation: fadeIn 10s;
+    -ms-animation: fadeIn 10s;
+  }
+
+  .ms-dd-option-image {
+    max-height: 64px;
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-o-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  .aboveSelect {
+    color:white; 
+    text-align:center;
+  }
+
+  .magnificImage {
+    fill: white;
+  }
+
+  .magnificImage:hover {
+    cursor: pointer;
+    fill: red;
   }

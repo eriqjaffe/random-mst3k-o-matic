@@ -17,7 +17,7 @@
     display:block;
     padding:3px 10px;
     /* width: 118.725px; */
-    width: 370.34px;
+    width: 277px;
     color:inherit;
     border:0;
     font-family:inherit;
@@ -122,8 +122,8 @@
 }
 .skltbs-mode-tabs.use-fade .skltbs-panel{
     position:relative;
-    -webkit-transition:opacity 500ms;
-    transition:opacity 500ms
+    -webkit-transition:opacity 250ms;
+    transition:opacity 250ms
 }
 .skltbs-mode-tabs.use-fade .skltbs-leave{
     position:absolute;
@@ -215,8 +215,8 @@
 }
 .skltbs-mode-tabs.use-rotate .skltbs-panel{
     position:relative;
-    -webkit-transition:500ms;
-    transition:500ms;
+    -webkit-transition:100ms;
+    transition:100ms;
     -webkit-transition-property:opacity,-webkit-transform;
     transition-property:opacity,-webkit-transform;
     transition-property:opacity,transform;

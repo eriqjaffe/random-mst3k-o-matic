@@ -9,30 +9,37 @@
   <script type="text/javascript" src="./scripts/jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="./scripts/skeletabs.js"></script>
   <script type="text/javascript" src="./scripts/jquery.magnific-popup.js"></script>
-  <script type="text/javascript" src="./scripts/jquery.ddslick.min.js"></script>
   <script type="text/javascript" src="./scripts/jquery.imgcheckbox.js"></script>
+  <script type="text/javascript" src="./scripts/dd.min.js"></script>
   <script type="text/javascript" src="./quotes.js"></script>
-  <script type="text/javascript" src="./summaries.js"></script>
   <script src="./scripts/popper.min.js"></script>
   <script src="./scripts/tippy-bundle.umd.js"></script>
   <link href="./scripts/matic.css" rel="stylesheet" type="text/css">
   <link href='./scripts/skeletabs.css' rel='stylesheet' type='text/css'>
   <link href='./scripts/magnific-popup.css' rel='stylesheet' type='text/css'>
+  <link href='./scripts/dd.css' rel='stylesheet' type='text/css'>
   <script>
     const { ipcRenderer } = require('electron');
     require('./renderer.js')
+    let lastMovie = 99999
+    let lastQuote = -1
+    let lastButton = -1
+    //const trailerURL = "https://www.youtube.com/embed/pkTs2LAcBi0"
   </script>
 </head>
 
 <body>
   <h2 id="quote"style="text-align:center;">&nbsp;</h2>
-  <div id="tabContainer" class="skltbs-theme-light">
+  <div id="tabContainer" class="skltbs-theme-light use-fade">
     <ul class="skltbs-tab-group">
       <li class="skltbs-tab-item">
-        <button class="skltbs-tab">The Hosts</button>
+        <button class="skltbs-tab">The Satellite Crew</button>
       </li>
       <li class="skltbs-tab-item">
         <button class="skltbs-tab">The Mads</button>
+      </li>
+      <li class="skltbs-tab-item">
+        <button class="skltbs-tab">The Movies</button>
       </li>
       <li class="skltbs-tab-item">
         <button class="skltbs-tab">The Options</button>
@@ -41,31 +48,31 @@
     <div class="skltbs-panel-group">
       <div class="skltbs-panel">
         <table style="width:100%;">
-          <tr><td style="color:white;">Choose A Host:<br/>
-            <select id="theHost">
-              <option value="IS NOT NULL" data-imagesrc="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
-              <option value="LIKE '%jh%'" data-imagesrc="images/joel.jpg" data-description="&quot;Joel Robinson&quot;<br/>Seasons K-5">Joel Hodgson</option>
-              <option value="= 'mn'" data-imagesrc="images/mike.jpg" data-description="&quot;Mike Nelson&quot;<br/>Seasons 5-10">Mike Nelson</option>
-              <option value="LIKE '%jr%'" data-imagesrc="images/jonah.jpg" data-description="&quot;Jonah Heston&quot;<br/>Seasons 11-Present">Jonah Ray</option>
-              <option value="= 'em'" data-imagesrc="images/emily.jpg" data-description="&quot;Emily Connor&quot;<br/>Season 13-Present">Emily Marsh</option>
+          <tr><td class="aboveSelect">Choose A Host:<br/>
+            <select id="theHost" is="ms-dropdown">
+              <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+              <option value="LIKE '%jh%'" data-image="images/characters/joel.jpg" data-description="&quot;Joel Robinson&quot;<br/>Seasons K-5">Joel Hodgson</option>
+              <option value="LIKE '%mn%'" data-image="images/characters/mike.jpg" data-description="&quot;Mike Nelson&quot;<br/>Seasons 5-10">Mike Nelson</option>
+              <option value="LIKE '%jr%'" data-image="images/characters/jonah.jpg" data-description="&quot;Jonah Heston&quot;<br/>Seasons 11-Present">Jonah Ray</option>
+              <option value="LIKE '%em%'" data-image="images/characters/emily.jpg" data-description="&quot;Emily Connor&quot;<br/>Season 13-Present">Emily Marsh</option>
             </select>
           </td>
-          <td style="color:white;">Choose A Crow:<br/>
-            <select id="theCrow">
-              <option value="IS NOT NULL" data-imagesrc="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
-              <option value="= 'jw'" data-imagesrc="images/josh.jpg" data-description="Season K">Josh Weinstein</option>
-              <option value="= 'tb'" data-imagesrc="images/trace.jpg" data-description="Seasons K-7">Trace Beaulieu</option>
-              <option value="= 'bc'" data-imagesrc="images/bill.jpg" data-description="Seasons 8-10">Bill Corbett</option>
-              <option value="= 'hyt'" data-imagesrc="images/hampton.jpg" data-description="Seasons 11-Present">Hampton Yount</option>
-              <option value="= 'kab'" data-imagesrc="images/kelsey.jpg" data-description="Seasons 13-Present">Kelsey Ann Brady</option>
+          <td class="aboveSelect">Choose A Crow:<br/>
+            <select id="theCrow" is="ms-dropdown">
+              <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+              <option value="LIKE '%jw%'" data-image="images/characters/josh.jpg" data-description="Season K">Josh Weinstein</option>
+              <option value="LIKE '%tb%'" data-image="images/characters/trace.jpg" data-description="Seasons K-7">Trace Beaulieu</option>
+              <option value="LIKE '%bc%'" data-image="images/characters/bill.jpg" data-description="Seasons 8-10">Bill Corbett</option>
+              <option value="LIKE '%hy%'" data-image="images/characters/hampton.jpg" data-description="Seasons 11-Present">Hampton Yount</option>
+              <option value="LIKE '%kab%'" data-image="images/characters/kelsey.jpg" data-description="Seasons 13-Present">Kelsey Ann Brady</option>
             </select>
-          </td><td style="color:white;">Choose A Tom Servo:<br/>
-            <select id="theTom">
-              <option value="IS NOT NULL" data-imagesrc="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
-              <option value="LIKE '%jw%'" data-imagesrc="images/josh.jpg" data-description="Seasons K-1,13">Josh Weinstein</option>
-              <option value="= 'km'" data-imagesrc="images/kevin.jpg" data-description="Seasons 2-10">Kevin Murphy</option>
-              <option value="= 'bv'" data-imagesrc="images/baron.jpg" data-description="Seasons 11-Present">Baron Vaughn</option>
-              <option value="LIKE '%cm%'" data-imagesrc="images/conor.jpg" data-description="Seasons 13-Present">Conor McGiffin</option>
+          </td><td class="aboveSelect">Choose A Tom Servo:<br/>
+            <select id="theTom" is="ms-dropdown">
+              <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+              <option value="LIKE '%jw%'" data-image="images/characters/josh.jpg" data-description="Seasons K-1,13">Josh Weinstein</option>
+              <option value="LIKE '%km%" data-image="images/characters/kevin.jpg" data-description="Seasons 2-10">Kevin Murphy</option>
+              <option value="LIKE '%bv%'" data-image="images/characters/baron.jpg" data-description="Seasons 11-Present">Baron Vaughn</option>
+              <option value="LIKE '%cm%'" data-image="images/characters/conor.jpg" data-description="Seasons 13-Present">Conor McGiffin</option>
             </select>
           </td></tr>
           </table>
@@ -73,30 +80,452 @@
       <div class="skltbs-panel">
           <table style="width:100%">
             <tr>
-              <td style="text-align:center;color:white;"><img class="madsImage" name="drf" src="images/drf.jpg"><br/>Dr. Clayton Forrester<br/><span style="font-size:.8em;">Trace Beaulieu<br/>Seasons K-7</span></td>
-              <td style="text-align:center;color:white;"><img class="madsImage" name="larry" src="images/larry.jpg"><br/>Dr. Larry Erhardt<br/><span style="font-size:.8em;">Josh Weinstein<br/>Seasons K-1</span></td>
-              <td style="text-align:center;color:white;"><img class="madsImage" name="frank" src="images/frank.jpg"><br/>TV's Frank<br/><span style="font-size:.8em;">Frank Conniff<br/>Seasons 2-6, 10</span></td>
-              <td style="text-align:center;color:white;"><img class="madsImage" name="pearl" src="images/pearl.jpg"><br/>Pearl Forrester<br/><span style="font-size:.8em;">Mary Jo Pehl<br/>Seasons 6-11, 13</span></td>
-              <td style="text-align:center;color:white;"><img class="madsImage" name="bobo" src="images/bobo.jpg"><br/>Professor Bobo<br/><span style="font-size:.8em;">Kevin Murphy<br/>Seasons 8-11</span></td>
+              <td class="aboveSelect"><img class="madsImage" name="drf" src="images/characters/drf.jpg"><br/>Dr. Clayton Forrester<br/><span style="font-size:.8em;">Trace Beaulieu<br/>Seasons K-7</span></td>
+              <td class="aboveSelect"><img class="madsImage" name="larry" src="images/characters/larry.jpg"><br/>Dr. Larry Erhardt<br/><span style="font-size:.8em;">Josh Weinstein<br/>Seasons K-1</span></td>
+              <td class="aboveSelect"><img class="madsImage" name="frank" src="images/characters/frank.jpg"><br/>TV's Frank<br/><span style="font-size:.8em;">Frank Conniff<br/>Seasons 2-6, 10</span></td>
+              <td class="aboveSelect"><img class="madsImage" name="pearl" src="images/characters/pearl.jpg"><br/>Pearl Forrester<br/><span style="font-size:.8em;">Mary Jo Pehl<br/>Seasons 6-11, 13</span></td>
+              <td class="aboveSelect"><img class="madsImage" name="bobo" src="images/characters/bobo.jpg"><br/>Professor Bobo<br/><span style="font-size:.8em;">Kevin Murphy<br/>Seasons 8-11</span></td>
             </tr>
             <tr>
-              <td style="text-align:center;color:white;"><img class="madsImage" name="observer" src="images/observer.jpg"><br/>Observer<br/><span style="font-size:.8em;">Bill Corbett<br/>Seasons 8-11</span></td>
-              <td style="text-align:center;color:white;"><img class="madsImage" name="kinga" src="images/kinga.jpg"><br/>Kinga Forrester<br/><span style="font-size:.8em;">Felicia Day<br/>Season 11-Present</span></td>
-              <td style="text-align:center;color:white;"><img class="madsImage" name="max" src="images/max.jpg"><br/>Max<br/><span style="font-size:.8em;">Patton Oswalt<br/>Seasons 11-Present</span></td>
-              <td style="text-align:center;color:white;"><img class="madsImage" name="synthia" src="images/synthia.jpg"><br/>Synthia<br/><span style="font-size:.8em;">Rebecca Hanson<br/>Seasons 11-Present</span></td>
-              <td style="text-align:center;color:white;"><img class="madsImage" name="megasynthia" src="images/megasynthia.jpg"><br/>Mega-Synthia<br/><span style="font-size:.8em;">Yvonne Freese<br/>Seasons 13-Present</span></td>
+              <td class="aboveSelect"><img class="madsImage" name="observer" src="images/characters/observer.jpg"><br/>Observer<br/><span style="font-size:.8em;">Bill Corbett<br/>Seasons 8-11</span></td>
+              <td class="aboveSelect"><img class="madsImage" name="kinga" src="images/characters/kinga.jpg"><br/>Kinga Forrester<br/><span style="font-size:.8em;">Felicia Day<br/>Season 11-Present</span></td>
+              <td class="aboveSelect"><img class="madsImage" name="max" src="images/characters/max.jpg"><br/>Max<br/><span style="font-size:.8em;">Patton Oswalt<br/>Seasons 11-Present</span></td>
+              <td class="aboveSelect"><img class="madsImage" name="synthia" src="images/characters/synthia.jpg"><br/>Synthia<br/><span style="font-size:.8em;">Rebecca Hanson<br/>Seasons 11-Present</span></td>
+              <td class="aboveSelect"><img class="madsImage" name="megasynthia" src="images/characters/megasynthia.jpg"><br/>Mega-Synthia<br/><span style="font-size:.8em;">Yvonne Freese<br/>Seasons 13-Present</span></td>
+            </tr>
+            <tr>
+              <td class="aboveSelect"><img class="madsImage" name="drk" src="images/characters/drkabahl.jpg"><br/>Dr. Kabahl<br/><span style="font-size:.8em;">Baron Vaughn<br/>Seasons 13-Present</span></td>
+              <td colspan="4"></td>
             </tr>
           </table>
+      </div><div class="skltbs-panel">
+        <table style="width:100%; padding-top:10px;">
+          <tr>
+            <td class="aboveSelect">Choose A Decade:<br/>
+              <select id="theDecade" is="ms-dropdown" data-visible-rows="6">
+                <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option value="between 1940 and 1949" data-description="6 movies" data-image="images/decades/1940s.jpg" data-description="&nbsp;">1940's</option>
+                <option value="between 1950 and 1959" data-description="61 movies" data-image="images/decades/1950s.jpg" data-description="&nbsp;">1950's</option>
+                <option value="between 1960 and 1969" data-description="81 movies" data-image="images/decades/1960s.jpg" data-description="&nbsp;">1960's</option>
+                <option value="between 1970 and 1979" data-description="39 movies" data-image="images/decades/1970s.jpg" data-description="&nbsp;">1970's</option>
+                <option value="between 1980 and 1989" data-description="32 movies" data-image="images/decades/1980s.jpg" data-description="&nbsp;">1980's</option>
+                <option value="between 1990 and 1999" data-description="10 movies" data-image="images/decades/1990s.jpg" data-description="&nbsp;">1990's</option>
+                <option value="between 2010 and 2019" data-description="3 movies" data-image="images/decades/2010s.jpg" data-description="&nbsp;">2010's</option>
+              </select>
+            </td>
+            <td class="aboveSelect">Genre:<br/>
+              <select id="theGenre" is="ms-dropdown" data-visible-rows="6">
+                <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option data-image="images/genres/action.jpg" data-description="74 movies" value="LIKE '%Action%'">Action</option>
+                <option data-image="images/genres/adventure.jpg" data-description="78 movies" value="LIKE '%Adventure%'">Adventure</option>
+                <option data-image="images/genres/alien_invasion.jpg" data-description="8 movies" value="LIKE '%Alien Invasion%'">Alien Invasion</option>
+                <option data-image="images/genres/biker.jpg" data-description="3 movies" value="LIKE '%Biker%'">Biker</option>
+                <option data-image="images/genres/comedy.jpg" data-description="17 movies" value="LIKE '%Comedy%'">Comedy</option>
+                <option data-image="images/genres/crime.jpg" data-description="32 movies" value="LIKE '%Crime%'">Crime</option>
+                <option data-image="images/genres/disaster.jpg" data-description="1 movie" value="LIKE '%Disaster%'">Disaster</option>
+                <option data-image="images/genres/drama.jpg" data-description="57 movies" value="LIKE '%Drama%'">Drama</option>
+                <option data-image="images/genres/dystopian.jpg" data-description="8 movies" value="LIKE '%Dystopian%'">Dystopian</option>
+                <option data-image="images/genres/family.jpg" data-description="32 movies" value="LIKE '%Family%'">Family</option>
+                <option data-image="images/genres/fantasy.jpg" data-description="34 movies" value="LIKE '%Fantasy%'">Fantasy</option>
+                <option data-image="images/genres/giant_monster.jpg" data-description="3 movies" value="LIKE '%Giant Monster%'">Giant Monster</option>
+                <option data-image="images/genres/sandals.jpg" data-description="6 movies" value="LIKE '%Sandals%'">Gladiator</option>
+                <option data-image="images/genres/holiday.jpg" data-description="4 movies" value="LIKE '%Holiday%'">Holiday</option>
+                <option data-image="images/genres/horror.jpg" data-description="85 movies" value="LIKE '%Horror%'">Horror</option>
+                <option data-image="images/genres/juvenile_delinquent.jpg" data-description="11 movies" value="LIKE '%Juvenile Delinquent%'">Juvenile Delinquent</option>
+                <option data-image="images/genres/kaiju.jpg" data-description="18 movies" value="LIKE '%Kaiju%'">Kaiju</option>
+                <option data-image="images/genres/music.jpg" data-description="9 movies" value="LIKE '%Music%'">Music</option>
+                <option data-image="images/genres/mystery.jpg" data-description="12 movies" value="LIKE '%Mystery%'">Mystery</option>
+                <option data-image="images/genres/romance.jpg" data-description="11 movies" value="LIKE '%Romance%'">Romance</option>
+                <option data-image="images/genres/sci-fi.jpg" data-description="130 movies" value="LIKE '%Sci-Fi%'">Sci-Fi</option>
+                <option data-image="images/genres/space.jpg" data-description="8 movies" value="LIKE '%Space%'">Space</option>
+                <option data-image="images/genres/sport.jpg" data-description="6 movies" value="LIKE '%Sport%'">Sport</option>
+                <option data-image="images/genres/spy_movie.jpg" data-description="6 movies" value="LIKE '%Spy Movie%'">Spy Movie</option>
+                <option data-image="images/genres/superhero.jpg" data-description="9 movies" value="LIKE '%Superhero%'">Superhero</option>
+                <option data-image="images/genres/sorcery.jpg" data-description="9 movies" value="LIKE '%Sorcery%'">Sword & Sorcery</option>
+                <option data-image="images/genres/thriller.jpg" data-description="38 movies" value="LIKE '%Thriller%'">Thriller</option>
+                <option data-image="images/genres/time_travel.jpg" data-description="4 movies" value="LIKE '%Time Travel%'">Time Travel</option>
+                <option data-image="images/genres/TV.jpg" data-description="21 &quot;movies&quot;" value="LIKE '%TV%'">TV</option>
+                <option data-image="images/genres/war.jpg" data-description="3 movies" value="LIKE '%War%'">War</option>
+                <option data-image="images/genres/western.jpg" data-description="4 movies" value="LIKE '%Western%'">Western</option>
+              </select>
+            </td>
+            <td class="aboveSelect">Country of Origin:<br/>
+              <select id="theCountry" is="ms-dropdown" data-visible-rows="6">
+                <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option value="like '%Argentina%'" data-image="images/flags/ar.svg" data-description="2 movies">Argentina</option>
+                <option value="like '%Brazil%'" data-image="images/flags/br.svg" data-description="1 movie">Brazil</option>
+                <option value="like '%Canada%'" data-image="images/flags/ca.svg" data-description="7 movies">Canada</option>
+                <option value="like '%Denmark%'" data-image="images/flags/dk.svg" data-description="1 movie">Denmark</option>
+                <option value="like '%East Germany%'" data-image="images/flags/eg.svg" data-description="1 movie">East Germany</option>
+                <option value="like '%Finland%'" data-image="images/flags/fi.svg" data-description="1 movie">Finland</option>
+                <option value="like '%France%'" data-image="images/flags/fr.svg" data-description="7 movies">France</option>
+                <option value="like '%Italy%'" data-image="images/flags/it.svg" data-description="20 movies">Italy</option>
+                <option value="like '%Japan%'" data-image="images/flags/jp.svg" data-description="25 movies">Japan</option>
+                <option value="like '%Liechtenstein%'" data-image="images/flags/li.svg" data-description="1 movie">Liechtenstein</option>
+                <option value="like '%Mexico%'" data-image="images/flags/mx.svg" data-description="7 movies">Mexico</option>
+                <option value="like '%Philippines%'" data-image="images/flags/ph.svg" data-description="1 movie">Philippines</option>
+                <option value="like '%Poland%'" data-image="images/flags/pl.svg" data-description="1 movie">Poland</option>
+                <option value="like '%South Africa%'" data-image="images/flags/za.svg" data-description="2 movies">South Africa</option>
+                <option value="like '%South Korea%'" data-image="images/flags/kr.svg" data-description="1 movie">South Korea</option>
+                <option value="like '%USSR%'" data-image="images/flags/ussr.svg" data-description="5 movies">Soviet Union</option>
+                <option value="like '%Spain%'" data-image="images/flags/es.svg" data-description="3 movies">Spain</option>
+                <option value="like '%UK%'" data-image="images/flags/gb.svg" data-description="16 movies">United Kingdom</option>
+                <option value="like '%USA%'" data-image="images/flags/us.svg" data-description="156 movies">United States</option>
+                <option value="like '%West Germany%'" data-image="images/flags/de.svg" data-description="4 movies">West Germany</option>
+              </select>
+            </td>
+            <td class="aboveSelect">Broadcast Network:<br/>
+              <select id="theNetwork" is="ms-dropdown" data-visible-rows="6">
+                <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option value="= 'K'" data-image="images/ktma.png" data-description="Season &quot;K&quot;">KTMA</option>
+                <option value="= 'CCh'" data-image="images/comedy_channel.png" data-description="Seasons 1-2">Comedy Channel</option>
+                <option value="= 'CCe'" data-image="images/comedy_central.svg" data-description="Seasons 3-7">Comedy Central</option>
+                <option value="= 'U'" data-image="images/universal.png" data-description="really just MST The Movie">Universal</option>
+                <option value="= 'S'" data-image="images/scifi_channel.svg" data-description="Seasons 8-10">Sci-Fi Channel</option>
+                <option value="= 'N'" data-image="images/netflix.png" data-description="Seasons 11-12">Netflix</option>
+                <option value="= 'G'" data-image="images/mst3k.png" data-description="Seasons 13-Present">The Gizmoplex</option>
+              </select>
+            </td>
+          </tr>
+          <tr><td colspan="4">&nbsp;</td></tr>
+          <tr>
+            <td class="aboveSelect">Recurring Characters:<br/>
+              <select id="theCharacters" is="ms-dropdown" data-visible-rows="5">
+                <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option value="Callipygeas" data-image="images/characters/callipygeas.jpg" data-description="Played by Kevin Murphy">Callipygeas</option>
+                <option value="Dr. Donna St. Phibes" data-image="images/characters/phibes.jpg" data-description="Played by Deanna Rooney">Dr. Donna St. Phibes</option>
+                <option value="Flavia" data-image="images/characters/flavia.jpg" data-description="Played by Bridget Jones">Flavia</option>
+                <option value="Jack Perkins" data-image="images/characters/jackperkins.jpg" data-description="Played by Mike Nelson">Jack Perkins</option>
+                <option value="Jan in the Pan" data-image="images/characters/janinthepan.jpg" data-description="Played by Mary Jo Pehl">Jan in the Pan</option>
+                <option value="Mr. B Natural" data-image="images/characters/mrbnatural.jpg" data-description="Played by Bridget Jones">Mr. B Natural</option>
+                <option value="Ortega" data-image="images/characters/ortega.jpg" data-description="Played by Paul Chaplin">Ortega</option>
+                <option value="Phantom of Krankor" data-image="images/characters/krankor.jpg" data-description="Played by Bill Corbett">Phantom of Krankor</option>
+                <option value="Pitch" data-image="images/characters/pitch.jpg" data-description="Played by Paul Chaplin">Pitch</option>
+                <option value="Santa Claus" data-image="images/characters/santa.jpg" data-description="Played by Kevin Murphy and Joel Hodgson">Santa Claus</option>
+                <option value="Space Children" data-image="images/characters/spacechildren.jpg" data-description="Played by Bridget Jones, Paul Chaplin and Mike Nelson">Space Children</option>
+                <option value="Torgo" data-image="images/characters/torgo.jpg" data-description="Played by Mike Nelson">Torgo</option>
+              </select>
+            </td>
+            <td class="aboveSelect">Recurring Directors:<br/>
+              <select id="theDirectors" is="ms-dropdown" data-visible-rows="5">
+                <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option data-image="images/directors/albert_band.jpg" data-description="Directed 2 movies" value="Albert Band">Albert Band</option>
+                <option data-image="images/directors/alberto_de_martino.jpg" data-description="Directed 2 movies" value="Alberto De Martino">Alberto De Martino</option>
+                <option data-image="images/directors/aleksandr_ptushko.jpg" data-description="Directed 3 movies" value="Aleksandr Ptushko">Aleksandr Ptushko</option>
+                <option data-image="images/directors/arthur_c_pierce.jpg" data-description="Directed 3 movies" value="Arthur C. Pierce">Arthur C. Pierce</option>
+                <!--<option data-image="images/directors/unknown.png" value="Atsushi Okunaka">Atsushi Okunaka</option>-->
+                <option data-image="images/directors/bernard_l_kowalski.jpg" data-description="Directed 2 movies" value="Bernard L. Kowalski">Bernard L. Kowalski</option>
+                <option data-image="images/directors/bert_i_gordon.jpg" data-description="Directed 8 movies" value="Bert I. Gordon">Bert I. Gordon</option>
+                <option data-image="images/directors/bill_rebane.jpg" data-description="Directed 2 movies" value="Bill Rebane">Bill Rebane</option>
+                <option data-image="images/actors/coleman_francis.jpg" data-description="Directed 3 movies" value="Coleman Francis">Coleman Francis</option>
+                <option data-image="images/directors/ed_wood.jpg" data-description="Directed 2 movies" value="Ed Wood">Ed Wood</option>
+                <option data-image="images/directors/gene_fowler_jr.jpg" data-description="Directed 2 movies" value="Gene Fowler Jr.">Gene Fowler Jr.</option>
+                <option data-image="images/directors/greydon_clark.jpg" data-description="Directed 2 movies" value="Greydon Clark">Greydon Clark</option>
+                <option data-image="images/directors/hollingsworth_morse.jpg" data-description="Directed 2 movies" value="Hollingsworth Morse">Hollingsworth Morse</option>
+                <option data-image="images/directors/jack_arnold.jpg" data-description="Directed 4 movies" value="Jack Arnold">Jack Arnold</option>
+                <option data-image="images/directors/jack_pollexfen.jpg" data-description="Directed 2 movies" value="Jack Pollexfen">Jack Pollexfen</option>
+                <option data-image="images/directors/jerry_jameson.jpg" data-description="Directed 2 movies" value="Jerry Jameson">Jerry Jameson</option>
+                <option data-image="images/directors/joe_damato.jpg" data-description="Directed 2 movies" value="Joe DAmato">Joe D'Amato</option>
+                <option data-image="images/directors/jun_fukuda.jpg" data-description="Directed 2 movies" value="Jun Fukuda">Jun Fukuda</option>
+                <!--<option data-image="images/directors/kazuho_mitsuta.jpg" value="Kazuho Mitsuta">Kazuho Mitsuta</option>-->
+                <option data-image="images/directors/kevin_connor.jpg" data-description="Directed 2 movies" value="Kevin Connor">Kevin Connor</option>
+                <option data-image="images/directors/unknown.png" data-description="Directed 2 movies" value="Kiyosumi Fukazawa">Kiyosumi Fukazawa</option>
+                <option data-image="images/directors/lindsay_shonteff.jpg" data-description="Directed 2 movies" value="Lindsay Shonteff">Lindsay Shonteff</option>
+                <option data-image="images/directors/noriaki_yuasa.jpg"  data-description="Directed 6 movies"value="Noriaki Yuasa">Noriaki Yuasa</option>
+                <option data-image="images/directors/pietro_francisci.jpg" data-description="Directed 2 movies" value="Pietro Francisci">Pietro Francisci</option>
+                <option data-image="images/directors/ray_austin.jpg" data-description="Directed 2 movies" value="Ray Austin">Ray Austin</option>
+                <option data-image="images/directors/ray_kellogg.jpg" data-description="Directed 2 movies" value="Ray Kellogg">Ray Kellogg</option>
+                <option data-image="images/actors/rene_cardona.jpg" data-description="Directed 2 movies" value="Rene Cardona">Rene Cardona</option>
+                <option data-image="images/directors/roger_corman.jpg" data-description="Directed 6 movies" value="Roger Corman">Roger Corman</option>
+                <option data-image="images/directors/sam_newfield.jpg" data-description="Directed 4 movies" value="Sam Newfield">Sam Newfield</option>
+                <!--<option data-image="images/directors/samaji_nonagase.jpg" value="Samaji Nonagase">Samaji Nonagase</option>-->
+                <option data-image="images/directors/shigeo_tanaka.jpg" data-description="Directed 3 movies" value="Shigeo Tanaka">Shigeo Tanaka</option>
+                <!--<option data-image="images/directors/unknown.png" value="Shunichiro Kazuki">Shunichiro Kazuki</option>
+                <option data-image="images/directors/unknown.png" value="Sogoro Tsuchiya">Sogoro Tsuchiya</option>
+                <option data-image="images/directors/unknown.png" value="Tsuneo Kobayashi">Tsuneo Kobayashi</option>-->
+              </select>
+            </td>
+            <td class="aboveSelect">Recurring Producers:<br/>
+              <select id="theProducers" is="ms-dropdown" data-visible-rows="5">
+                <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option data-image="images/producers/avi_lerner.jpg" data-description="Produced 2 movies" value="Avi Lerner">Avi Lerner</option>
+                <option data-image="images/directors/bert_i_gordon.jpg" data-description="Produced 8 movies" value="Bert I. Gordon">Bert I. Gordon</option>
+                <option data-image="images/directors/bill_rebane.jpg" data-description="Produced 2 movies" value="Bill Rebane">Bill Rebane</option>
+                <option data-image="images/producers/chares_band.jpg" data-description="Produced 5 movies" value="Charles Band">Charles Band</option>
+                <!--<option data-image="images/producers/david_sheldon.jpg" value="David Sheldon">David Sheldon</option>-->
+                <option data-image="images/directors/ed_wood.jpg" data-description="Produced 2 movies" value="Ed Wood">Ed Wood</option>
+                <option data-image="images/producers/gerry_anderson.jpg" data-description="Produced 3 movies" value="Gerry Anderson">Gerry Anderson</option>
+                <option data-image="images/producers/harry_alan_towers.jpg" data-description="Produced 4 movies" value="Harry Alan Towers">Harry Alan Towers</option>
+                <option data-image="images/directors/unknown.png" data-description="Produced 2 movies" value="Hugo Grimaldi">Hugo Grimaldi</option>
+                <option data-image="images/directors/jack_pollexfen.jpg" data-description="Produced 2 movies" value="Jack Pollexfen">Jack Pollexfen</option>
+                <option data-image="images/producers/k_gordon_murray.jpg" data-description="Produced 3 movies" value="K. Gordon Murray">K. Gordon Murray</option>
+                <option data-image="images/producers/mark_l_rosen.jpg" data-description="Produced 2 movies" value="Mark L. Rosen">Mark L. Rosen</option>
+                <option data-image="images/producers/max_rosenberg.jpg"  data-description="Produced 4 movies"value="Max Rosenberg">Max Rosenberg</option>
+                <option data-image="images/producers/milton_subotsky.jpg" data-description="Produced 3 movies" value="Milton Subotsky">Milton Subotsky</option>
+                <option data-image="images/producers/robert_l_lippert.jpg" data-description="Produced 3 movies" value="Robert L. Lippert">Robert L. Lippert</option>
+                <option data-image="images/directors/roger_corman.jpg" data-description="Produced 16 movies" value="Roger Corman">Roger Corman</option>
+                <option data-image="images/producers/sam_katzman.jpg" data-description="Produced 2 movies" value="Sam Katzman">Sam Katzman</option>
+                <option data-image="images/producers/samuel_z_arkoff.jpg" data-description="Produced 15 movies" value="Samuel Z. Arkoff">Samuel Z. Arkoff</option>
+                <option data-image="images/producers/sandy_frank.jpg"  data-description="Produced 10 movies"value="Sandy Frank">Sandy Frank</option>
+                <option data-image="images/producers/sylvia_anderson.jpg" data-description="Produced 4 movies" value="Sylvia Anderson">Sylvia Anderson</option>
+                <option data-image="images/producers/tomoyuki_tanaka.jpg" data-description="Produced 2 movies" value="Tomoyuki Tanaka">Tomoyuki Tanaka</option>
+                <option data-image="images/actors/tony_cardoza.jpg" data-description="Produced 4 movies" value="Tony Cardoza">Tony Cardoza</option>
+                <option data-image="images/directors/unknown.png" data-description="Produced 2 movies" value="Walter Manley">Walter Manley</option>
+              </select>
+            </td>
+            <td class="aboveSelect">Recurring Actors:<br/>
+              <select id="theActors" is="ms-dropdown" data-visible-rows="5">
+                <option value="null" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option data-image="images/actors/adolfo_celi.jpg" data-description="Appears in 2 movies"value="Adolfo Celi">Adolfo Celi</option>
+                <option data-image="images/actors/akihiro_hirata.jpg" data-description="Appears in 2 movies" value="Akihiro Hirata">Akihiro Hirata</option>
+                <option data-image="images/actors/alan_francis.jpg" data-description="Appears in 2 movies" value="Alan Francis">Alan Francis</option>
+                <option data-image="images/actors/alan_hale_jr.jpg" data-description="Appears in 2 movies" value="Alan Hale Jr.">Alan Hale Jr.</option>
+                <option data-image="images/actors/allison_hayes.jpg" data-description="Appears in 4 movies" value="Allison Hayes">Allison Hayes</option>
+                <option data-image="images/actors/angelo_rossitto.jpg" data-description="Appears in 2 movies" value="Angelo Rossitto">Angelo Rossitto</option>
+                <option data-image="images/actors/anthony_dexter.jpg" data-description="Appears in 3 movies" value="Anthony Dexter">Anthony Dexter</option>
+                <option data-image="images/actors/arthur_batanides.jpg" data-description="Appears in 2 movies" value="Arthur Batanides">Arthur Batanides</option>
+                <option data-image="images/actors/arturo_martinez.jpg" data-description="Appears in 2 movies" value="Arturo Martinez">Arturo Martinez</option>
+                <option data-image="images/actors/barbara_francis.jpg" data-description="Appears in 2 movies" value="Barbara Francis">Barbara Francis</option>
+                <option data-image="images/actors/bela_lugosi.jpg" data-description="Appears in 2 movies and 1 serial" value="Bela Lugosi">Bela Lugosi</option>
+                <option data-image="images/actors/ben_murphy.jpg" data-description="Appears in 2 movies" value="Ben Murphy">Ben Murphy</option>
+                <option data-image="images/actors/beverly_garland.jpg" data-description="Appears in 3 movies" value="Beverly Garland">Beverly Garland</option>
+                <option data-image="images/actors/bill_coontz.jpg" data-description="Appears in 2 movies" value="Bill Coontz">Bill Coontz</option>
+                <option data-image="images/actors/bill_giorgio.jpg" data-description="Appears in 2 movies" value="Bill Giorgio">Bill Giorgio</option>
+                <option data-image="images/actors/bill_mckinney.jpg" data-description="Appears in 2 movies" value="Bill McKinney">Bill McKinney</option>
+                <option data-image="images/actors/bobby_parr.jpg" data-description="Appears in 2 movies" value="Bobby Parr">Bobby Parr</option>
+                <option data-image="images/actors/bradford_dillman.jpg" data-description="Appears in 2 movies" value="Bradford Dillman">Bradford Dillman</option>
+                <option data-image="images/actors/brett_halsey.jpg" data-description="Appears in 2 movies" value="Brett Halsey">Brett Halsey</option>
+                <option data-image="images/actors/bruno_vesota.jpg" data-description="Appears in 5 movies" value="Bruno VeSota">Bruno VeSota</option>
+                <option data-image="images/actors/bryant_haliday.jpg" data-description="Appears in 2 movies" value="Bryant Haliday">Bryant Haliday</option>
+                <option data-image="images/actors/burgess_meredith.jpg" data-description="Appears in 2 movies" value="Burgess Meredith">Burgess Meredith</option>
+                <option data-image="images/actors/cameron_mitchell.jpg" data-description="Appears in 2 movies" value="Cameron Mitchell">Cameron Mitchell</option>
+                <option data-image="images/actors/carlos_rivas.jpg" data-description="Appears in 2 movies" value="Carlos Rivas">Carlos Rivas</option>
+                <option data-image="images/actors/caroline_munro.jpg" data-description="Appears in 2 movies" value="Caroline Munro">Caroline Munro</option>
+                <option data-image="images/actors/catherine_schell.jpg" data-description="Appears in 2 movies" value="Catherine Schell">Catherine Schell</option>
+                <option data-image="images/actors/cathy_downs.jpg" data-description="Appears in 2 movies" value="Cathy Downs">Cathy Downs</option>
+                <option data-image="images/actors/choei_takahashi.jpg" data-description="Appears in 2 movies" value="Choei Takahashi">Choei Takahashi</option>
+                <option data-image="images/actors/clu_gulager.jpg" data-description="Appears in 2 movies" value="Clu Gulager">Clu Gulager</option>
+                <option data-image="images/actors/coleen_gray.jpg" data-description="Appears in 2 movies" value="Coleen Gray">Coleen Gray</option>
+                <option data-image="images/actors/coleman_francis.jpg" data-description="Appears in 4 movies" value="Coleman Francis">Coleman Francis</option>
+                <option data-image="images/actors/conrad_brooks.jpg" data-description="Appears in 3 movies" value="Conrad Brooks">Conrad Brooks</option>
+                <option data-image="images/actors/david_janssen.jpg" data-description="Appears in 2 movies" value="David Janssen">David Janssen</option>
+                <option data-image="images/actors/david_mcmahon.jpg" data-description="Appears in 2 movies" value="David McMahon">David McMahon</option>
+                <option data-image="images/actors/dennis_patrick.jpg" data-description="Appears in 2 movies" value="Dennis Patrick">Dennis Patrick</option>
+                <option data-image="images/actors/dick_contino.jpg" data-description="Appears in 2 movies" value="Dick Contino">Dick Contino</option>
+                <option data-image="images/actors/dick_miller.jpg" data-description="Appears in 3 movies" value="Dick Miller">Dick Miller</option>
+                <option data-image="images/actors/dolores_faith.jpg" data-description="Appears in 2 movies" value="Dolores Faith">Dolores Faith</option>
+                <option data-image="images/actors/don_c_harvey.jpg" data-description="Appears in 3 movies" value="Don C. Harvey">Don C. Harvey</option>
+                <option data-image="images/actors/don_michael_paul.jpg" data-description="Appears in 2 movies" value="Don Michael Paul">Don Michael Paul</option>
+                <option data-image="images/actors/don_sullivan.jpg" data-description="Appears in 2 movies" value="Don Sullivan">Don Sullivan</option>
+                <option data-image="images/actors/donald_hodson.jpg" data-description="Appears in 2 movies" value="Donald Hodson">Donald Hodson</option>
+                <option data-image="images/actors/donald_pleasance.jpg" data-description="Appears in 2 movies" value="Donald Pleasance">Donald Pleasance</option>
+                <option data-image="images/actors/doug_mcclure.jpg" data-description="Appears in 3 movies" value="Doug McClure">Doug McClure</option>
+                <option data-image="images/actors/ed_nelson.jpg" data-description="Appears in 5 movies" value="Ed Nelson">Ed Nelson</option>
+                <option data-image="images/actors/edward_erwin.jpg" data-description="Appears in 2 movies" value="Edward Erwin">Edward Erwin</option>
+                <option data-image="images/actors/eugene_persson.jpg" data-description="Appears in 2 movies" value="Eugene Persson">Eugene Persson</option>
+                <option data-image="images/actors/forrest_j_ackerman.jpg" data-description="Appears in 2 movies" value="Forrest J. Ackerman">Forrest J. Ackerman</option>
+                <option data-image="images/actors/francis_x_bushman.jpg" data-description="Appears in 2 movies" value="Francis X. Bushman">Francis X. Bushman</option>
+                <option data-image="images/actors/frank_gerstle.jpg" data-description="Appears in 2 movies" value="Frank Gerstle">Frank Gerstle</option>
+                <option data-image="images/actors/gary_collins.jpg" data-description="Appears in 2 movies" value="Gary Collins">Gary Collins</option>
+                <option data-image="images/actors/gary_lockwood.jpg" data-description="Appears in 2 movies" value="Gary Lockwood">Gary Lockwood</option>
+                <option data-image="images/actors/gene_roth.jpg" data-description="Appears in 4 movies" value="Gene Roth">Gene Roth</option>
+                <option data-image="images/actors/george_buck_fowler.jpg" data-description="Appears in 2 movies" value="George 'Buck' Fowler">George "Buck" Fowler</option>
+                <option data-image="images/actors/george_becwar.jpg" data-description="Appears in 2 movies" value="George Becwar">George Becwar</option>
+                <option data-image="images/actors/george_cisar.jpg" data-description="Appears in 2 movies" value="George Cisar">George Cisar</option>
+                <option data-image="images/actors/george_nader.jpg" data-description="Appears in 4 movies" value="George Nader">George Nader</option>
+                <option data-image="images/actors/giovanni_cianfriglia.jpg" data-description="Appears in 3 movies" value="Giovanni Cianfriglia">Giovanni Cianfriglia</option>
+                <option data-image="images/actors/glenn_langan.jpg" data-description="Appears in 3 movies" value="Glenn Langan">Glenn Langan</option>
+                <option data-image="images/actors/gloria_talbott.jpg" data-description="Appears in 2 movies" value="Gloria Talbott">Gloria Talbott</option>
+                <option data-image="images/actors/godfrey_james.jpg" data-description="Appears in 2 movies" value="Godfrey James">Godfrey James</option>
+                <option data-image="images/actors/hank_patterson.jpg" data-description="Appears in 3 movies" value="Hank Patterson">Hank Patterson</option>
+                <option data-image="images/actors/harry_keaton.jpg" data-description="Appears in 2 movies" value="Harry Keaton">Harry Keaton</option>
+                <option data-image="images/actors/haruo_nakajima.jpg" data-description="Appears in 2 movies" value="Haruo Nakajima">Haruo Nakajima</option>
+                <option data-image="images/actors/harvey_b_dunn.jpg" data-description="Appears in 3 movies" value="Harvey B. Dunn">Harvey B. Dunn</option>
+                <option data-image="images/actors/hiro_tateyama.jpg" data-description="Appears in 2 movies" value="Hiro Tateyama">Hiro Tateyama</option>
+                <option data-image="images/actors/hugh_beaumont.jpg" data-description="Appears in 4 movies" value="Hugh Beaumont">Hugh Beaumont</option>
+                <option data-image="images/actors/i_stanford_jolley.jpg" data-description="Appears in 2 movies" value="I. Stanford Jolley">I. Stanford Jolley</option>
+                <option data-image="images/actors/j_stewart_taylor.jpg" data-description="Appears in 2 movies" value="J. Stewart Taylor">J. Stewart Taylor</option>
+                <option data-image="images/actors/jack_kosslyn.jpg" data-description="Appears in 4 movies" value="Jack Kosslyn">Jack Kosslyn</option>
+                <option data-image="images/actors/jack_palance.jpg" data-description="Appears in 3 movies" value="Jack Palance">Jack Palance</option>
+                <option data-image="images/actors/james_best.jpg" data-description="Appears in 2 movies" value="James Best">James Best</option>
+                <option data-image="images/actors/james_franciscus.jpg" data-description="Appears in 3 movies" value="James Franciscus">James Franciscus</option>
+                <option data-image="images/actors/james_griffith.jpg" data-description="Appears in 2 movies" value="James Griffith">James Griffith</option>
+                <option data-image="images/actors/james_seay.jpg" data-description="Appears in 2 movies" value="James Seay">James Seay</option>
+                <option data-image="images/actors/jean_moorhead.jpg" data-description="Appears in 2 movies" value="Jean Moorhead">Jean Moorhead</option>
+                <option data-image="images/actors/jim_begg.jpg" data-description="Appears in 2 movies" value="Jim Begg">Jim Begg</option>
+                <option data-image="images/actors/jody_daniels.jpg" data-description="Appears in 2 movies" value="Jody Daniels">Jody Daniels</option>
+                <option data-image="images/actors/joe_don_baker.jpg" data-description="Appears in 2 movies" value="Joe Don Baker">Joe Don Baker</option>
+                <option data-image="images/actors/joe_estevez.jpg" data-description="Appears in 2 movies" value="Joe Estevez">Joe Estevez</option>
+                <option data-image="images/actors/joe_shishido.jpg" data-description="Appears in 2 movies" value="Joe Shishido">Joe Shishido</option>
+                <option data-image="images/actors/joe_turkel.jpg" data-description="Appears in 2 movies" value="Joe Turkel">Joe Turkel</option>
+                <option data-image="images/actors/john_agar.jpg" data-description="Appears in 3 movies" value="John Agar">John Agar</option>
+                <option data-image="images/actors/john_ashley.jpg" data-description="Appears in 2 movies" value="John Ashley">John Ashley</option>
+                <option data-image="images/actors/john_banner.jpg" data-description="Appears in 2 movies" value="John Banner">John Banner</option>
+                <option data-image="images/actors/john_carradine.jpg" data-description="Appears in 2 movies" value="John Carradine">John Carradine</option>
+                <option data-image="images/actors/john_forsythe.jpg" data-description="Appears in 2 movies" value="John Forsythe">John Forsythe</option>
+                <option data-image="images/actors/john_hoyt.jpg" data-description="Appears in 2 movies" value="John Hoyt">John Hoyt</option>
+                <option data-image="images/actors/john_ireland.jpg" data-description="Appears in 2 movies" value="John Ireland">John Ireland</option>
+                <option data-image="images/actors/john_phillip_law.jpg" data-description="Appears in 2 movies" value="John Phillip Law">John Phillip Law</option>
+                <option data-image="images/actors/johnny_crawford.jpg" data-description="Appears in 2 movies" value="Johnny Crawford">Johnny Crawford</option>
+                <option data-image="images/actors/jonathan_haze.jpg" data-description="Appears in 5 movies" value="Jonathan Haze">Jonathan Haze</option>
+                <option data-image="images/actors/jonathan_ledford.jpg" data-description="Appears in 2 movies" value="Jonathan Ledford">Jonathan Ledford</option>
+                <option data-image="images/actors/june_kenney.jpg" data-description="Appears in 4 movies" value="June Kenney">June Kenney</option>
+                <option data-image="images/actors/keenan_wynn.jpg" data-description="Appears in 2 movies" value="Keenan Wynn">Keenan Wynn</option>
+                <option data-image="images/actors/keith_barron.jpg" data-description="Appears in 2 movies" value="Keith Barron">Keith Barron</option>
+                <option data-image="images/actors/ken_clark.jpg" data-description="Appears in 2 movies" value="Ken Clark">Ken Clark</option>
+                <option data-image="images/actors/koji_fujiyama.jpg" data-description="Appears in 3 movies" value="Koji Fujiyama">Koji Fujiyama</option>
+                <option data-image="images/actors/kon_omura.jpg" data-description="Appears in 2 movies" value="Kon Omura">Kon Omura</option>
+                <option data-image="images/actors/lance_fuller.jpg" data-description="Appears in 2 movies" value="Lance Fuller">Lance Fuller</option>
+                <option data-image="images/actors/larry_blake.jpg" data-description="Appears in 3 movies" value="Larry Blake">Larry Blake</option>
+                <option data-image="images/actors/lee_majors.jpg" data-description="Appears in 2 movies" value="Lee Majors">Lee Majors</option>
+                <option data-image="images/actors/lee_van_cleef.jpg" data-description="Appears in 3 movies" value="Lee Van Cleef">Lee Van Cleef</option>
+                <option data-image="images/actors/lidia_alfonsi.jpg" data-description="Appears in 2 movies" value="Lidia Alfonsi">Lidia Alfonsi</option>
+                <option data-image="images/actors/lois_maxwell.jpg" data-description="Appears in 2 movies" value="Lois Maxwell">Lois Maxwell</option>
+                <option data-image="images/actors/lon_chaney_jr.jpg" data-description="Appears in 2 movies" value="Lon Chaney Jr.">Lon Chaney Jr.</option>
+                <option data-image="images/actors/lori_nelson.jpg" data-description="Appears in 2 movies" value="Lori Nelson">Lori Nelson</option>
+                <option data-image="images/actors/luana_walters.jpg" data-description="Appears in 2 movies" value="Luana Walters">Luana Walters</option>
+                <option data-image="images/actors/malcolm_atterbury.jpg" data-description="Appears in 2 movies" value="Malcolm Atterbury">Malcolm Atterbury</option>
+                <option data-image="images/actors/mamie_van_doren.jpg" data-description="Appears in 2 movies" value="Mamie Van Doren">Mamie Van Doren</option>
+                <option data-image="images/actors/marisa_mell.jpg" data-description="Appears in 2 movies" value="Marisa Mell">Marisa Mell</option>
+                <option data-image="images/actors/mary_beth_hughes.jpg" data-description="Appears in 2 movies" value="Mary Beth Hughes">Mary Beth Hughes</option>
+                <option data-image="images/actors/mel_welles.jpg" data-description="Appears in 2 movies" value="Mel Welles">Mel Welles</option>
+                <option data-image="images/actors/merritt_stone.jpg" data-description="Appears in 4 movies" value="Merritt Stone">Merritt Stone</option>
+                <option data-image="images/actors/merry_anders.jpg" data-description="Appears in 2 movies" value="Merry Anders">Merry Anders</option>
+                <option data-image="images/actors/michael_emmett.jpg" data-description="Appears in 3 movies" value="Michael Emmett">Michael Emmett</option>
+                <option data-image="images/actors/michael_pataki.jpg" data-description="Appears in 3 movies" value="Michael Pataki">Michael Pataki</option>
+                <option data-image="images/actors/miguel_angel_fuentes.jpg" data-description="Appears in 2 movies" value="Miguel Angel Fuentes">Miguel Angel Fuentes</option>
+                <option data-image="images/actors/miles_okeeffe.jpg" data-description="Appears in 2 movies" value="Miles O'Keeffe">Miles O'Keeffe</option>
+                <option data-image="images/actors/miyuki_tanigawa.jpg" data-description="Appears in 2 movies" value="Miyuki Tanigawa">Miyuki Tanigawa</option>
+                <option data-image="images/actors/morris_ankrum.jpg" data-description="Appears in 2 movies" value="Morris Ankrum">Morris Ankrum</option>
+                <option data-image="images/actors/myron_healey.jpg" data-description="Appears in 2 movies" value="Myron Healey">Myron Healey</option>
+                <option data-image="images/actors/nello_pazzafini.jpg" data-description="Appears in 5 movies" value="Nello Pazzafini">Nello Pazzafini</option>
+                <option data-image="images/actors/nestor_paiva.jpg" data-description="Appears in 2 movies" value="Nestor Paiva">Nestor Paiva</option>
+                <option data-image="images/actors/olan_soule.jpg" data-description="Appears in 2 movies" value="Olan Soule">Olan Soule</option>
+                <option data-image="images/actors/osiride_pevarello.jpg" data-description="Appears in 2 movies" value="Osiride Pevarello">Osiride Pevarello</option>
+                <option data-image="images/actors/patrick_whyte.jpg" data-description="Appears in 2 movies" value="Patrick Whyte">Patrick Whyte</option>
+                <option data-image="images/actors/paul_costello.jpg" data-description="Appears in 2 movies" value="Paul Costello">Paul Costello</option>
+                <option data-image="images/actors/paul_frees.jpg" data-description="Appears in 5 movies" value="Paul Frees">Paul Frees</option>
+                <option data-image="images/actors/peggie_castle.jpg" data-description="Appears in 2 movies" value="Peggie Castle">Peggie Castle</option>
+                <option data-image="images/actors/peggy_converse.jpg" data-description="Appears in 2 movies" value="Peggy Converse">Peggy Converse</option>
+                <option data-image="images/actors/peggy_webber.jpg" data-description="Appears in 2 movies" value="Peggy Webber">Peggy Webber</option>
+                <option data-image="images/actors/peter_breck.jpg" data-description="Appears in 2 movies" value="Peter Breck">Peter Breck</option>
+                <option data-image="images/actors/peter_graves.jpg" data-description="Appears in 5 movies" value="Peter Graves">Peter Graves</option>
+                <option data-image="images/actors/peter_haskell.jpg" data-description="Appears in 2 movies" value="Peter Haskell">Peter Haskell</option>
+                <option data-image="images/actors/peter_leeds.jpg" data-description="Appears in 2 movies" value="Peter Leeds">Peter Leeds</option>
+                <option data-image="images/actors/rafael_campos.jpg" data-description="Appears in 2 movies" value="Rafael Campos">Rafael Campos</option>
+                <option data-image="images/actors/ralph_byrd.jpg" data-description="Appears in 2 movies" value="Ralph Byrd">Ralph Byrd</option>
+                <option data-image="images/actors/ray_dennis_steckler.jpg" data-description="Appears in 2 movies" value="Ray Dennis Steckler">Ray Dennis Steckler</option>
+                <option data-image="images/actors/reed_hadley.jpg" data-description="Appears in 2 movies" value="Reed Hadley">Reed Hadley</option>
+                <option data-image="images/actors/reiko_kasahara.jpg" data-description="Appears in 3 movies" value="Reiko Kasahara">Reiko Kasahara</option>
+                <option data-image="images/actors/rene_cardona.jpg" data-description="Appears in 3 movies" value="Rene Cardona">Rene Cardona</option>
+                <option data-image="images/actors/riccardo_petrazzi.jpg" data-description="Appears in 2 movies" value="Riccardo Petrazzi">Riccardo Petrazzi</option>
+                <option data-image="images/actors/richard_devon.jpg" data-description="Appears in 2 movies" value="Richard Devon">Richard Devon</option>
+                <option data-image="images/actors/richard_keil.jpg" data-description="Appears in 2 movies" value="Richard Keil">Richard Keil</option>
+                <option data-image="images/actors/robert_donner.jpg" data-description="Appears in 2 movies" value="Robert Donner">Robert Donner</option>
+                <option data-image="images/actors/robert_easton.jpg" data-description="Appears in 3 movies" value="Robert Easton">Robert Easton</option>
+                <option data-image="images/actors/robert_ito.jpg" data-description="Appears in 2 movies" value="Robert Ito">Robert Ito</option>
+                <option data-image="images/actors/robert_kent.jpg" data-description="Appears in 1 movie and 1 serial" value="Robert Kent">Robert Kent</option>
+                <option data-image="images/actors/robert_random.jpg" data-description="Appears in 2 movies" value="Robert Random">Robert Random</option>
+                <option data-image="images/actors/robert_reed.jpg" data-description="Appears in 2 movies" value="Robert Reed">Robert Reed</option>
+                <option data-image="images/actors/robert_tessier.jpg" data-description="Appears in 2 movies" value="Robert Tessier">Robert Tessier</option>
+                <option data-image="images/actors/robert_vaughn.jpg" data-description="Appears in 2 movies" value="Robert Vaughn">Robert Vaughn</option>
+                <option data-image="images/actors/robert_zdar.jpg" data-description="Appears in 2 movies" value="Robert Z'Dar">Robert Z'Dar</option>
+                <option data-image="images/actors/roberto_contreras.jpg" data-description="Appears in 3 movies" value="Roberto Contreras">Roberto Contreras</option>
+                <option data-image="images/actors/robin_hughes.jpg" data-description="Appears in 2 movies" value="Robin Hughes">Robin Hughes</option>
+                <option data-image="images/actors/ronald_francis.jpg" data-description="Appears in 2 movies" value="Ronald Francis">Ronald Francis</option>
+                <option data-image="images/actors/ross_hagen.jpg" data-description="Appears in 2 movies" value="Ross Hagen">Ross Hagen</option>
+                <option data-image="images/actors/rossano_brazzi.jpg" data-description="Appears in 2 movies" value="Rossano Brazzi">Rossano Brazzi</option>
+                <option data-image="images/actors/russ_bender.jpg" data-description="Appears in 3 movies" value="Russ Bender">Russ Bender</option>
+                <option data-image="images/actors/russ_conway.jpg" data-description="Appears in 2 movies" value="Russ Conway">Russ Conway</option>
+                <option data-image="images/actors/russell_johnson.jpg" data-description="Appears in 2 movies" value="Russell Johnson">Russell Johnson</option>
+                <option data-image="images/actors/sally_fraser.jpg" data-description="Appears in 3 movies" value="Sally Fraser">Sally Fraser</option>
+                <option data-image="images/actors/sally_todd.jpg" data-description="Appears in 2 movies" value="Sally Todd">Sally Todd</option>
+                <option data-image="images/actors/santo.jpg" data-description="Appears in 2 movies" value="Santo">Santo</option>
+                <option data-image="images/actors/scotty_beckett.jpg" data-description="Appears in 2 movies" value="Scotty Beckett">Scotty Beckett</option>
+                <option data-image="images/actors/sho_kosugi.jpg" data-description="Appears in 2 movies" value="Sho Kosugi">Sho Kosugi</option>
+                <option data-image="images/actors/sid_haig.jpg" data-description="Appears in 2 movies" value="Sid Haig">Sid Haig</option>
+                <option data-image="images/actors/sid_melton.jpg"  data-description="Appears in 2 movies"value="Sid Melton">Sid Melton</option>
+                <option data-image="images/actors/steve_brodie.jpg" data-description="Appears in 2 movies" value="Steve Brodie">Steve Brodie</option>
+                <option data-image="images/actors/steve_franken.jpg" data-description="Appears in 3 movies" value="Steve Franken">Steve Franken</option>
+                <option data-image="images/actors/steve_reeves.jpg" data-description="Appears in 2 movies" value="Steve Reeves">Steve Reeves</option>
+                <option data-image="images/actors/sylva_koscina.jpg" data-description="Appears in 2 movies" value="Sylva Koscina">Sylva Koscina</option>
+                <option data-image="images/actors/tatsuya_azuma.jpg" data-description="Appears in 2 movies" value="Tatsuya Azuma">Tatsuya Azuma</option>
+                <option data-image="images/actors/thom_christopher.jpg" data-description="Appears in 2 movies" value="Thom Christopher">Thom Christopher</option>
+                <option data-image="images/actors/tim_condren.jpg" data-description="Appears in 2 movies" value="Tim Condren">Tim Condren</option>
+                <option data-image="images/actors/timothy_farrell.jpg" data-description="Appears in 2 movies" value="Timothy Farrell">Timothy Farrell</option>
+                <option data-image="images/actors/timothy_van_patten.jpg" data-description="Appears in 2 movies" value="Timothy Van Patten">Timothy Van Patten</option>
+                <option data-image="images/actors/tom_conway.jpg" data-description="Appears in 2 movies" value="Tom Conway">Tom Conway</option>
+                <option data-image="images/actors/tom_neal.jpg" data-description="Appears in 2 movies" value="Tom Neal">Tom Neal</option>
+                <option data-image="images/actors/tommy_kirk.jpg" data-description="Appears in 2 movies" value="Tommy Kirk">Tommy Kirk</option>
+                <option data-image="images/actors/tony_cardoza.jpg" data-description="Appears in 4 movies" value="Tony Cardoza">Tony Cardoza</option>
+                <option data-image="images/actors/tony_lorea.jpg" data-description="Appears in 2 movies" value="Tony Lorea">Tony Lorea</option>
+                <option data-image="images/actors/tor_johnson.jpg" data-description="Appears in 3 movies" value="Tor Johnson">Tor Johnson</option>
+                <option data-image="images/actors/tristram_coffin.jpg" data-description="Appears in 4 movies" value="Tristram Coffin">Tristram Coffin</option>
+                <option data-image="images/actors/troy_patterson.jpg" data-description="Appears in 2 movies" value="Troy Patterson">Troy Patterson</option>
+                <option data-image="images/actors/tsutomu_yukawa.jpg" data-description="Appears in 2 movies" value="Tsutomu Yukawa">Tsutomu Yukawa</option>
+                <option data-image="images/actors/virginia_gregg.jpg" data-description="Appears in 2 movies" value="Virginia Gregg">Virginia Gregg</option>
+                <option data-image="images/actors/ward_costello.jpg" data-description="Appears in 2 movies" value="Ward Costello">Ward Costello</option>
+                <option data-image="images/actors/warren_hammack.jpg" data-description="Appears in 3 movies" value="Warren Hammack">Warren Hammack</option>
+                <option data-image="images/actors/warren_mitchell.jpg" data-description="Appears in 2 movies" value="Warren Mitchell">Warren Mitchell</option>
+                <option data-image="images/actors/wendell_corey.jpg" data-description="Appears in 2 movies" value="Wendell Corey">Wendell Corey</option>
+                <option data-image="images/actors/whit_bissell.jpg" data-description="Appears in 2 movies" value="Whit Bissell">Whit Bissell</option>
+                <option data-image="images/actors/william_schallert.jpg" data-description="Appears in 3 movies" value="William Schallert">William Schallert</option>
+                <option data-image="images/actors/william_sylvester.jpg" data-description="Appears in 3 movies" value="William Sylvester">William Sylvester</option>
+              </select>
+            </td>
+          </tr>
+          <tr><td colspan="4">&nbsp;</td></tr>
+          <tr>
+            <td class="aboveSelect">Involved Academy Award Winners:<br/>
+              <select id="theOscars" is="ms-dropdown" data-visible-rows="3">
+                  <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                  <option value="LIKE '%Clint Eastwood%'" data-image="images/people/clint_eastwood.jpg" data-description="Best Picture / Best Director, 4 awards">Clint Eastwood</option>
+                  <option value="LIKE '%Daniel L. Fapp%'" data-image="images/people/daniel_l_fapp.jpg" data-description="Best Cinematorgraphy, 1961">Daniel L. Fapp</option>
+                  <option value="LIKE '%Ennio De Concini%'" data-image="images/people/ennio_de_concini.jpg" data-description="Best Original Screenplay, 1963">Ennio De Concini</option>
+                  <option value="LIKE '%Ennio Morricone%'" data-image="images/people/ennio_morricone.jpg" data-description="Honorary, 2007 and Best Original Score, 2016">Ennio Morricone</option>
+                  <option value="LIKE '%Ernest Borgnine%'" data-image="images/people/ernest_borgnine.jpg" data-description="Best Actor, 1955">Ernest Borgnine</option>
+                  <option value="LIKE '%Ernest Laszlo%'" data-image="images/people/ernest_laszlo.jpg" data-description="Best Cinematorgraphy, 1966">Ernest Laszlo</option>
+                  <option value="LIKE '%Francis Ford Coppola%'" data-image="images/people/francis_ford_coppola.jpg" data-description="Multiple Categories, 6 awards">Francis Ford Coppola</option>
+                  <option value="LIKE '%Gene Hackman%'" data-image="images/people/gene_hackman.jpg" data-description="Best Actor / Best Supporting Actor, 2 awards">Gene Hackman</option>
+                  <option value="LIKE '%Gene Warren%'" data-image="images/people/gene_warren.jpg" data-description="Best Special Effects (Visual), 1961">Gene Warren</option>
+                  <option value="LIKE '%Gregory Peck%'" data-image="images/people/gregory_peck.jpg" data-description="Best Actor, 1962 and Jean Hersholt Humanitarian Award, 1967">Gregory Peck</option>
+                  <option value="LIKE '%Henry Mancini%'" data-image="images/people/henry_mancini.jpg" data-description="Best Score / Best Song, 4 awards">Henry Mancini</option>
+                  <option value="LIKE '%Jack Palance%'" data-image="images/people/jack_palance.jpg" data-description="Best Supporting Actor, 1992">Jack Palance</option>
+                  <option value="LIKE '%James Earl Jones%'" data-image="images/people/james_earl_jones.jpg" data-description="Honorary, 2011">James Earl Jones</option>
+                  <option value="LIKE '%Jay Livingston%'" data-image="images/people/jay_livingston.jpg" data-description="Best Song, 3 awards">Jay Livingston</option>
+                  <option value="LIKE '%John Barry%'" data-image="images/people/john_barry.jpg" data-description="Best Original Score / Best Original Song, 5 awards">John Barry</option>
+                  <option value="LIKE '%John Williams%'" data-image="images/people/john_williams.jpg" data-description="Best Score, 5 awards">John Williams</option>
+                  <option value="LIKE '%Joseph Biroc%'" data-image="images/people/joseph_biroc.jpg" data-description="Best Cinematorgraphy, 1974">Joseph Biroc</option>
+                  <option value="LIKE '%Karl Struss%'" data-image="images/people/karl_struss.jpg" data-description="Best Cinematorgraphy, 1927/28">Karl Struss</option>
+                  <option value="LIKE '%Kit West%'" data-image="images/people/kit_west.jpg" data-description="Best Visual Effects, 1981">Kit West</option>
+                  <option value="LIKE '%Leslie I. Carey%'" data-image="images/directors/unknown.png" data-description="Best Sound Recording, 1955">Leslie I. Carey</option>
+                  <option value="LIKE '%Martin Balsam%'" data-image="images/people/martin_balsam.jpg" data-description="Best Supporting Actor, 1966">Martin Balsam</option>
+                  <option value="LIKE '%Martin Landau%'" data-image="images/people/martin_landau.jpg" data-description="Best Supporting Actor, 1994">Martin Landau</option>
+                  <option value="LIKE '%Nathan Juran%'" data-image="images/people/nathan_juran.jpg" data-description="Best Art Direction, 1942">Nathan Juran</option>
+                  <option value="LIKE '%Ray Evans%'" data-image="images/people/ray_evans.jpg" data-description="Best Song, 3 awards">Ray Evans</option>
+                  <option value="LIKE '%Rick Baker%'" data-image="images/people/rick_baker.jpg" data-description="Best Makeup, 7 awards">Rick Baker</option>
+                  <option value="LIKE '%Robie Robertson%'" data-image="images/directors/unknown.png" data-description="Best Visual Effects, 1969">Robie Robertson</option>
+                  <option value="LIKE '%Roger Corman%'" data-image="images/directors/roger_corman.jpg" data-description="Honorary, 2009">Roger Corman</option>
+                  <option value="LIKE '%Ron Howard%'" data-image="images/people/ron_howard.jpg" data-description="Best Picture / Best Director, 2001">Ron Howard</option>
+                  <option value="LIKE '%Stan Winston%'" data-image="images/people/stan_winston.jpg" data-description="Best Visual Effects / Best Makeup, 4 awards">Stan Winston</option>
+                  <option value="LIKE '%Verna Fields%'" data-image="images/people/verna_fields.jpg" data-description="Best Editing, 1975">Verna Fields</option>
+                  <option value="LIKE '%Vilmos Zsigmond%'" data-image="images/people/vilmos_zsigmond.jpg" data-description="Best Cinematorgraphy, 1977">Vilmos Zsigmond</option>
+                  <option value="LIKE '%Walter Mirisch%'" data-image="images/people/walter_mirisch.jpg" data-description="Best Picture, 1967">Walter Mirisch</option>
+                  <option value="LIKE '%Willis O'Brien%'" data-image="images/people/willis_obrien.jpg" data-description="Best Visual Effects, 1950">Willis O'Brien</option>
+              </select>
+            </td>
+            <td colspan="3">&nbsp;</td>
+          </tr>
+        </table>
       </div>
       <div class="skltbs-panel">
-        <table style="width:100%">
-            <tr>
-              <td style="text-align:center;color:white;"><img class="optionsImage" name="short" src="images/short.jpg"><br/>Only show episodes with shorts</td>
-              <td style="text-align:center;color:white;"><img class="optionsImage" name="streaming" src="images/streaming.png"><br/>Only show episodes available for streaming</td>
-            </tr>
-            <tr>
-              <td style="padding-top:20px; text-align:center;color:white;" colspan="2"><img class="optionsImage" name="bw" src="images/bw.png"><br/>Only show black and white movies</td>
-            </tr>
+        <table style="width:100%; padding-top:10px;">
+          <tr>
+            <td class="aboveSelect" style="width:25%;"><img class="optionsImage" name="short" src="images/short.jpg"><br/>Only show episodes<br/>with shorts</td>
+            <td class="aboveSelect" style="width:25%;"><img class="optionsImage" name="streaming" src="images/streaming.png"><br/>Only show episodes<br/>available for streaming</td>
+            <td class="aboveSelect" style="width:25%;"><img class="bwColor" name="bw" src="images/bw.png"><br/>Only show black<br/>and white movies</td>
+            <td class="aboveSelect" style="width:25%;"><img class="bwColor" name="color" src="images/color.png"><br/>Only show<br/>color movies</td>
+          </tr>
         </table>
       </div>
     </div>
@@ -105,48 +534,77 @@
     <input type="button" class="fakeSkeletab" id="movieSign" value="Push the button, Frank.">
   </div>
   <div id="movieSignPopup" class="white-popup mfp-hide">
+    <div class="closeDiv"></div><div id="refreshDiv" data-tippy-content="Search for a different episode with the same criteria"></div>
     <h1 style="width:100%; text-align:center;">WE'VE GOT MOVIE SIGN!!!!</h1>
     <h1 style="width:100%; text-align:center;" id="result"></h1>
     <div style="width: 100%; height: 500px; text-align: center; display: flex;">
   <div style="width: 65%; text-align: center; display: flex; align-items: center; justify-content: center;">
-    <img id="moviePoster" src="" style="max-height: 500px; max-width: 667px;">
+    <iframe id="videoIframe", src=""
+    style="height:500px; width: 667px; z-index:1; border: none; visibility: hidden;" allow: 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture', 
+    allowfullscreen: true></iframe>
+    <img id="moviePoster" class="moviePoster zebra_tips1" data-tippy-content="Click to watch a trailer or clip" data-tippy-placement="top-start" src="" style="position: absolute; max-height: 500px; max-width: 667px; z-index:2">
     </div>
-    <div id="summaryContainer" style="width: 35%; height: 500px; display: table;">
-      <div id="summary" style="display: table-cell; vertical-align: middle; padding: 10px; text-align: left;">
-        <!-- Your content here -->dfd
-        <p>First line with <i>italic text</i> continuing.</p>
-        <p>Another first line with <i>italic text</i> continuing.</p>
-      </div>
+    <div id="summaryContainer" style="width: 35%; height: 480px; padding:10px;">
+      <table style="width:100%; height:480px;">
+        <tr colspan="2" style="display:block;" id="altTitleParent"><td style="padding-bottom: 15px; vertical-align: top; text-align:center;">a.k.a. <span id="altTitle" style="font-style: italic;"></span></td></tr>
+        <tr colspan="2" style="display:block;"><td id="summary" style="padding-bottom: 15px; vertical-align: top; text-align: justify; text-justify: inter-word; "></td></tr>
+        <tr colspan="2" style="display:block;" id="shortsParent"><td style="padding-bottom: 15px; vertical-align: top; text-align: center; "><span id="shorts"></span></td></tr>
+        <tr style="display:block;">
+          <td class="tdLeft">Directed By:</td>
+          <td class="tdRight" id="director"></td>
+        </tr>
+        <tr style="display:block;">
+          <td style="width:141px; font-weight:bold; text-align:left; vertical-align: top;;">Written By:</td>
+          <td style="width:212px; text-align:left; vertical-align: top;;" id="writer"></td>
+        </tr>
+        <tr style="display:block;">
+          <td class="tdLeft">Produced By:</td>
+          <td class="tdRight" id="producer"></td>
+        </tr>
+        <tr style="display:block;">
+          <td class="tdLeft">Starring:</td>
+          <td class="tdRight" id="actors"></td>
+        </tr>
+        <tr style="display:block;">
+          <td class="tdLeft">Release Year:</td>
+          <td class="tdRight" id="year"></td>
+        </tr>
+        <tr style="display:block;">
+          <td class="tdLeft">Runtime:</td>
+          <td class="tdRight" id="runtime"></td>
+        </tr>
+        <tr colspan="2" style="display:block;" id="notesParent"><td id="notes" style="padding-top:15px; vertical-align: top; text-align: justify; text-justify: inter-word;"></td></tr>
+      </table>
     </div>
-  </div>
-
-    <div class="footer" style="bottom: 50px!important; text-align:center; width:100%; padding-top:20px;">
-        <div class="streamTD" id="mst3kTD"><a id="mst3kURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream or Buy this episode at The Gizmoplex"><img src="images/mst3k.png" style="width:50px;"></a></div>
-        <div class="streamTD" id="rifftraxTD"><a id="rifftraxURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy this episode from RiffTrax"><img src="images/rifftrax.png" style="width:50px;"></a></div>
-        <div class="streamTD" id="netflixTD"><a id="netflixURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Netflix"><img src="images/netflix.png" style="width:50px;"></a></div>
-        <div class="streamTD" id="youtubeTD"><a id="youtubeURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on YouTube"><img src="images/youtube.png" style="width:50px;"></a></div>
-        <div class="streamTD" id="shoutTD"><a id="shoutURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode at Shout Factory"><img src="images/shout.png" style="width:50px;"></a></div>
-        <div class="streamTD" id="tubiTD"><a id="tubiURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Stream this epsiode on Tubi"><img src="images/tubi.png" style="width:50px;"></a></div>
-        <div class="streamTD" id="amazonTD"><a id="amazonURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy or rent this episode from Amazon"><img src="images/amazon.png" style="width:50px;"></a></div>
-        <div class="streamTD" id="itunesTD"><a id="itunesURL" href="" target="_blank" class="zebra_tips1" data-tippy-content="Buy or rent this epsiode on iTunes"><img src="images/itunes.png" style="width:50px;"></a></div>
-        <div class="streamTD"><a id="refresh" href="" class="zebra_tips1" data-tippy-content="Search for a different episode with the same criteria"><img src="images/reload.png" style="width:50px;"></a></div>
+    <div class="footer2" >
+        <div class="streamTD zebra_tips1" id="mst3kTD" data-tippy-content="Stream or Buy this episode at The Gizmoplex"><a id="mst3kURL" href="" target="_blank"><img class="streamImg" src="images/mst3k.png" style="width:50px;"></a></div>
+        <div class="streamTD zebra_tips1" id="rifftraxTD" data-tippy-content="Buy this episode from RiffTrax"><a id="rifftraxURL" href="" target="_blank"><img class="streamImg" src="images/rifftrax.png" style="width:50px;"></a></div>
+        <div class="streamTD zebra_tips1" id="netflixTD" data-tippy-content="Stream this epsiode on Netflix"><a id="netflixURL" href="" target="_blank"><img class="streamImg" src="images/netflix.png" style="width:50px;"></a></div>
+        <div class="streamTD zebra_tips1" id="youtubeTD" data-tippy-content="Stream this epsiode on YouTube"><a id="youtubeURL" href="" target="_blank"><img class="streamImg" src="images/youtube.png" style="width:50px;"></a></div>
+        <div class="streamTD zebra_tips1" id="shoutTD" data-tippy-content="Stream this epsiode at Shout Factory"><a id="shoutURL" href="" target="_blank"><img class="streamImg" src="images/shout.png" style="width:50px;"></a></div>
+        <div class="streamTD zebra_tips1" id="tubiTD" data-tippy-content="Stream this epsiode on Tubi"><a id="tubiURL" href="" target="_blank"><img class="streamImg" src="images/tubi.png" style="width:50px;"></a></div>
+        <div class="streamTD zebra_tips1" id="amazonTD" data-tippy-content="Buy, rent, or maybe stream this episode from Amazon"><a id="amazonURL" href="" target="_blank"><img class="streamImg" src="images/amazon.png" style="width:50px;"></a></div>
+        <div class="streamTD zebra_tips1" id="itunesTD" data-tippy-content="Buy or rent this epsiode on iTunes"><a id="itunesURL" href="" target="_blank"><img class="streamImg" src="images/itunes.png" style="width:50px;"></a></div>
+        <!--<div class="streamTD zebra_tips1" data-tippy-content="Search for a different episode with the same criteria"><a id="refresh" href=""><img class="streamImg" src="images/reload.png" style="width:50px;"></a></div>-->
     </div>
   </div>
   <div id="noMovie" class="white-popup mfp-hide">
+    <div class="closeDiv"></div>
     <div style="width: 100%; text-align:center;">
       <img src="images/poopie.jpg">
     </div>
     <h2 style="width:100%; text-align:center;">Sorry, no movies were found that match your criteria.  Try again!</h2>
   </div>
   <div id="aboutDiv" class="white-popup mfp-hide">
+    <div class="closeDiv"></div>
     <div style="width:100%; text-align:center;">	
 			<span class="header" style="font-size:2em!important;">About The Random MST3K-O-Matic</span><div id="currentVersion"></div>
 		</div>
     <div style="width: 100%; text-align:center; margin-top:50px;">
       This app was created because my wife and I frequently sit down to watch an episode of Mystery Science Theater 3000, but can't decide which episode we want to watch.<br/><br/>
-      So I decided to let a random number generator determine our entertainment fate (not to be confused with the Hands of Fate).<br/><br/>
-      I am not affiliated with the creators and/or rights holders of Mystery Science Theater 3000, Netflix, Rifftrax, Shout Factory, Best Brains, Alternaversal, any of the movies or anybody or anything else who has any official capacity with the show that I may be forgetting or unaware of.<br/><br/>
-      Basically, this is really just a fancy dartboard.
+      So I decided to let a random number generator decide <s>who lives and who dies</s> our entertainment fate (not to be confused with the Hands of Fate).  It's basically a fancy dartboard.<br/><br/>
+      I am not affiliated with the creators and/or rights holders of Mystery Science Theater 3000, Netflix, The Gizmoplex, Rifftrax, Shout Factory, Deep 13, Best Brains, Alternaversal, The Gizmonics Institute, the producers and/or rights holders of any of the movies or anybody or anything else who has any official capacity with the show that I may be forgetting or unaware of.<br/><br/>
+      <img src="images/keep_circulating.jpg" class="fade-in-image">
     </div>
   </div>
   <div id="pleaseWait" class="white-popup mfp-hide">
@@ -168,19 +626,18 @@ tippy.setDefaultProps({theme: 'mst', arrow: false});
 getQuote()
 
 $(document).ready(function() {
-  $('#theHost').ddslick();
-  $("#theCrow").ddslick();
-  $("#theTom").ddslick();
-  $("img.madsImage").imgCheckbox();
-  $("img.optionsImage").imgCheckbox();
+  $("img.madsImage").imgCheckbox({ graySelected: false, fadeCheckMark: true });
+  $("img.optionsImage").imgCheckbox({ graySelected: false, fadeCheckMark: true });
+  $("img.bwColor").imgCheckbox({ radio: true, canDeselect: true, graySelected: false, fadeCheckMark: true })
   tippy('[data-tippy-content]');
-/*   $.magnificPopup.open({
-      items: {
-        src: '#pleaseWait'
-      },
-      type: 'inline',
-      modal: true
-    }); */
+})
+
+$("#moviePoster").on("click", function(e) {
+  let trailer = $("#videoIframe").attr("src")
+  $("#videoIframe").css("visibility","visible").hide().fadeIn('1000');
+  $("#videoIframe").attr("src",trailer+"?autoplay=1")
+  $(this).removeClass("moviePoster")
+  $(this).css("z-index", 0)
 })
 
 $("#about").on("click", function() {
@@ -188,8 +645,20 @@ $("#about").on("click", function() {
       items: {
         src: '#aboutDiv'
       },
+      removalDelay: 250,
+      showCloseBtn: false,
       type: 'inline'
     });
+})
+
+$("#refreshDiv").on("click",function() {
+  $("#videoIframe").css("visibility","hidden")
+  $("#videoIframe").attr("src","")
+  $("#movieSign").click()
+})
+
+$(".closeDiv").on("click",function() {
+  $.magnificPopup.close();
 })
 
 $("#checkForUpdates").on("click", function() {
@@ -200,10 +669,12 @@ $('#tabContainer')
   .on('skeletabs:move', function(event, info) {
     getQuote()
   })
-  .skeletabs();
+  .skeletabs({keyboard: false});
 
 $("#refresh").on("click",function(e) {
   e.preventDefault()
+  $("#videoIframe").css("visibility","hidden")
+  $("#videoIframe").attr("src","")
   $("#movieSign").click()
 })
 
@@ -229,24 +700,46 @@ $("#movieSign").on("click",function(e){
     }
   })
 
-  data.host = $("#theHost").data('ddslick').selectedData.value
-  data.crow = $("#theCrow").data('ddslick').selectedData.value
-  data.tom = $("#theTom").data('ddslick').selectedData.value
+  $(".bwColor").each(function() {
+    if ($(this).parent().hasClass("imgChked")) {
+      let obj = {}
+      obj["bw"] = ($(this).attr("name") == "bw") ? 1: 0
+      options.push(obj)
+    }
+  })
+
+  data.host = $("#theHost").val()
+  data.crow = $("#theCrow").val()
+  data.tom = $("#theTom").val()
+  data.decade = $("#theDecade").val()
+  data.genre = $("#theGenre").val()
+  data.country = $("#theCountry").val()
+  data.characters = $("#theCharacters").val()
+  data.network = $("#theNetwork").val()
+  data.oscar = $("#theOscars").val()
   data.mads = mads
   data.options = options
+  data.actors = $("#theActors").val()
+  data.directors = $("#theDirectors").val()
+  data.producers = $("#theProducers").val()
+  data.lastMovie = lastMovie
   ipcRenderer.send('movie-request', data)
 })
 
-ipcRenderer.on('movie-sign', (event, data) => { 
-  console.log(data)
+ipcRenderer.on('movie-sign', (event, data) => {   
   if (data.rows == 0) { 
     $.magnificPopup.open({
       items: {
         src: '#noMovie'
       },
+      removalDelay: 250,
+      showCloseBtn: false,
       type: 'inline'
     });
   } else {
+    const trailers = data.movie.trailer.split("|")
+    $("#moviePoster").addClass("moviePoster")
+    lastMovie = data.movie.experiment
     let streams = 0
     if (data.movie.amazon != null) {
       $("#amazonTD").css("display","inline-block")
@@ -312,19 +805,73 @@ ipcRenderer.on('movie-sign', (event, data) => {
       $("#tubiTD").css("display","none")
       $("#tubiURL").attr("href","")
     }
-    $(".streamTD").css("width",100/(streams+1)+"%")
+    $(".streamTD").css("width",100/(streams)+"%")
+    if (streams < 1) {
+      $(".footer2").css({
+        "background-image": "url('./images/no_streams.png')",
+        "background-repeat": "no-repeat"
+      })
+    } else {
+      $(".footer2").css({
+        "background-image": "url('')",
+        "background-repeat": "no-repeat"
+      })
+    }
     $("#result").html("Experiment "+data.movie.experiment+": &quot;"+data.movie.movie+"&quot;")
-    $("#moviePoster").attr("src","epthumbs/"+data.movie.experiment+".jpg")
+    $("#moviePoster").attr("src","images/epthumbs/"+data.movie.experiment+".jpg")
+    $("#moviePoster").css("z-index", 1)
+    $("#videoIframe").attr("src","https://www.youtube.com/embed/"+trailers[(Math.floor(Math.random() * trailers.length))])
     $("#streamingServices").html(JSON.stringify(streams))
-    $("#summary").css({
-      'background-image': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./posters/" + data.movie.experiment + ".jpg')",
+    $("#summaryContainer").css({
+      'background-image': "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url('./images/posters/" + data.movie.experiment + ".jpg')",
       'background-position': 'center',
-      'background-repeat': 'no-repeat'
-  });
-    $("#summary").html(summaries[data.movie.experiment])
+      'background-repeat': 'no-repeat',
+      'background-size': '120% 120%'
+    });
+    if (data.movie.altTitle != null) {
+      $("#altTitle").html(data.movie.altTitle)
+      $("#altTitleParent").css('display','inline')
+      $("#altTitleParent").css('width','100%')
+    } else {
+      $("#altTitle").html("")
+      $("#altTitleParent").css('display','none')
+    }
+    if (data.movie.shorts != null) {
+      $("#shorts").html(data.movie.shorts.replace("|", "and"))
+      $("#shortsParent").css('display','inline')
+      $("#shortsParent").css('width','100%')
+    } else {
+      $("#shorts").html("")
+      $("#shortsParent").css('display','none')
+    }
+    if (data.movie.notes != null) {
+      $("#notes").html(data.movie.notes)
+      $("#notesParent").css('display','inline')
+      $("#notesParent").css('width','100%')
+    } else {
+      $("#notes").html("")
+      $("#notesParent").css('display','none')
+    }
+    $("#director").html(data.movie.director)
+    $("#writer").html(data.movie.writer)
+    $("#producer").html(data.movie.producer)
+    $("#actors").html(data.movie.actors)
+    $("#prodCo").html(data.movie.productionCompanies)
+    $("#year").html(data.movie.originalyear)   
+    $("#runtime").html(data.movie.runtime + " minutes")
+    $("#summary").html(data.movie.summary)
+
     $.magnificPopup.open({
       items: {
         src: '#movieSignPopup'
+      },
+      showCloseBtn: false,
+      removalDelay: 250,
+      callbacks: {
+        close: function() {
+          $("#videoIframe").css("visibility","hidden")
+          $("#videoIframe").attr("src","")
+        }
       },
       type: 'inline'
     });
@@ -336,7 +883,22 @@ ipcRenderer.on('hide-spinner', (event, data) => {
 })
 
 function getQuote() {
-  $("#quote").html(quotes[(Math.floor(Math.random() * quotes.length))])
+  let newQuote
+  let newButton
+
+  do {
+    newQuote = Math.floor(Math.random() * quotes.length)
+  } while (newQuote === lastQuote)
+
+  do {
+    newButton = Math.floor(Math.random() * buttonquotes.length)
+  } while (newButton === lastButton)
+
+  lastQuote = newQuote;
+  lastButton = newButton
+
+  $("#quote").html(quotes[newQuote])
+  $("#movieSign").val(buttonquotes[newButton])
 }
 </script>
 
