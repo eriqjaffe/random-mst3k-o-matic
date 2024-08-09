@@ -22,6 +22,8 @@
     const { ipcRenderer } = require('electron');
     require('./renderer.js')
     let lastMovie = 99999
+    let lastQuote = -1
+    let lastButton = -1
     //const trailerURL = "https://www.youtube.com/embed/pkTs2LAcBi0"
   </script>
 </head>
@@ -881,7 +883,22 @@ ipcRenderer.on('hide-spinner', (event, data) => {
 })
 
 function getQuote() {
-  $("#quote").html(quotes[(Math.floor(Math.random() * quotes.length))])
+  let newQuote
+  let newButton
+
+  do {
+    newQuote = Math.floor(Math.random() * quotes.length)
+  } while (newQuote === lastQuote)
+
+  do {
+    newButton = Math.floor(Math.random() * buttonquotes.length)
+  } while (newButton === lastButton)
+
+  lastQuote = newQuote;
+  lastButton = newButton
+
+  $("#quote").html(quotes[newQuote])
+  $("#movieSign").val(buttonquotes[newButton])
 }
 </script>
 
