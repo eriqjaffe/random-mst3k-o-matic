@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://imgur.com/ebztWu1.gif">
+  <img src="https://i.imgur.com/GX6vudJ.gif">
 </p>
 
 # The Random MST3K-O-Matic
