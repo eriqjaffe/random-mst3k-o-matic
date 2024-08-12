@@ -274,13 +274,15 @@ const createWindow = () => {
           label: 'Edit header quotes',
             click: async () => {
             await shell.openExternal(quotesPath)
-            }
+            },
+            visible: process.platform != 'darwin'
         },
         { 
           label: 'Edit button quotes',
             click: async () => {
             await shell.openExternal(buttonquotesPath)
-            }
+            },
+            visible: process.platform != 'darwin'
         }
         ]
     }
