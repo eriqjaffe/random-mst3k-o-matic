@@ -4,6 +4,9 @@
   "description": "The Random MST3K-O-Matic",
   "version": "0.2.0",
   "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
   "author": {
     "name": "Eriq Jaffe",
     "email": "eriqjaffe@gmail.com",
