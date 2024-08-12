@@ -11,7 +11,6 @@
   <script type="text/javascript" src="./scripts/jquery.magnific-popup.js"></script>
   <script type="text/javascript" src="./scripts/jquery.imgcheckbox.js"></script>
   <script type="text/javascript" src="./scripts/dd.min.js"></script>
-  <script type="text/javascript" src="./quotes.js"></script>
   <script src="./scripts/popper.min.js"></script>
   <script src="./scripts/tippy-bundle.umd.js"></script>
   <link href="./scripts/matic.css" rel="stylesheet" type="text/css">
@@ -623,7 +622,7 @@
 
 tippy.setDefaultProps({theme: 'mst', arrow: false});
 
-getQuote()
+ipcRenderer.send("get-quotes",{"quote": $("#quote").html(), "buttonquote": $("#movieSign").val()})
 
 $(document).ready(function() {
   $("img.madsImage").imgCheckbox({ graySelected: false, fadeCheckMark: true });
@@ -667,7 +666,7 @@ $("#checkForUpdates").on("click", function() {
 
 $('#tabContainer')
   .on('skeletabs:move', function(event, info) {
-    getQuote()
+    ipcRenderer.send("get-quotes",{"quote": $("#quote").html(), "buttonquote": $("#movieSign").val()})
   })
   .skeletabs({keyboard: false});
 
@@ -882,24 +881,10 @@ ipcRenderer.on('hide-spinner', (event, data) => {
   $.magnificPopup.close();
 })
 
-function getQuote() {
-  let newQuote
-  let newButton
-
-  do {
-    newQuote = Math.floor(Math.random() * quotes.length)
-  } while (newQuote === lastQuote)
-
-  do {
-    newButton = Math.floor(Math.random() * buttonquotes.length)
-  } while (newButton === lastButton)
-
-  lastQuote = newQuote;
-  lastButton = newButton
-
-  $("#quote").html(quotes[newQuote])
-  $("#movieSign").val(buttonquotes[newButton])
-}
+ipcRenderer.on('get-quote-response', (event, data) => {
+  $("#quote").html(data.quote)
+  $("#movieSign").val(data.buttonquote)
+})
 </script>
 
 </html>
