@@ -32,6 +32,11 @@ ipcMain.on('set-prefs', (event, arg) => {
   store.set(arg.pref, arg.val)
 })
 
+ipcMain.on('get-prefs', (event, arg) => {
+  let out = store.get("titlecard","epthumbs")
+  event.sender.send('get-prefs', out)
+})
+
 ipcMain.on('check-for-update', (event, arg) => {
 	versionCheck(updateOptions, function (error, update) { // callback function
 		if (error) {

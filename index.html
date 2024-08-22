@@ -658,6 +658,15 @@ $(document).ready(function() {
   $("img.optionsImage").imgCheckbox({ graySelected: false, fadeCheckMark: true });
   $("img.bwColor").imgCheckbox({ radio: true, canDeselect: true, graySelected: false, fadeCheckMark: true })
   tippy('[data-tippy-content]');
+  ipcRenderer.send("get-prefs", null)
+})
+
+ipcRenderer.on("get-prefs", (event, data) => {
+  titlecard = data
+  console.log(titlecard)
+  let foo = $('#titlecardPref').msdropdown()
+  if (data = "epthumbs") {}
+  $("#titlecardPref").val(data).prop('selected', true)
 })
 
 $("#titlecardPref").on("change", function(e) {
