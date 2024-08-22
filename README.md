@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="https://imgur.com/ebztWu1.gif">
+  <img src="https://i.imgur.com/GX6vudJ.gif">
 </p>
 
 # The Random MST3K-O-Matic
 
-Can't decide which episode to watch? Let this determine your (hands of) fate!  Give the app as many (or as few) criteria as you wish and the random number generator will pick an episode for you, as well as provide links to (legal) sources for streaming, renting, or puchasing the episode, if any are available.
+Can't decide which episode to watch? Let this determine your (hands of) fate!  Give the app as many (or as few) criteria as you wish and the random number generator will pick an episode for you, as well as provide links to (legal) sources for streaming, renting, or purchasing the episode, if any are available.
 
 The simplest thing to do is just grab a pre-compiled binary from the "[releases](https://github.com/eriqjaffe/random-mst3k-o-matic/releases)" section.  Binaries are available for Windows, macOS and (RedHat / Debian) Linux.
 

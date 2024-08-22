@@ -6,10 +6,18 @@ const initSqlJs = require("sql.js/dist/sql-wasm.js");
 const download = require("download");
 const versionCheck = require('github-version-checker');
 const pkg = require('./package.json');
+const chokidar = require('chokidar')
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
 let db;
 let dbBuffer;
+let quotesPath;
+let quotes;
+let buttonquotesPath;
+let buttonquotes;
 let mainWindow
+
+let chokidarQuotes;
+let chokidarButtonQuotes;
 
 const updateOptions = {
 	repo: 'random-mst3k-o-matic',
@@ -121,6 +129,54 @@ ipcMain.on("movie-request", (event, arg) => {
   });
 });
 
+ipcMain.on("get-quotes", (event, arg) => {
+  let json = {}
+  if (quotes == undefined || quotes == null) {
+    if (app.isPackaged) {
+      quotesPath = path.join(process.resourcesPath, 'db', 'quotes.txt')
+    } else {
+      quotesPath = path.join(app.getAppPath(), "db", "quotes.txt")
+    }
+    chokidarQuotes = chokidar.watch(quotesPath, {
+      ignored: /(^|[\/\\])\../, // ignore dotfiles
+      persistent: true
+    });
+    chokidarQuotes.on('ready', () => {})
+    chokidarQuotes
+      .on('change', path => quotes = fs.readFileSync(quotesPath, 'utf8'))
+  }
+  if (buttonquotes == undefined || buttonquotes == null) {
+    if (app.isPackaged) {
+      buttonquotesPath = path.join(process.resourcesPath, 'db', 'buttonquotes.txt')
+    } else {
+      buttonquotesPath = path.join(app.getAppPath(), "db", "buttonquotes.txt")
+    }
+    chokidarButtonQuotes = chokidar.watch(buttonquotesPath, {
+      ignored: /(^|[\/\\])\../, // ignore dotfiles
+      persistent: true
+    });
+    chokidarButtonQuotes.on('ready', () => {})
+    chokidarButtonQuotes
+      .on('change', path => buttonquotes = fs.readFileSync(buttonquotesPath, 'utf8'))
+  }
+  quotes = fs.readFileSync(quotesPath, 'utf8');
+  buttonquotes = fs.readFileSync(buttonquotesPath, 'utf8');
+  const normalizedQuotes = quotes.replace(/\r\n|\r/g, '\n');
+  const quoteLines = normalizedQuotes.split('\n');
+  const normalizedButtons = buttonquotes.replace(/\r\n|\r/g, '\n');
+  const buttonLines = normalizedButtons.split('\n');
+  let newQuote;
+  let newButton;
+  do {
+    newQuote = quoteLines[Math.floor(Math.random()*quoteLines.length)]
+  } while (newQuote.length < 1)
+  do {
+    newButton = buttonLines[Math.floor(Math.random()*buttonLines.length)]
+  } while (newButton.length < 1)
+  json.quote = newQuote;
+  json.buttonquote = newButton;
+  event.sender.send('get-quote-response',json)
+})
 const createWindow = () => {
   // Create the browser window.
   mainWindow = new BrowserWindow({
@@ -129,7 +185,8 @@ const createWindow = () => {
     icon: __dirname + "/images/icon.ico",
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: false,
+      //preload: path.join(__dirname, 'preload.js')
     },
   });
 
@@ -208,9 +265,24 @@ const createWindow = () => {
             await shell.openExternal('https://github.com/eriqjaffe/random-mst3k-o-matic')
             }
         },
+        { type: 'separator' },
         {
           click: () => mainWindow.webContents.send('update','click'),
           label: 'Check For Updates',
+        },
+        { 
+          label: 'Edit header quotes',
+            click: async () => {
+            await shell.openExternal(quotesPath)
+            },
+            visible: process.platform != 'darwin'
+        },
+        { 
+          label: 'Edit button quotes',
+            click: async () => {
+            await shell.openExternal(buttonquotesPath)
+            },
+            visible: process.platform != 'darwin'
         }
         ]
     }
