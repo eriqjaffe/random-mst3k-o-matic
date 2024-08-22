@@ -8,6 +8,7 @@ const versionCheck = require('github-version-checker');
 const pkg = require('./package.json');
 const chokidar = require('chokidar')
 const sleep = (waitTimeInMs) => new Promise(resolve => setTimeout(resolve, waitTimeInMs));
+const Store = require('electron-store')
 let db;
 let dbBuffer;
 let quotesPath;
@@ -19,11 +20,17 @@ let mainWindow
 let chokidarQuotes;
 let chokidarButtonQuotes;
 
+const store = new Store()
+
 const updateOptions = {
 	repo: 'random-mst3k-o-matic',
 	owner: 'eriqjaffe',
 	currentVersion: pkg.version
 };
+
+ipcMain.on('set-prefs', (event, arg) => {
+  store.set(arg.pref, arg.val)
+})
 
 ipcMain.on('check-for-update', (event, arg) => {
 	versionCheck(updateOptions, function (error, update) { // callback function
@@ -59,6 +66,7 @@ ipcMain.on("movie-request", (event, arg) => {
   sql += "e.host " + arg.host + " ";
   sql += "and e.crow " + arg.crow + " ";
   sql += "and e.tom " + arg.tom + " ";
+  sql += "and e.gpc " + arg.gpc + " ";
   sql += "and e.network " + arg.network + " ";
   sql += "and e.oscar " + arg.oscar + " ";
 
@@ -211,6 +219,16 @@ const createWindow = () => {
           process.platform === 'darwin' ? { role: 'close' } : { role: 'quit' }
         ]
     },
+    {
+		  label: 'Edit',
+		  submenu: [
+			{
+				click: () => mainWindow.webContents.send('prefs','click'),
+				accelerator: process.platform === 'darwin' ? 'Cmd+Shift+P' : 'Control+Shift+P',
+				label: 'Edit Preferences',
+			}
+		  ]
+	  },
     {
         label: 'View',
         submenu: [

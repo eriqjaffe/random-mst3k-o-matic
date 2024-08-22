@@ -7,3 +7,7 @@ ipcRenderer.on('about', (event, data) => {
 ipcRenderer.on('update', (event, data) => {
     $("#checkForUpdates").trigger("click")
 });
+
+ipcRenderer.on('prefs', (event, data) => {
+    $("#prefsBtn").trigger("click")
+})

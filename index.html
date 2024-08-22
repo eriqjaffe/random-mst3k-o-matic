@@ -23,7 +23,7 @@
     let lastMovie = 99999
     let lastQuote = -1
     let lastButton = -1
-    //const trailerURL = "https://www.youtube.com/embed/pkTs2LAcBi0"
+    let titlecards = "epthumbs"
   </script>
 </head>
 
@@ -74,6 +74,19 @@
               <option value="LIKE '%cm%'" data-image="images/characters/conor.jpg" data-description="Seasons 13-Present">Conor McGiffin</option>
             </select>
           </td></tr>
+          <tr><td colspan="3">&nbsp;</td></tr>
+          <tr>
+            <td colspan="3" class="aboveSelect">Choose A Gypsy/GPC/GPC2:<br/>
+              <select id="theGPC" is="ms-dropdown" data-visible-rows="5">
+                <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option value="LIKE '%jw%'" data-image="images/characters/josh.jpg" data-description="Season K">Josh Weinstein</option>
+                <option value="LIKE '%jm%" data-image="images/characters/jim.jpg" data-description="Seasons 1-8">Jim Mallon</option>
+                <option value="LIKE '%pb%'" data-image="images/characters/patrick.jpg" data-description="Seasons 8-10">Patrick Brantseg</option>
+                <option value="LIKE '%rh%'" data-image="images/characters/rebecca.jpg" data-description="Seasons 11-Present">Rebecca Hanson</option>
+                <option value="LIKE '%yf'" data-image="images/characters/yvonne.jpg" data-description="Seasons 13-Present">Yvonne Freese</option>
+              </select>
+            </td>
+          </tr>
           </table>
       </div>
       <div class="skltbs-panel">
@@ -606,6 +619,21 @@
       <img src="images/keep_circulating.jpg" class="fade-in-image">
     </div>
   </div>
+  <div id="prefs" class="white-popup mfp-hide">
+    <div class="closeDiv"></div>
+    <div style="width:100%; text-align:center;">	
+			<span class="header" style="font-size:2em!important;">&nbsp;</span><div id="currentVersion"></div>
+      <table style="width:100%;">
+        <tr>
+          <td class="aboveSelect">Title Card Format:<br/>
+          <select id="titlecardPref" is="ms-dropdown">
+            <option value="epthumbs" data-image="images/epthumbs/512.jpg" data-description="Screenshots from the episodes.">Screenshots</option>
+            <option value="titlecards" data-image="images/titlecards/512.jpg" data-description="Title cards as used on The Gizmoplex">Gizmoplex Style</option>
+          </select>
+        </tr>
+      </table>
+		</div>
+  </div>
   <div id="pleaseWait" class="white-popup mfp-hide">
     <h1 style="text-align:center; color:black;">Communicating With Deep 13, Please Wait...</h1>
     <div style="position:absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;">
@@ -617,6 +645,7 @@
   </div>
   <input type="button" id="about" style="display:none;">
   <input type="button" id="checkForUpdates" style="display:none;">
+  <input type="button" id="prefsBtn" style="display:none;">
 </body>
 <script>
 
@@ -631,6 +660,11 @@ $(document).ready(function() {
   tippy('[data-tippy-content]');
 })
 
+$("#titlecardPref").on("change", function(e) {
+  titlecards = $(this).val()
+  ipcRenderer.send("set-prefs",{pref: "titlecard", val: $(this).val()})
+})
+
 $("#moviePoster").on("click", function(e) {
   let trailer = $("#videoIframe").attr("src")
   $("#videoIframe").css("visibility","visible").hide().fadeIn('1000');
@@ -643,6 +677,17 @@ $("#about").on("click", function() {
   $.magnificPopup.open({
       items: {
         src: '#aboutDiv'
+      },
+      removalDelay: 250,
+      showCloseBtn: false,
+      type: 'inline'
+    });
+})
+
+$("#prefsBtn").on("click", function() {
+  $.magnificPopup.open({
+      items: {
+        src: '#prefs'
       },
       removalDelay: 250,
       showCloseBtn: false,
@@ -710,6 +755,7 @@ $("#movieSign").on("click",function(e){
   data.host = $("#theHost").val()
   data.crow = $("#theCrow").val()
   data.tom = $("#theTom").val()
+  data.gpc = $("#theGPC").val()
   data.decade = $("#theDecade").val()
   data.genre = $("#theGenre").val()
   data.country = $("#theCountry").val()
@@ -817,7 +863,7 @@ ipcRenderer.on('movie-sign', (event, data) => {
       })
     }
     $("#result").html("Experiment "+data.movie.experiment+": &quot;"+data.movie.movie+"&quot;")
-    $("#moviePoster").attr("src","images/epthumbs/"+data.movie.experiment+".jpg")
+    $("#moviePoster").attr("src","images/"+titlecards+"/"+data.movie.experiment+".jpg")
     $("#moviePoster").css("z-index", 1)
     $("#videoIframe").attr("src","https://www.youtube.com/embed/"+trailers[(Math.floor(Math.random() * trailers.length))])
     $("#streamingServices").html(JSON.stringify(streams))

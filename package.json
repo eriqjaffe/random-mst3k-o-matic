@@ -21,6 +21,7 @@
   "dependencies": {
     "chokidar": "^3.6.0",
     "download": "^8.0.0",
+    "electron-store": "8.2.0",
     "github-version-checker": "^2.3.0",
     "sql.js": "^1.10.3"
   },
