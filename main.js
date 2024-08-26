@@ -36,6 +36,9 @@ ipcMain.on('get-prefs', (event, arg) => {
   let json = {}
   json.titlecard = store.get("titlecard",0)
   json.checkForUpdates = store.get("checkForUpdates",false)
+  json.theHost = store.get("theHost",0)
+  json.theCrow = store.get("theCrow",0)
+  json.theTom = store.get("theTom",0)
   event.sender.send('get-prefs', json)
 })
 

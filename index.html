@@ -628,12 +628,39 @@
           <td class="aboveSelect">Check For Updates on Startup:<br/>
             <img class="prefImage" name="checkForUpdates" id="checkForUpdatesPref" src="images/check_for_updates.jpg">
           </td>
-          <td class="aboveSelect">Title Card Format:<br/>
+          <td colspan="2" class="aboveSelect">Title Card Format:<br/>
           <select id="titlecardPref" is="ms-dropdown">
             <option value="epthumbs" data-image="images/epthumbs/512.jpg" data-description="Screenshots from the episodes.">Screenshots</option>
             <option value="titlecards" data-image="images/titlecards/512.jpg" data-description="Title cards as used on The Gizmoplex">Gizmoplex Style</option>
           </select>
         </tr>
+        <tr><td class="aboveSelect">Choose A Default Host:<br/>
+            <select class="crewPref" id="favHost" is="ms-dropdown" data-visible-rows="4" data-pref="theHost">
+              <option value="0" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+              <option value="1" data-image="images/characters/joel.jpg" data-description="&quot;Joel Robinson&quot;<br/>Seasons K-5">Joel Hodgson</option>
+              <option value="2" data-image="images/characters/mike.jpg" data-description="&quot;Mike Nelson&quot;<br/>Seasons 5-10">Mike Nelson</option>
+              <option value="3" data-image="images/characters/jonah.jpg" data-description="&quot;Jonah Heston&quot;<br/>Seasons 11-Present">Jonah Ray</option>
+              <option value="4" data-image="images/characters/emily.jpg" data-description="&quot;Emily Connor&quot;<br/>Season 13-Present">Emily Marsh</option>
+            </select>
+          </td>
+          <td class="aboveSelect">Choose A Default Crow:<br/>
+            <select class="crewPref" id="favCrow" is="ms-dropdown" data-visible-rows="4" data-pref="theCrow">
+              <option value="0" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+              <option value="1" data-image="images/characters/josh.jpg" data-description="Season K">Josh Weinstein</option>
+              <option value="2" data-image="images/characters/trace.jpg" data-description="Seasons K-7">Trace Beaulieu</option>
+              <option value="3" data-image="images/characters/bill.jpg" data-description="Seasons 8-10">Bill Corbett</option>
+              <option value="4" data-image="images/characters/hampton.jpg" data-description="Seasons 11-Present">Hampton Yount</option>
+              <option value="5" data-image="images/characters/kelsey.jpg" data-description="Seasons 13-Present">Kelsey Ann Brady</option>
+            </select>
+          </td><td class="aboveSelect">Choose A Default Tom Servo:<br/>
+            <select class="crewPref" id="favTom" is="ms-dropdown" data-visible-rows="4" data-pref="theTom">
+              <option value="0" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+              <option value="1" data-image="images/characters/josh.jpg" data-description="Seasons K-1,13">Josh Weinstein</option>
+              <option value="2" data-image="images/characters/kevin.jpg" data-description="Seasons 2-10">Kevin Murphy</option>
+              <option value="3" data-image="images/characters/baron.jpg" data-description="Seasons 11-Present">Baron Vaughn</option>
+              <option value="4" data-image="images/characters/conor.jpg" data-description="Seasons 13-Present">Conor McGiffin</option>
+            </select>
+          </td></tr>
       </table>
 		</div>
   </div>
@@ -672,6 +699,18 @@ $(document).ready(function() {
 })
 
 ipcRenderer.on("get-prefs", (event, data) => {
+  let theHost = document.getElementById("theHost").msDropdown
+  let favHost = document.getElementById("favHost").msDropdown
+  theHost.selectedIndex = data.theHost
+  favHost.selectedIndex = data.theHost
+  let theCrow = document.getElementById("theCrow").msDropdown
+  let favCrow = document.getElementById("favCrow").msDropdown
+  theCrow.selectedIndex = data.theCrow
+  favCrow.selectedIndex = data.theCrow
+  let theTom = document.getElementById("theTom").msDropdown
+  let favTom = document.getElementById("favTom").msDropdown
+  theTom.selectedIndex = data.theTom
+  favTom.selectedIndex = data.theTom
   let titlecardPref = document.getElementById("titlecardPref").msDropdown
   titlecardPref.selectedIndex = data.titlecard
   switch (data.titlecard) {
@@ -693,16 +732,17 @@ ipcRenderer.on("get-prefs", (event, data) => {
   }
 })
 
-$("#checkForUpdatesPref")
+$(".crewPref").on("change", function(e) {
+  console.log($(this).val(), $(this).data("pref"))
+  ipcRenderer.send("set-prefs",{pref: $(this).data("pref"), val: parseInt($(this).val())})
+  let pref = document.getElementById($(this).data("pref")).msDropdown
+  pref.selectedIndex = parseInt($(this).val())
+})
 
 $("#titlecardPref").on("change", function(e) {
   titlecards = $(this).val()
   let tmp = document.getElementById("titlecardPref").msDropdown
   ipcRenderer.send("set-prefs",{pref: "titlecard", val: tmp.selectedIndex})
-})
-
-$("#checkForUpdates").on("change", function(e) {
-
 })
 
 $("#moviePoster").on("click", function(e) {
