@@ -625,6 +625,9 @@
 			<span class="header" style="font-size:2em!important;">&nbsp;</span><div id="currentVersion"></div>
       <table style="width:100%;">
         <tr>
+          <td class="aboveSelect">Check For Updates on Startup:<br/>
+            <img class="prefImage" name="checkForUpdates" id="checkForUpdatesPref" src="images/check_for_updates.jpg">
+          </td>
           <td class="aboveSelect">Title Card Format:<br/>
           <select id="titlecardPref" is="ms-dropdown">
             <option value="epthumbs" data-image="images/epthumbs/512.jpg" data-description="Screenshots from the episodes.">Screenshots</option>
@@ -654,6 +657,13 @@ tippy.setDefaultProps({theme: 'mst', arrow: false});
 ipcRenderer.send("get-quotes",{"quote": $("#quote").html(), "buttonquote": $("#movieSign").val()})
 
 $(document).ready(function() {
+  $("#checkForUpdatesPref").imgCheckbox({ 
+    graySelected: false, 
+    fadeCheckMark: true,
+    onclick: function() {
+      ipcRenderer.send("set-prefs",{pref: "checkForUpdates", val: $("#checkForUpdatesPref").parent().hasClass("imgChked")})
+    }
+  })
   $("img.madsImage").imgCheckbox({ graySelected: false, fadeCheckMark: true });
   $("img.optionsImage").imgCheckbox({ graySelected: false, fadeCheckMark: true });
   $("img.bwColor").imgCheckbox({ radio: true, canDeselect: true, graySelected: false, fadeCheckMark: true })
@@ -662,16 +672,37 @@ $(document).ready(function() {
 })
 
 ipcRenderer.on("get-prefs", (event, data) => {
-  titlecard = data
-  console.log(titlecard)
-  let foo = $('#titlecardPref').msdropdown()
-  if (data = "epthumbs") {}
-  $("#titlecardPref").val(data).prop('selected', true)
+  let titlecardPref = document.getElementById("titlecardPref").msDropdown
+  titlecardPref.selectedIndex = data.titlecard
+  switch (data.titlecard) {
+    case 0:
+      titlecards = "epthumbs"
+      break;
+    case 1:
+      titlecards = "titlecards"
+      break;
+    default:
+      titlecards = "epthumbs"
+      break;
+  }
+  if (data.checkForUpdates == true) {
+    $("#checkForUpdatesPref").select()
+    ipcRenderer.send('check-for-update', {type:"automatic"})
+  } else {
+    $("#checkForUpdatesPref").deselect()
+  }
 })
+
+$("#checkForUpdatesPref")
 
 $("#titlecardPref").on("change", function(e) {
   titlecards = $(this).val()
-  ipcRenderer.send("set-prefs",{pref: "titlecard", val: $(this).val()})
+  let tmp = document.getElementById("titlecardPref").msDropdown
+  ipcRenderer.send("set-prefs",{pref: "titlecard", val: tmp.selectedIndex})
+})
+
+$("#checkForUpdates").on("change", function(e) {
+
 })
 
 $("#moviePoster").on("click", function(e) {

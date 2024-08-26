@@ -33,8 +33,10 @@ ipcMain.on('set-prefs', (event, arg) => {
 })
 
 ipcMain.on('get-prefs', (event, arg) => {
-  let out = store.get("titlecard","epthumbs")
-  event.sender.send('get-prefs', out)
+  let json = {}
+  json.titlecard = store.get("titlecard",0)
+  json.checkForUpdates = store.get("checkForUpdates",false)
+  event.sender.send('get-prefs', json)
 })
 
 ipcMain.on('check-for-update', (event, arg) => {
