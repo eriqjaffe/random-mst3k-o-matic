@@ -2,7 +2,7 @@
   "name": "random-mst3k-o-matic",
   "productName": "The Random MST3K-O-Matic",
   "description": "The Random MST3K-O-Matic",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
