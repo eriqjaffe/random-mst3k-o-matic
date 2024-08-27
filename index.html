@@ -733,9 +733,13 @@ ipcRenderer.on("update-available", (event, data) => {
       title: "Version "+data.newVersion+" is now available",
       text: "Click 'OK' to go to the releases page.",
       icon: 'success',
-      confirmButtonText: 'OK',
+      iconColor: "#228B22",
+      confirmButtonText: "Well OK",
+      cancelButtonColor: "#f0f0f0",
       cancelButtonText: "Cancel",
-      showCancelButton: true
+      showCancelButton: true,
+      color: "#ffffff",
+      background: "#3b3366"
     }).then((result) => {
       if (result.isConfirmed) {
         window.open(data.url)
@@ -746,7 +750,10 @@ ipcRenderer.on("update-available", (event, data) => {
       title: "Current version: "+data.currentVersion,
       text: "There is no update available at this time.",
       icon: 'error',
-      confirmButtonText: 'Cool'
+      iconColor: "#8B0000",
+      confirmButtonText: "<span style='color:white; font-weight:bold;'>OK<span>",
+      color: "#ffffff",
+      background: '#3b3366'
     })
   }
 })
