@@ -51,21 +51,10 @@ ipcMain.on('check-for-update', (event, arg) => {
 			});	
 		}
 		if (update) { // print some update info if an update is available
-			dialog.showMessageBox(null, {
-				type: 'question',
-				message: "Current version: "+pkg.version+"\r\n\r\nVersion "+update.name+" is now availble.  Click 'OK' to go to the releases page.",
-				buttons: ['OK', 'Cancel'],
-			}).then(result => {
-				if (result.response === 0) {
-					shell.openExternal(update.url)
-				}
-			})	
+      event.sender.send('update-available',{update: true, currentVersion: pkg.version, newVersion: update.name, url: update.url})
 		} else {
 			if (arg.type == "manual") {
-				dialog.showMessageBox(null, {
-					type: 'info',
-					message: "Current version: "+pkg.version+"\r\n\r\nThere is no update available at this time."
-				});	
+        event.sender.send('update-available',{update: false, currentVersion: pkg.version})
 			}
 		}
 	});

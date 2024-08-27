@@ -23,7 +23,8 @@
     "download": "^8.0.0",
     "electron-store": "8.2.0",
     "github-version-checker": "^2.3.0",
-    "sql.js": "^1.10.3"
+    "sql.js": "^1.10.3",
+    "sweetalert2": "^11.12.4"
   },
   "build": {
     "appId": "com.ootputilities.random-mst3k-o-matic",

@@ -19,6 +19,7 @@
   <link href='./scripts/dd.css' rel='stylesheet' type='text/css'>
   <script>
     const { ipcRenderer } = require('electron');
+    const Swal = require('sweetalert2')
     require('./renderer.js')
     let lastMovie = 99999
     let lastQuote = -1
@@ -723,6 +724,30 @@ ipcRenderer.on("get-prefs", (event, data) => {
     ipcRenderer.send('check-for-update', {type:"automatic"})
   } else {
     $("#checkForUpdatesPref").deselect()
+  }
+})
+
+ipcRenderer.on("update-available", (event, data) => {
+  if (data.update == true) {
+    Swal.fire({
+      title: "Version "+data.newVersion+" is now available",
+      text: "Click 'OK' to go to the releases page.",
+      icon: 'success',
+      confirmButtonText: 'OK',
+      cancelButtonText: "Cancel",
+      showCancelButton: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.open(data.url)
+      }
+    });
+  } else {
+    Swal.fire({
+      title: "Current version: "+data.currentVersion,
+      text: "There is no update available at this time.",
+      icon: 'error',
+      confirmButtonText: 'Cool'
+    })
   }
 })
 
