@@ -727,7 +727,6 @@ ipcRenderer.on("get-prefs", (event, data) => {
 })
 
 $(".crewPref").on("change", function(e) {
-  console.log($(this).val(), $(this).data("pref"))
   ipcRenderer.send("set-prefs",{pref: $(this).data("pref"), val: parseInt($(this).val())})
   let pref = document.getElementById($(this).data("pref")).msDropdown
   pref.selectedIndex = parseInt($(this).val())

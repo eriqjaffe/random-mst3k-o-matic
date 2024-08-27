@@ -112,7 +112,7 @@ ipcMain.on("movie-request", (event, arg) => {
     sql += "and e.experiment in (select experiment from characters where name = '"+arg.characters+"') "
   } 
 
-  console.log(sql)
+  //console.log(sql)
   initSqlJs().then(function (SQL) {
     db = new SQL.Database(dbBuffer);
     const result = db.exec(sql + " ORDER BY RANDOM() LIMIT 2");
