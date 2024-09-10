@@ -617,7 +617,8 @@
       This app was created because my wife and I frequently sit down to watch an episode of Mystery Science Theater 3000, but can't decide which episode we want to watch.<br/><br/>
       So I decided to let a random number generator decide <s>who lives and who dies</s> our entertainment fate (not to be confused with the Hands of Fate).  It's basically a fancy dartboard.<br/><br/>
       I am not affiliated with the creators and/or rights holders of Mystery Science Theater 3000, Netflix, The Gizmoplex, Rifftrax, Shout Factory, Deep 13, Best Brains, Alternaversal, The Gizmonics Institute, the producers and/or rights holders of any of the movies or anybody or anything else who has any official capacity with the show that I may be forgetting or unaware of.<br/><br/>
-      <img src="images/keep_circulating.jpg" class="fade-in-image">
+      Thanks to /u/Xbnh for use of their "missing episode" title cards!<br/><br/>
+      <img src="images/keep_circulating.jpg" class="fade-in-image" style="height:375px;">
     </div>
   </div>
   <div id="prefs" class="white-popup mfp-hide">
@@ -732,14 +733,16 @@ ipcRenderer.on("update-available", (event, data) => {
     Swal.fire({
       title: "Version "+data.newVersion+" is now available",
       text: "Click 'OK' to go to the releases page.",
-      icon: 'success',
-      iconColor: "#228B22",
-      confirmButtonText: "Well OK",
+      iconHtml: '<img src="images/it_stinks.png" style="height:100px;">',
+      confirmButtonText: "OK",
       cancelButtonColor: "#f0f0f0",
       cancelButtonText: "Cancel",
       showCancelButton: true,
       color: "#ffffff",
-      background: "#3b3366"
+      background: "#3b3366",
+      customClass: {
+        icon: 'no-border'
+      }
     }).then((result) => {
       if (result.isConfirmed) {
         window.open(data.url)
@@ -749,11 +752,13 @@ ipcRenderer.on("update-available", (event, data) => {
     Swal.fire({
       title: "Current version: "+data.currentVersion,
       text: "There is no update available at this time.",
-      icon: 'error',
-      iconColor: "#8B0000",
-      confirmButtonText: "<span style='color:white; font-weight:bold;'>OK<span>",
+      iconHtml: '<img src="images/coily.png" style="height:100px;">',
       color: "#ffffff",
-      background: '#3b3366'
+      confirmButtonText: "OK",
+      background: '#3b3366',
+      customClass: {
+        icon: 'no-border'
+      }
     })
   }
 })

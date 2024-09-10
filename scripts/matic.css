@@ -304,3 +304,15 @@ h1, h2, h3 {
     font-weight:bold !important;
     font-family: 'Raleway', sans-serif !important;
   }
+
+  .no-border {
+    border: 0;
+  }
+
+  .fade-in-image-fast {
+    animation: fadeIn 1s;
+    -webkit-animation: fadeIn 1s;
+    -moz-animation: fadeIn 1s;
+    -o-animation: fadeIn 1s;
+    -ms-animation: fadeIn 1s;
+  }
