@@ -2,7 +2,7 @@
   "name": "random-mst3k-o-matic",
   "productName": "The Random MST3K-O-Matic",
   "description": "The Random MST3K-O-Matic",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
@@ -21,8 +21,10 @@
   "dependencies": {
     "chokidar": "^3.6.0",
     "download": "^8.0.0",
+    "electron-store": "8.2.0",
     "github-version-checker": "^2.3.0",
-    "sql.js": "^1.10.3"
+    "sql.js": "^1.10.3",
+    "sweetalert2": "^11.12.4"
   },
   "build": {
     "appId": "com.ootputilities.random-mst3k-o-matic",

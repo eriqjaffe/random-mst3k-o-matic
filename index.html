@@ -19,11 +19,12 @@
   <link href='./scripts/dd.css' rel='stylesheet' type='text/css'>
   <script>
     const { ipcRenderer } = require('electron');
+    const Swal = require('sweetalert2')
     require('./renderer.js')
     let lastMovie = 99999
     let lastQuote = -1
     let lastButton = -1
-    //const trailerURL = "https://www.youtube.com/embed/pkTs2LAcBi0"
+    let titlecards = "epthumbs"
   </script>
 </head>
 
@@ -74,6 +75,19 @@
               <option value="LIKE '%cm%'" data-image="images/characters/conor.jpg" data-description="Seasons 13-Present">Conor McGiffin</option>
             </select>
           </td></tr>
+          <tr><td colspan="3">&nbsp;</td></tr>
+          <tr>
+            <td colspan="3" class="aboveSelect">Choose A Gypsy/GPC/GPC2:<br/>
+              <select id="theGPC" is="ms-dropdown" data-visible-rows="5">
+                <option value="IS NOT NULL" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+                <option value="LIKE '%jw%'" data-image="images/characters/josh.jpg" data-description="Season K">Josh Weinstein</option>
+                <option value="LIKE '%jm%" data-image="images/characters/jim.jpg" data-description="Seasons 1-8">Jim Mallon</option>
+                <option value="LIKE '%pb%'" data-image="images/characters/patrick.jpg" data-description="Seasons 8-10">Patrick Brantseg</option>
+                <option value="LIKE '%rh%'" data-image="images/characters/rebecca.jpg" data-description="Seasons 11-Present">Rebecca Hanson</option>
+                <option value="LIKE '%yf'" data-image="images/characters/yvonne.jpg" data-description="Seasons 13-Present">Yvonne Freese</option>
+              </select>
+            </td>
+          </tr>
           </table>
       </div>
       <div class="skltbs-panel">
@@ -603,8 +617,59 @@
       This app was created because my wife and I frequently sit down to watch an episode of Mystery Science Theater 3000, but can't decide which episode we want to watch.<br/><br/>
       So I decided to let a random number generator decide <s>who lives and who dies</s> our entertainment fate (not to be confused with the Hands of Fate).  It's basically a fancy dartboard.<br/><br/>
       I am not affiliated with the creators and/or rights holders of Mystery Science Theater 3000, Netflix, The Gizmoplex, Rifftrax, Shout Factory, Deep 13, Best Brains, Alternaversal, The Gizmonics Institute, the producers and/or rights holders of any of the movies or anybody or anything else who has any official capacity with the show that I may be forgetting or unaware of.<br/><br/>
-      <img src="images/keep_circulating.jpg" class="fade-in-image">
+      Thanks to /u/Xbnh for use of their "missing episode" title cards!<br/><br/>
+      <img src="images/keep_circulating.jpg" class="fade-in-image" style="height:375px;">
     </div>
+  </div>
+  <div id="prefs" class="white-popup mfp-hide">
+    <div class="closeDiv"></div>
+    <div style="width:100%; text-align:center;">	
+			<span class="header" style="font-size:2em!important;">&nbsp;</span><div id="currentVersion"></div>
+      <table style="width:100%;">
+        <tr><td colspan="3">&nbsp;</td></tr>
+        <tr><td class="aboveSelect">Choose A Default Host:<br/>
+            <select class="crewPref" id="favHost" is="ms-dropdown" data-visible-rows="4" data-pref="theHost">
+              <option value="0" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+              <option value="1" data-image="images/characters/joel.jpg" data-description="&quot;Joel Robinson&quot;<br/>Seasons K-5">Joel Hodgson</option>
+              <option value="2" data-image="images/characters/mike.jpg" data-description="&quot;Mike Nelson&quot;<br/>Seasons 5-10">Mike Nelson</option>
+              <option value="3" data-image="images/characters/jonah.jpg" data-description="&quot;Jonah Heston&quot;<br/>Seasons 11-Present">Jonah Ray</option>
+              <option value="4" data-image="images/characters/emily.jpg" data-description="&quot;Emily Connor&quot;<br/>Season 13-Present">Emily Marsh</option>
+            </select>
+          </td>
+          <td class="aboveSelect">Choose A Default Crow:<br/>
+            <select class="crewPref" id="favCrow" is="ms-dropdown" data-visible-rows="4" data-pref="theCrow">
+              <option value="0" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+              <option value="1" data-image="images/characters/josh.jpg" data-description="Season K">Josh Weinstein</option>
+              <option value="2" data-image="images/characters/trace.jpg" data-description="Seasons K-7">Trace Beaulieu</option>
+              <option value="3" data-image="images/characters/bill.jpg" data-description="Seasons 8-10">Bill Corbett</option>
+              <option value="4" data-image="images/characters/hampton.jpg" data-description="Seasons 11-Present">Hampton Yount</option>
+              <option value="5" data-image="images/characters/kelsey.jpg" data-description="Seasons 13-Present">Kelsey Ann Brady</option>
+            </select>
+          </td><td class="aboveSelect">Choose A Default Tom Servo:<br/>
+            <select class="crewPref" id="favTom" is="ms-dropdown" data-visible-rows="4" data-pref="theTom">
+              <option value="0" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+              <option value="1" data-image="images/characters/josh.jpg" data-description="Seasons K-1,13">Josh Weinstein</option>
+              <option value="2" data-image="images/characters/kevin.jpg" data-description="Seasons 2-10">Kevin Murphy</option>
+              <option value="3" data-image="images/characters/baron.jpg" data-description="Seasons 11-Present">Baron Vaughn</option>
+              <option value="4" data-image="images/characters/conor.jpg" data-description="Seasons 13-Present">Conor McGiffin</option>
+            </select>
+          </td>
+        </tr>
+        <tr><td colspan="3">&nbsp;</td></tr>
+        <tr>
+          <td class="aboveSelect">Check For Updates on Startup:<br/>
+            <img class="prefImage" name="checkForUpdates" id="checkForUpdatesPref" src="images/check_for_updates.jpg">
+          </td>
+          <td colspan="2" class="aboveSelect">Title Card Format:<br/>
+          <select id="titlecardPref" is="ms-dropdown">
+            <option value="0" data-image="images/johnny.jpg" data-description="Why doesn't Johnny care?">I don't care!</option>
+            <option value="1" data-image="images/epthumbs/512.jpg">Screenshots</option>
+            <option value="2" data-image="images/titlecards/512.jpg">Gizmoplex Title Cards</option>
+          </select>
+        </tr>
+        
+      </table>
+		</div>
   </div>
   <div id="pleaseWait" class="white-popup mfp-hide">
     <h1 style="text-align:center; color:black;">Communicating With Deep 13, Please Wait...</h1>
@@ -617,6 +682,7 @@
   </div>
   <input type="button" id="about" style="display:none;">
   <input type="button" id="checkForUpdates" style="display:none;">
+  <input type="button" id="prefsBtn" style="display:none;">
 </body>
 <script>
 
@@ -625,10 +691,88 @@ tippy.setDefaultProps({theme: 'mst', arrow: false});
 ipcRenderer.send("get-quotes",{"quote": $("#quote").html(), "buttonquote": $("#movieSign").val()})
 
 $(document).ready(function() {
+  $("#checkForUpdatesPref").imgCheckbox({ 
+    graySelected: false, 
+    fadeCheckMark: true,
+    onclick: function() {
+      ipcRenderer.send("set-prefs",{pref: "checkForUpdates", val: $("#checkForUpdatesPref").parent().hasClass("imgChked")})
+    }
+  })
   $("img.madsImage").imgCheckbox({ graySelected: false, fadeCheckMark: true });
   $("img.optionsImage").imgCheckbox({ graySelected: false, fadeCheckMark: true });
   $("img.bwColor").imgCheckbox({ radio: true, canDeselect: true, graySelected: false, fadeCheckMark: true })
   tippy('[data-tippy-content]');
+  ipcRenderer.send("get-prefs", null)
+})
+
+ipcRenderer.on("get-prefs", (event, data) => {
+  let theHost = document.getElementById("theHost").msDropdown
+  let favHost = document.getElementById("favHost").msDropdown
+  theHost.selectedIndex = data.theHost
+  favHost.selectedIndex = data.theHost
+  let theCrow = document.getElementById("theCrow").msDropdown
+  let favCrow = document.getElementById("favCrow").msDropdown
+  theCrow.selectedIndex = data.theCrow
+  favCrow.selectedIndex = data.theCrow
+  let theTom = document.getElementById("theTom").msDropdown
+  let favTom = document.getElementById("favTom").msDropdown
+  theTom.selectedIndex = data.theTom
+  favTom.selectedIndex = data.theTom
+  let titlecardPref = document.getElementById("titlecardPref").msDropdown
+  titlecardPref.selectedIndex = data.titlecard
+  if (data.checkForUpdates == true) {
+    $("#checkForUpdatesPref").select()
+    ipcRenderer.send('check-for-update', {type:"automatic"})
+  } else {
+    $("#checkForUpdatesPref").deselect()
+  }
+})
+
+ipcRenderer.on("update-available", (event, data) => {
+  if (data.update == true) {
+    Swal.fire({
+      title: "Version "+data.newVersion+" is now available",
+      text: "Click 'OK' to go to the releases page.",
+      iconHtml: '<img src="images/it_stinks.png" style="height:100px;">',
+      confirmButtonText: "OK",
+      cancelButtonColor: "#f0f0f0",
+      cancelButtonText: "Cancel",
+      showCancelButton: true,
+      color: "#ffffff",
+      background: "#3b3366",
+      customClass: {
+        icon: 'no-border'
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.open(data.url)
+      }
+    });
+  } else {
+    Swal.fire({
+      title: "Current version: "+data.currentVersion,
+      text: "There is no update available at this time.",
+      iconHtml: '<img src="images/coily.png" style="height:100px;">',
+      color: "#ffffff",
+      confirmButtonText: "OK",
+      background: '#3b3366',
+      customClass: {
+        icon: 'no-border'
+      }
+    })
+  }
+})
+
+$(".crewPref").on("change", function(e) {
+  ipcRenderer.send("set-prefs",{pref: $(this).data("pref"), val: parseInt($(this).val())})
+  let pref = document.getElementById($(this).data("pref")).msDropdown
+  pref.selectedIndex = parseInt($(this).val())
+})
+
+$("#titlecardPref").on("change", function(e) {
+  titlecards = $(this).val()
+  let tmp = document.getElementById("titlecardPref").msDropdown
+  ipcRenderer.send("set-prefs",{pref: "titlecard", val: tmp.selectedIndex})
 })
 
 $("#moviePoster").on("click", function(e) {
@@ -643,6 +787,17 @@ $("#about").on("click", function() {
   $.magnificPopup.open({
       items: {
         src: '#aboutDiv'
+      },
+      removalDelay: 250,
+      showCloseBtn: false,
+      type: 'inline'
+    });
+})
+
+$("#prefsBtn").on("click", function() {
+  $.magnificPopup.open({
+      items: {
+        src: '#prefs'
       },
       removalDelay: 250,
       showCloseBtn: false,
@@ -710,6 +865,7 @@ $("#movieSign").on("click",function(e){
   data.host = $("#theHost").val()
   data.crow = $("#theCrow").val()
   data.tom = $("#theTom").val()
+  data.gpc = $("#theGPC").val()
   data.decade = $("#theDecade").val()
   data.genre = $("#theGenre").val()
   data.country = $("#theCountry").val()
@@ -817,7 +973,21 @@ ipcRenderer.on('movie-sign', (event, data) => {
       })
     }
     $("#result").html("Experiment "+data.movie.experiment+": &quot;"+data.movie.movie+"&quot;")
-    $("#moviePoster").attr("src","images/epthumbs/"+data.movie.experiment+".jpg")
+    switch(parseInt($("#titlecardPref").val())) {
+      case 0:
+        if (Math.random() < 0.5) {
+          $("#moviePoster").attr("src","images/epthumbs/"+data.movie.experiment+".jpg")
+        } else {
+          $("#moviePoster").attr("src","images/titlecards/"+data.movie.experiment+".jpg")
+        }
+        break;
+      case 1:
+        $("#moviePoster").attr("src","images/epthumbs/"+data.movie.experiment+".jpg")
+        break;
+      case 2:
+        $("#moviePoster").attr("src","images/titlecards/"+data.movie.experiment+".jpg")
+        break;
+    }
     $("#moviePoster").css("z-index", 1)
     $("#videoIframe").attr("src","https://www.youtube.com/embed/"+trailers[(Math.floor(Math.random() * trailers.length))])
     $("#streamingServices").html(JSON.stringify(streams))

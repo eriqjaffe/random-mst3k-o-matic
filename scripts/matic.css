@@ -278,3 +278,41 @@ h1, h2, h3 {
     cursor: pointer;
     fill: red;
   }
+
+  .swal2-styled.swal2-cancel{
+    color:black !important; 
+    font-weight:bold !important;
+    font-family: 'Raleway', sans-serif !important;
+  }
+
+  .swal2-styled.swal2-cancel:hover{
+    background-color: #2E2B56 !important;
+    color:white !important; 
+    font-weight:bold !important;
+    font-family: 'Raleway', sans-serif !important;
+  }
+
+  .swal2-styled.swal2-confirm{
+    color:white !important; 
+    font-weight:bold !important;
+    font-family: 'Raleway', sans-serif !important;
+  }
+
+  .swal2-styled.swal2-confirm:hover{
+    background-color: #2E2B56 !important;
+    color:white !important; 
+    font-weight:bold !important;
+    font-family: 'Raleway', sans-serif !important;
+  }
+
+  .no-border {
+    border: 0;
+  }
+
+  .fade-in-image-fast {
+    animation: fadeIn 1s;
+    -webkit-animation: fadeIn 1s;
+    -moz-animation: fadeIn 1s;
+    -o-animation: fadeIn 1s;
+    -ms-animation: fadeIn 1s;
+  }
